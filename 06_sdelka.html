@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+
+<html lang="ru">
+<head>
+<meta charset="utf-8"/>
+<title>Урок 6. Завершение сделки | DARALTAI</title>
+<style>
+    :root {
+      --bg: #eaf4ff;
+      --card-bg: #ffffff;
+      --accent: #2563eb;
+      --accent-soft: #fee68a;
+      --text-main: #111827;
+      --text-muted: #4b5563;
+      --radius-lg: 24px;
+      --shadow-soft: 0 18px 40px rgba(15, 23, 42, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #f6fbff 0, var(--bg) 55%, #dbeafe 100%);
+      color: var(--text-main);
+    }
+
+    .app {
+      max-width: 1160px;
+      margin: 32px auto 40px;
+      padding: 0 24px;
+    }
+
+    
+
+    
+
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 6px;
+    }
+
+    .back-link {
+      font-size: 13px;
+      text-decoration: none;
+      color: #2563eb;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(37, 99, 235, 0.06);
+    }
+
+    .back-link:hover {
+      background: rgba(37, 99, 235, 0.12);
+    }
+
+    .course-header h1 {
+      margin: 0 0 4px;
+      font-size: 30px;
+    }
+
+    .course-header p {
+      margin: 0 0 8px;
+      max-width: 820px;
+      color: var(--text-muted);
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    main {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+
+    .steps-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 4px;
+      font-size: 13px;
+    }
+
+    .step-pill {
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid #e5e7eb;
+      background: rgba(255, 255, 255, 0.9);
+      color: var(--text-muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .step-pill span {
+      font-weight: 600;
+      color: #4b5563;
+    }
+
+    .step-pill--active {
+      border-color: #2563eb;
+      background: #dbeafe;
+      color: #1d4ed8;
+    }
+
+    .step-pill--active span {
+      color: #1d4ed8;
+    }
+
+    .hero {
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-soft);
+      padding: 26px 28px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.2fr);
+      gap: 24px;
+      align-items: center;
+    }
+
+    .hero-text h2 {
+      margin: 0 0 10px;
+      font-size: 22px;
+    }
+
+    .hero-text p {
+      margin: 0 0 6px;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .hero-text ul {
+      margin: 6px 0 0 18px;
+      padding: 0;
+      font-size: 14px;
+    }
+
+    .hero-callout {
+      margin-top: 10px;
+      background: #fef3c7;
+      border-radius: 14px;
+      padding: 10px 12px;
+      font-size: 13px;
+      line-height: 1.5;
+      color: #7c2d12;
+    }
+
+    .hero-callout ul {
+      margin: 6px 0 0 18px;
+      padding: 0;
+    }
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 18px 20px 14px;
+      box-shadow: 0 14px 30px rgba(15, 23, 42, 0.08);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .card h3 {
+      margin: 0 0 8px;
+      font-size: 16px;
+    }
+
+    .card p {
+      margin: 0 0 6px;
+    }
+
+    .card ul {
+      margin: 6px 0 0 18px;
+      padding: 0;
+    }
+
+    .methods-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.4fr);
+      gap: 16px;
+    }
+
+    .accordion-card {
+      background: var(--card-bg);
+      border-radius: 22px;
+      padding: 18px 20px 16px;
+      box-shadow: var(--shadow-soft);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .accordion-card h3 {
+      margin: 0 0 8px;
+      font-size: 16px;
+    }
+
+    .accordion {
+      margin-top: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    details {
+      border-radius: 16px;
+      border: 1px solid #e5e7eb;
+      background: #f9fafb;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    details[open] {
+      border-color: #2563eb;
+      background: #eef2ff;
+      box-shadow: 0 10px 24px rgba(37, 99, 235, 0.15);
+    }
+
+    summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    summary::-webkit-details-marker { display: none; }
+
+    .summary-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .substep-number {
+      width: 26px;
+      height: 26px;
+      border-radius: 999px;
+      background: #2563eb;
+      color: #f9fafb;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+
+    .substep-text-title {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .substep-text-tagline {
+      font-size: 12px;
+      color: #4b5563;
+    }
+
+    .summary-right {
+      font-size: 18px;
+      line-height: 1;
+      color: #9ca3af;
+      flex-shrink: 0;
+      transition: transform .15s ease, color .15s ease;
+    }
+
+    details[open] .summary-right {
+      color: #2563eb;
+      transform: rotate(90deg);
+    }
+
+    .accordion-body {
+      padding: 0 14px 12px 14px;
+      border-top: 1px solid #e5e7eb;
+      font-size: 13px;
+      line-height: 1.6;
+      background: rgba(255, 255, 255, 0.7);
+    }
+
+    .accordion-body p {
+      margin: 8px 0 6px;
+    }
+
+    .accordion-body ul {
+      margin: 4px 0 0 18px;
+    }
+
+    .quiz-cta {
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 16px 18px 14px;
+      box-shadow: var(--shadow-soft);
+      font-size: 14px;
+      line-height: 1.6;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .quiz-cta p {
+      margin: 0;
+      max-width: 620px;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 10px 18px;
+      border-radius: 999px;
+      border: none;
+      background: var(--accent);
+      color: #f9fafb;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 12px 24px rgba(37, 99, 235, 0.4);
+      white-space: nowrap;
+    }
+
+    .btn-primary:hover { filter: brightness(1.05); }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid #e5e7eb;
+      background: #f9fafb;
+      color: #111827;
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    .btn-secondary:hover { background: #f3f4f6; }
+
+    /* Модалки */
+
+    .quiz-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.45);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      z-index: 50;
+    }
+
+    .quiz-overlay.open { display: flex; }
+
+    .quiz-modal {
+      background: #ffffff;
+      border-radius: 24px;
+      max-width: 760px;
+      width: 100%;
+      max-height: 90vh;
+      box-shadow: 0 20px 45px rgba(15, 23, 42, 0.45);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .quiz-modal-header {
+      padding: 14px 20px 8px;
+      border-bottom: 1px solid #e5e7eb;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .quiz-modal-header h2 {
+      margin: 0;
+      font-size: 17px;
+    }
+
+    .quiz-modal-header p {
+      margin: 2px 0 0;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .quiz-modal-body {
+      padding: 12px 20px 16px;
+      overflow-y: auto;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .quiz-question-title {
+      font-weight: 600;
+      margin-bottom: 4px;
+      font-size: 14px;
+    }
+
+    .quiz-subtitle {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .quiz-row-single {
+      margin-bottom: 8px;
+      padding: 7px 9px;
+      border-radius: 10px;
+      background: #f9fafb;
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .quiz-row-single span {
+      flex: 1 1 auto;
+    }
+
+    .quiz-select {
+      width: 200px;
+      max-width: 50%;
+      padding: 6px 8px;
+      border-radius: 999px;
+      border: 1px solid #e5e7eb;
+      font-size: 13px;
+      background: #ffffff;
+      flex-shrink: 0;
+    }
+
+    .quiz-actions {
+      margin-top: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .quiz-progress {
+      font-size: 12px;
+      color: #6b7280;
+    }
+
+    .quiz-result {
+      font-size: 13px;
+    }
+
+    .quiz-result-success { color: #166534; }
+    .quiz-result-error { color: #b91c1c; }
+
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-top: 4px;
+    }
+
+    .quiz-option-btn {
+      width: 100%;
+      text-align: left;
+      padding: 7px 9px;
+      border-radius: 10px;
+      border: 1px solid #e5e7eb;
+      background: #f9fafb;
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    .quiz-option-btn:hover {
+      background: #eef2ff;
+      border-color: #c7d2fe;
+    }
+
+    .quiz-option-btn.selected {
+      border-color: #2563eb;
+      background: #e0ecff;
+    }
+
+    @media (max-width: 960px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      
+      .methods-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 720px) {
+      .course-header h1 { font-size: 24px; }
+      .hero { padding: 20px 18px; }
+      .header-top {
+        flex-direction: column-reverse;
+        align-items: flex-start;
+      }
+      .quiz-select { max-width: 100%; }
+      .quiz-row-single {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  
+
+/* Layout after removal of mascot and call-recording blocks */
+.hero.hero--single,
+.two-column-card.layout--single,
+.logic-layout.layout--single,
+.goals-layout.layout--single {
+  grid-template-columns: minmax(0, 1fr);
+}
+</style>
+<link href="assets/course-shell.css" rel="stylesheet"/><script defer="True" src="assets/course-progress.js"></script></head>
+<body data-course-page="lesson" data-lesson="6">
+<div class="app">
+<div class="header-top"><a aria-label="DARALTAI — главная страница курса" class="mini-brand" href="index.html"><img alt="DARALTAI" src="assets/daraltai-logo.png"/><span>DARALTAI</span></a><a class="back-link" href="index.html">← К программе курса</a></div>
+<header class="course-header">
+<h1>Этап 6. Рули в сделку</h1>
+<p>
+      Цель этапа – помочь Клиенту принять решение здесь и сейчас, когда контакт установлен,
+      потребности и мотиваторы понятны, презентация и отработка возражений уже проведены.
+    </p>
+<p>
+      На этом шаге мы аккуратно подводим Клиента к оформлению программы
+      по здоровью: без давления, но уверенно и структурно.
+    </p>
+<div class="steps-nav"><a class="step-pill" data-lesson-link="1" href="01_podgotovka.html"><span>Урок 1</span> Подготовка</a><a class="step-pill" data-lesson-link="2" href="02_contact.html"><span>Урок 2</span> Контакт</a><a class="step-pill" data-lesson-link="3" href="03_potrebnosti.html"><span>Урок 3</span> Потребности</a><a class="step-pill" data-lesson-link="4" href="04_presentation.html"><span>Урок 4</span> Презентация</a><a class="step-pill" data-lesson-link="5" href="05_vozrazheniya.html"><span>Урок 5</span> Возражения</a><a aria-current="page" class="step-pill step-pill--active" data-lesson-link="6" href="06_sdelka.html"><span>Урок 6</span> Сделка</a><a class="step-pill" data-lesson-link="7" href="07_itog.html"><span>Урок 7</span> Анализ</a></div>
+</header>
+<main>
+<!-- Hero -->
+<section class="hero hero--single">
+<div class="hero-text">
+<h2>Когда пора закрывать сделку?</h2>
+<p>
+          Самый последний этап продажи — завершение сделки. Если все предыдущие шаги
+          выстроены правильно, финальное «да» звучит легко и естественно.
+        </p>
+<p>На этом этапе мы с тобой рассмотрим:</p>
+<ul>
+<li>как по телефону понять, что Клиент готов к оформлению программы здоровья;</li>
+<li>основные способы завершения сделки;</li>
+<li>как звучать уверенно, но не манипулятивно.</li>
+</ul>
+<div class="hero-callout">
+<strong>Помни:</strong>
+<ul>
+<li>наша задача — не «дожать», а <strong>помочь</strong> Клиенту сделать полезный шаг для здоровья;</li>
+<li>завершение сделки — логичное продолжение всей консультации, а не отдельный «трюк»;</li>
+<li>лучший тест: тебе самому комфортно было бы услышать такую же фразу от продавца?</li>
+</ul>
+</div>
+</div>
+</section>
+<!-- Признаки готовности -->
+<section class="card">
+<h3>Как понять, что Клиент готов к решению?</h3>
+<p>
+        В телефонных продажах здоровья нет жесткого «подписал контракт» прямо в разговоре,
+        но есть сигналы, что Клиент созрел для оформления программы:
+      </p>
+<ul>
+<li><strong>Ты прямо уточняешь готовность</strong>: «Готовы начать с базовой программы уже сейчас?»</li>
+<li><strong>Темп речи Клиента ускоряется</strong>, появляются живые уточняющие вопросы о деталях.</li>
+<li><strong>Слышны интонации нетерпения</strong> — хочется уже «перейти к делу».</li>
+<li><strong>Клиент замолкает и не задаёт новых вопросов</strong> после твоего ответа — это момент, когда важно мягко предложить решение, а не заполнять тишину лишними объяснениями.</li>
+</ul>
+<p>
+        Увидел хотя бы пару таких сигналов — самое время выбрать способ завершения сделки.
+      </p>
+</section>
+<!-- Способы завершения -->
+<section class="accordion-card">
+<h3>Способы завершения сделки</h3>
+<p>
+        Способ завершения — это формулировка, после которой Клиенту легче сказать
+        «да» полезному решению. Ниже — несколько рабочих приёмов для продаж программ здоровья.
+      </p>
+<div class="accordion">
+<details open="">
+<summary>
+<div class="summary-left">
+<div class="substep-number">1</div>
+<div>
+<div class="substep-text-title">«Прямой» вопрос</div>
+<div class="substep-text-tagline">Самый честный способ закрытия</div>
+</div>
+</div>
+<div class="summary-right">›</div>
+</summary>
+<div class="accordion-body">
+<p>
+              Просто и уважительно предлагаем перейти к действию — без лишних обходных манёвров.
+            </p>
+<ul>
+<li>«Запускаем программу базового обследования уже с ближайшего понедельника?»</li>
+<li>«Оформляем для вас курс поддержки иммунитета на три месяца?»</li>
+</ul>
+<p>
+              Прямой вопрос хорошо работает, когда Клиент уже понимает выгоды и звучит
+              как логичный итог разговора.
+            </p>
+</div>
+</details>
+<details>
+<summary>
+<div class="summary-left">
+<div class="substep-number">2</div>
+<div>
+<div class="substep-text-title">Альтернативный вопрос</div>
+<div class="substep-text-tagline">Выбор без отказа</div>
+</div>
+</div>
+<div class="summary-right">›</div>
+</summary>
+<div class="accordion-body">
+<p>
+              Предлагаем Клиенту выбрать <strong>формат</strong> решения, а не отвечать «да/нет».
+            </p>
+<ul>
+<li>«Вам удобнее начать с месяца программы или сразу оформить курс на три месяца?»</li>
+<li>«Сдавать анализы будет комфортнее в будний день или в выходные?»</li>
+</ul>
+<p>
+              Такой вопрос хорошо работает, когда Клиент в целом согласен, но ещё выбирает детали.
+            </p>
+</div>
+</details>
+<details>
+<summary>
+<div class="summary-left">
+<div class="substep-number">3</div>
+<div>
+<div class="substep-text-title">Создание спешки</div>
+<div class="substep-text-tagline">Аккуратно для мотиватора «экономия»</div>
+</div>
+</div>
+<div class="summary-right">›</div>
+</summary>
+<div class="accordion-body">
+<p>
+              Подходит Клиентам, у которых ведущий мотиватор — <strong>экономия</strong>.
+              Важно, чтобы ограничение по условиям было реальным, а не выдуманным.
+            </p>
+<p>Примеры:</p>
+<ul>
+<li>«Сейчас на программу действует специальная цена с полным пакетом анализов, она актуальна до конца недели.»</li>
+<li>«При оформлении сегодня консультация врача и план питания входят в стоимость — потом эти опции будут отдельно.»</li>
+</ul>
+<p>
+              Мы не давим, а честно показываем, почему <strong>сейчас</strong> — выгоднее, чем «когда-нибудь».
+            </p>
+</div>
+</details>
+<details>
+<summary>
+<div class="summary-left">
+<div class="substep-number">4</div>
+<div>
+<div class="substep-text-title">Суммирование достоинств</div>
+<div class="substep-text-tagline">Помогаем сопоставить «пакетом»</div>
+</div>
+</div>
+<div class="summary-right">›</div>
+</summary>
+<div class="accordion-body">
+<p>
+              Сводим всё важное в одну короткую картинку, чтобы Клиент увидел
+              ценность целиком.
+            </p>
+<p>Пример:</p>
+<p>
+              «Итак, Иван Иванович, вы получаете: полное обследование,
+              детальный отчёт по анализам, персональный план питания и
+              сопровождение врача в чате. Уже через пару дней после сдачи
+              анализов вы начинаете понятный план восстановления. Оформляем программу?»
+            </p>
+</div>
+</details>
+<details>
+<summary>
+<div class="summary-left">
+<div class="substep-number">5</div>
+<div>
+<div class="substep-text-title">«Щеночек на время»</div>
+<div class="substep-text-tagline">Дать Клиенту «примерить» результат</div>
+</div>
+</div>
+<div class="summary-right">›</div>
+</summary>
+<div class="accordion-body">
+<p>
+              Задача приёма — позволить Клиенту <strong>эмоционально почувствовать</strong>,
+              как будет выглядеть его жизнь с новой программой здоровья.
+            </p>
+<p>Пример:</p>
+<p>
+              «Представьте, что через два месяца вы просыпаетесь без тяжести,
+              анализы приходят в норму, и вы спокойно планируете отпуск,
+              не оглядываясь на самочувствие. Наша программа как раз об этом.
+              Давайте начнём уже сейчас?»
+            </p>
+<p>
+              В наших продажах роль «щенка» выполняет тестовый период,
+              первый блок обследования или стартовый месяц программы.
+              Важно проговорить, что сейчас Клиент не берёт на себя
+              пожизненные обязательства — он <strong>пробует</strong>.
+            </p>
+</div>
+</details>
+<details>
+<summary>
+<div class="summary-left">
+<div class="substep-number">6</div>
+<div>
+<div class="substep-text-title">Метод Сократа</div>
+<div class="substep-text-tagline">Цепочка маленьких «да»</div>
+</div>
+</div>
+<div class="summary-right">›</div>
+</summary>
+<div class="accordion-body">
+<p>
+              Задаём несколько вопросов, на которые Клиенту легко ответить «да».
+              Это создаёт инерцию согласия и помогает перейти к финальному вопросу о сделке.
+            </p>
+<p>Пример:</p>
+<p>
+              «Вы говорили, что для вас важно чувствовать себя энергичнее, верно?  
+              И чтобы обследование проходило в проверенной клинике?  
+              И чтобы был понятный план, что делать дальше?  
+              Тогда давайте запустим программу уже сейчас.»
+            </p>
+</div>
+</details>
+</div>
+</section>
+<!-- Тренажёр по способам завершения -->
+<section class="quiz-cta">
+<p>
+        Потренируйся определять, какой способ завершения сделки использует фраза.
+        Это поможет быстро подбирать нужный инструмент в разговоре.
+      </p>
+<button class="btn-primary" id="openCloseTrainer">
+        Тренажёр по завершению сделки
+      </button>
+</section>
+<!-- Итоговый тест -->
+<section class="quiz-cta">
+<p>
+        А теперь проверь себя по этапу «Рули в сделку»: как ты понимаешь признаки готовности
+        Клиента и разные варианты завершения.
+      </p>
+<button class="btn-primary" id="openFinalQuiz">
+        Итоговый тест по этапу
+      </button>
+</section>
+<nav aria-label="Переход между уроками" class="course-navigation"><a class="course-navigation__button course-navigation__button--prev" href="05_vozrazheniya.html">← Урок 5: Возражения</a><div class="course-navigation__status">Урок 6 из 7</div><a class="course-navigation__button course-navigation__button--next" href="07_itog.html">Урок 7: Анализ →</a></nav><footer class="course-page-footer">Обучающий курс DARALTAI · Телефонные продажи</footer></main>
+</div>
+<!-- Модалка: тренажёр по способам завершения -->
+<div class="quiz-overlay" id="closeTrainerOverlay">
+<div class="quiz-modal">
+<div class="quiz-modal-header">
+<div>
+<h2>Тренажёр по завершению сделки</h2>
+<p>Для каждой фразы выбери соответствующий способ завершения сделки.</p>
+</div>
+<button class="btn-secondary" id="closeCloseTrainerOverlay">Закрыть</button>
+</div>
+<div class="quiz-modal-body">
+<div class="quiz-progress" id="closeTrainerProgress"></div>
+<div id="closeTrainerContainer"></div>
+<div class="quiz-actions">
+<div class="quiz-result" id="closeTrainerResult"></div>
+<button class="btn-primary" id="closeTrainerCheckBtn">
+          Проверить
+        </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Модалка: итоговый тест -->
+<div class="quiz-overlay" id="finalOverlay">
+<div class="quiz-modal">
+<div class="quiz-modal-header">
+<div>
+<h2>Итоговый тест по этапу</h2>
+<p>Проверь, насколько уверенно ты рулишь в сделку.</p>
+</div>
+<button class="btn-secondary" id="closeFinalOverlay">Закрыть</button>
+</div>
+<div class="quiz-modal-body">
+<div class="quiz-progress" id="finalProgress"></div>
+<div id="finalQuestionContainer"></div>
+<div class="quiz-actions">
+<div class="quiz-result" id="finalResult"></div>
+<button class="btn-primary" id="finalNextBtn">Ответить</button>
+</div>
+</div>
+</div>
+</div>
+<script>
+  (function() {
+    function shuffle(arr) {
+      return arr
+        .map(v => ({ v, s: Math.random() }))
+        .sort((a, b) => a.s - b.s)
+        .map(o => o.v);
+    }
+
+    function closeOverlay(overlay) {
+      overlay.classList.remove('open');
+    }
+
+    /* ===== ТРЕНАЖЁР по способам завершения ===== */
+
+    const closeTrainerOverlay = document.getElementById('closeTrainerOverlay');
+    const openCloseTrainerBtn = document.getElementById('openCloseTrainer');
+    const closeCloseTrainerOverlayBtn = document.getElementById('closeCloseTrainerOverlay');
+    const closeTrainerContainer = document.getElementById('closeTrainerContainer');
+    const closeTrainerResult = document.getElementById('closeTrainerResult');
+    const closeTrainerProgress = document.getElementById('closeTrainerProgress');
+    const closeTrainerCheckBtn = document.getElementById('closeTrainerCheckBtn');
+
+    const closeTrainerQuestions = [
+      {
+        text: '«Запускаем программу базового обследования уже с ближайшего понедельника?»',
+        type: 'Прямой вопрос'
+      },
+      {
+        text: '«Вам удобнее начать с месяца программы или сразу оформить курс на три месяца?»',
+        type: 'Альтернативный вопрос'
+      },
+      {
+        text: '«Сейчас на программу действует специальная цена с полным пакетом анализов, она актуальна до конца недели.»',
+        type: 'Создание спешки'
+      },
+      {
+        text: '«Итак, вы получаете обследование, план питания и сопровождение врача — всё в одной программе. Оформляем?»',
+        type: 'Суммирование достоинств'
+      },
+      {
+        text: '«Представьте, что через два месяца вы просыпаетесь без тяжести и спокойно планируете отпуск. Именно это даёт наша программа. Начнём?»',
+        type: '«Щеночек на время»'
+      },
+      {
+        text: '«Для вас важно чувствовать себя энергичнее, верно? И чтобы обследование было в проверенной клинике? И чтобы был понятный план? Тогда давайте запустим программу уже сейчас.»',
+        type: 'Метод Сократа'
+      }
+    ];
+
+    const closeTypes = [
+      'Прямой вопрос',
+      'Альтернативный вопрос',
+      'Создание спешки',
+      'Суммирование достоинств',
+      '«Щеночек на время»',
+      'Метод Сократа'
+    ];
+
+    function renderCloseTrainer() {
+      closeTrainerProgress.textContent = `Примеров: ${closeTrainerQuestions.length}`;
+      closeTrainerResult.textContent = '';
+      const items = shuffle(closeTrainerQuestions.slice());
+      let html = '<div class="quiz-subtitle">Подумай, какую технику использует каждая фраза.</div>';
+      items.forEach((q, idx) => {
+        html += `
+          <div class="quiz-row-single">
+            <span>${idx + 1}) ${q.text}</span>
+            <select class="quiz-select close-select" data-answer="${q.type}">
+              <option value="">Выбери технику</option>
+              ${closeTypes.map(t => `<option value="${t}">${t}</option>`).join('')}
+            </select>
+          </div>
+        `;
+      });
+      closeTrainerContainer.innerHTML = html;
+    }
+
+    if (openCloseTrainerBtn) {
+      openCloseTrainerBtn.addEventListener('click', () => {
+        closeTrainerOverlay.classList.add('open');
+        renderCloseTrainer();
+      });
+    }
+
+    if (closeCloseTrainerOverlayBtn) {
+      closeCloseTrainerOverlayBtn.addEventListener('click', () => closeOverlay(closeTrainerOverlay));
+    }
+
+    closeTrainerOverlay.addEventListener('click', (e) => {
+      if (e.target === closeTrainerOverlay) closeOverlay(closeTrainerOverlay);
+    });
+
+    if (closeTrainerCheckBtn) {
+      closeTrainerCheckBtn.addEventListener('click', () => {
+        const selects = closeTrainerContainer.querySelectorAll('.close-select');
+        let allFilled = true;
+        let correctCount = 0;
+
+        selects.forEach(sel => {
+          sel.style.borderColor = '#e5e7eb';
+          sel.style.backgroundColor = '#ffffff';
+
+          if (!sel.value) {
+            allFilled = false;
+            sel.style.borderColor = '#f97316';
+            sel.style.backgroundColor = '#fff7ed';
+          } else if (sel.value === sel.dataset.answer) {
+            correctCount++;
+            sel.style.borderColor = '#22c55e';
+            sel.style.backgroundColor = '#ecfdf5';
+          } else {
+            sel.style.borderColor = '#b91c1c';
+            sel.style.backgroundColor = '#fef2f2';
+          }
+        });
+
+        if (!allFilled) {
+          closeTrainerResult.textContent = 'Заполни технику для каждого примера.';
+          closeTrainerResult.className = 'quiz-result quiz-result-error';
+          return;
+        }
+
+        if (correctCount === closeTrainerQuestions.length) {
+          closeTrainerResult.textContent =
+            'Отлично! Ты верно определил все способы завершения сделки.';
+          closeTrainerResult.className = 'quiz-result quiz-result-success';
+        } else {
+          closeTrainerResult.textContent =
+            `Есть неточности: верно ${correctCount} из ${closeTrainerQuestions.length}. Посмотри ещё раз описание техник выше и попробуй снова.`;
+          closeTrainerResult.className = 'quiz-result quiz-result-error';
+        }
+      });
+    }
+
+    /* ===== ИТОГОВЫЙ ТЕСТ (10 вопросов) ===== */
+
+    const finalOverlay = document.getElementById('finalOverlay');
+    const openFinalBtn = document.getElementById('openFinalQuiz');
+    const closeFinalBtn = document.getElementById('closeFinalOverlay');
+    const finalContainer = document.getElementById('finalQuestionContainer');
+    const finalProgressEl = document.getElementById('finalProgress');
+    const finalResultEl = document.getElementById('finalResult');
+    const finalNextBtn = document.getElementById('finalNextBtn');
+
+    const finalQuestions = [
+      {
+        text: 'Главная цель этапа «Рули в сделку» в продажах решений для здоровья — это…',
+        options: [
+          { text: 'убедить Клиента любой ценой оформить программу', correct: false },
+          { text: 'помочь Клиенту принять решение здесь и сейчас, когда польза уже понятна', correct: true },
+          { text: 'рассказать максимум медицинских терминов', correct: false }
+        ]
+      },
+      {
+        text: 'Что может быть признаком готовности Клиента к заключению сделки?',
+        options: [
+          { text: 'Клиент начинает задавать новые общие вопросы, уходя от темы здоровья', correct: false },
+          { text: 'Клиент молчит, не задаёт новых вопросов и ждёт твоего следующего шага', correct: true },
+          { text: 'Клиент резко меняет тему разговора', correct: false }
+        ]
+      },
+      {
+        text: 'Как звучит «прямой вопрос» на этапе завершения?',
+        options: [
+          { text: '«Если вам удобно, вы сами нам перезвоните»', correct: false },
+          { text: '«Запускаем программу обследования уже с понедельника?»', correct: true },
+          { text: '«Я не знаю, что вам посоветовать, давайте подумаем ещё»', correct: false }
+        ]
+      },
+      {
+        text: 'Какой пример относится к альтернативному вопросу?',
+        options: [
+          { text: '«Вам удобнее начать с месяца программы или сразу взять курс на три месяца?»', correct: true },
+          { text: '«Вы точно уверены, что не хотите?»', correct: false },
+          { text: '«Давайте оформим, а потом разберёмся»', correct: false }
+        ]
+      },
+      {
+        text: 'Когда корректно использовать приём «создание спешки»?',
+        options: [
+          { text: 'Когда у Клиента ведущий мотиватор — экономия, и у нас реально ограниченные условия', correct: true },
+          { text: 'Всегда, независимо от ситуации, чтобы ускорить Клиента', correct: false },
+          { text: 'Никогда — спешка запрещена', correct: false }
+        ]
+      },
+      {
+        text: 'Что делает приём «суммирование достоинств»?',
+        options: [
+          { text: 'Пугает Клиента длинным списком медицинских терминов', correct: false },
+          { text: 'Коротко собирает все важные выгоды программы в одну понятную картинку', correct: true },
+          { text: 'Заменяет этап работы с возражениями', correct: false }
+        ]
+      },
+      {
+        text: 'В чём смысл приёма «Щеночек на время» в контексте здоровья?',
+        options: [
+          { text: 'Дать Клиенту эмоционально представить результат программы и попробовать её в ограниченном формате', correct: true },
+          { text: 'Сделать программу обязательной на несколько лет', correct: false },
+          { text: 'Предложить Клиенту подарить животное', correct: false }
+        ]
+      },
+      {
+        text: 'Как работает метод Сократа?',
+        options: [
+          { text: 'Задаём цепочку вопросов, на которые Клиенту легко отвечать «да», и завершаем сделкой', correct: true },
+          { text: 'Задаём провокационные вопросы, чтобы Клиент чувствовал себя неуверенно', correct: false },
+          { text: 'Вообще не задаём вопросов, только рассказываем', correct: false }
+        ]
+      },
+      {
+        text: 'Что НЕ входит в корректное завершение сделки?',
+        options: [
+          { text: 'Мягкий призыв к действию: «В таком случае оформляем программу?»', correct: false },
+          { text: 'Напоминание ключевых выгод, которые важны для Клиента', correct: false },
+          { text: 'Манипуляции и давление: «Если откажетесь, потом пожалеете»', correct: true }
+        ]
+      },
+      {
+        text: 'Какой внутренний настрой помогает качественно завершать сделки в теме здоровья?',
+        options: [
+          { text: '«Мне нужно любой ценой выполнить план»', correct: false },
+          { text: '«Я хочу помочь человеку сделать полезный шаг для своего здоровья»', correct: true },
+          { text: '«Главное — говорить быстро, а там как получится»', correct: false }
+        ]
+      }
+    ];
+
+    let finalIndex = 0;
+    let finalCorrect = 0;
+    let finalSelectedCorrect = null;
+
+    function renderFinalQuestion() {
+      const q = finalQuestions[finalIndex];
+      finalProgressEl.textContent = `Вопрос ${finalIndex + 1} из ${finalQuestions.length}`;
+      finalResultEl.textContent = '';
+      finalNextBtn.textContent = finalIndex === finalQuestions.length - 1
+        ? 'Ответить и завершить'
+        : 'Ответить';
+      finalSelectedCorrect = null;
+
+      const opts = shuffle(q.options.slice());
+      let html = `<div class="quiz-question-title">${q.text}</div>`;
+      html += '<div class="quiz-options">';
+      opts.forEach(opt => {
+        html += `
+          <button type="button" class="quiz-option-btn" data-correct="${opt.correct}">
+            ${opt.text}
+          </button>
+        `;
+      });
+      html += '</div>';
+      finalContainer.innerHTML = html;
+
+      const btns = finalContainer.querySelectorAll('.quiz-option-btn');
+      btns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          btns.forEach(b => b.classList.remove('selected'));
+          btn.classList.add('selected');
+          finalSelectedCorrect = btn.dataset.correct === 'true';
+        });
+      });
+    }
+
+    if (openFinalBtn) {
+      openFinalBtn.addEventListener('click', () => {
+        finalIndex = 0;
+        finalCorrect = 0;
+        finalOverlay.classList.add('open');
+        finalNextBtn.disabled = false;
+        renderFinalQuestion();
+      });
+    }
+
+    if (closeFinalBtn) {
+      closeFinalBtn.addEventListener('click', () => closeOverlay(finalOverlay));
+    }
+
+    finalOverlay.addEventListener('click', (e) => {
+      if (e.target === finalOverlay) closeOverlay(finalOverlay);
+    });
+
+    if (finalNextBtn) {
+      finalNextBtn.addEventListener('click', () => {
+        if (finalSelectedCorrect === null) {
+          finalResultEl.textContent = 'Сначала выбери вариант ответа.';
+          finalResultEl.className = 'quiz-result quiz-result-error';
+          return;
+        }
+
+        if (!finalSelectedCorrect) {
+          finalResultEl.textContent =
+            'Не совсем так. Вспомни цель этапа: помочь Клиенту сделать полезный шаг к здоровью, используя подходящий способ завершения.';
+          finalResultEl.className = 'quiz-result quiz-result-error';
+          return;
+        }
+
+        finalCorrect++;
+
+        if (finalIndex < finalQuestions.length - 1) {
+          finalResultEl.textContent = 'Верно! Двигаемся дальше.';
+          finalResultEl.className = 'quiz-result quiz-result-success';
+          finalIndex++;
+          setTimeout(renderFinalQuestion, 800);
+        } else {
+          finalResultEl.textContent =
+            `Отличный результат! Ты уверенно рулишь в сделку (${finalCorrect}/${finalQuestions.length}).`;
+          finalResultEl.className = 'quiz-result quiz-result-success';
+          finalNextBtn.disabled = true;
+        }
+      });
+    }
+  })();
+</script>
+</body>
+</html>

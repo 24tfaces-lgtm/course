@@ -1,0 +1,2022 @@
+<!DOCTYPE html>
+
+<html lang="ru">
+<head>
+<meta charset="utf-8"/>
+<title>Урок 3. Выявление потребностей | DARALTAI</title>
+<style>
+    :root {
+      --bg: #eaf4ff;
+      --card-bg: #ffffff;
+      --accent: #2563eb;
+      --accent-soft: #fee68a;
+      --text-main: #111827;
+      --text-muted: #4b5563;
+      --radius-lg: 24px;
+      --shadow-soft: 0 18px 40px rgba(15, 23, 42, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #f6fbff 0, var(--bg) 55%, #dbeafe 100%);
+      color: var(--text-main);
+    }
+
+    .app {
+      max-width: 1160px;
+      margin: 32px auto 40px;
+      padding: 0 24px;
+    }
+
+    
+    
+
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 6px;
+    }
+
+    .back-link {
+      font-size: 13px;
+      text-decoration: none;
+      color: #2563eb;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(37, 99, 235, 0.06);
+    }
+
+    .back-link:hover {
+      background: rgba(37, 99, 235, 0.12);
+    }
+
+    .course-header h1 {
+      margin: 0 0 4px;
+      font-size: 30px;
+    }
+    .course-header p {
+      margin: 0 0 8px;
+      max-width: 780px;
+      color: var(--text-muted);
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    main {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+
+    .steps-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 4px;
+      font-size: 13px;
+    }
+
+    .step-pill {
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid #e5e7eb;
+      background: rgba(255,255,255,0.9);
+      color: var(--text-muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .step-pill span {
+      font-weight: 600;
+      color: #4b5563;
+    }
+
+    .step-pill--active {
+      border-color: #2563eb;
+      background: #dbeafe;
+      color: #1d4ed8;
+    }
+
+    .step-pill--active span {
+      color: #1d4ed8;
+    }
+
+    .hero {
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-soft);
+      padding: 26px 28px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.2fr);
+      gap: 24px;
+      align-items: center;
+    }
+
+    .hero-text h2 {
+      margin: 0 0 10px;
+      font-size: 22px;
+    }
+    .hero-text p {
+      margin: 0 0 6px;
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text-main);
+    }
+
+    .hero-callout {
+      margin-top: 10px;
+      background: #fef3c7;
+      border-radius: 14px;
+      padding: 10px 12px;
+      font-size: 13px;
+      line-height: 1.5;
+      color: #7c2d12;
+    }
+
+    .hero-callout ul {
+      margin: 6px 0 0 18px;
+      padding: 0;
+    }
+
+    
+
+    
+
+    
+    
+    
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 18px 20px 18px;
+      box-shadow: 0 14px 30px rgba(15, 23, 42, 0.08);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 16px;
+    }
+
+    .card p {
+      margin: 0 0 6px;
+    }
+
+    .card ul,
+    .card ol {
+      margin: 6px 0 0 18px;
+      padding: 0;
+    }
+
+    .full-width {
+      grid-column: 1 / -1;
+    }
+
+    .card-label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .tagline {
+      margin-top: 6px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .trainer-title {
+      margin-top: 10px;
+      font-weight: 600;
+      font-size: 13px;
+    }
+
+    .two-column-card {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(0, 1.8fr);
+      gap: 18px;
+      align-items: flex-start;
+    }
+
+    .two-column-card--reverse {
+      grid-template-columns: minmax(0, 1.8fr) minmax(0, 1.25fr);
+    }
+
+    .two-column-card img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      filter: drop-shadow(0 14px 28px rgba(15,23,42,0.18));
+      border-radius: 18px;
+    }
+
+    .stage-flow {
+      background: var(--card-bg);
+      border-radius: 22px;
+      padding: 18px 20px 20px;
+      box-shadow: var(--shadow-soft);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .stage-flow-header {
+      margin-bottom: 10px;
+    }
+
+    .stage-flow-header h3 {
+      margin: 0 0 6px;
+      font-size: 17px;
+    }
+
+    .stage-flow-header p {
+      margin: 0;
+    }
+
+    .stage-flow-steps {
+      margin-top: 14px;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .stage-step {
+      position: relative;
+      padding: 12px 12px 12px 14px;
+      border-radius: 16px;
+      background: #eff6ff;
+      border: 1px solid #dbeafe;
+    }
+
+    .stage-step::before {
+      content: "";
+      position: absolute;
+      left: 10px;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      border-radius: 999px;
+      background: linear-gradient(to bottom, #2563eb, #4f46e5);
+      opacity: 0.6;
+    }
+
+    .stage-step-inner {
+      margin-left: 14px;
+    }
+
+    .stage-step-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      background: #2563eb;
+      color: #f9fafb;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .stage-step-title {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .stage-step-tagline {
+      font-size: 12px;
+      color: #4b5563;
+      margin-bottom: 4px;
+    }
+
+    .stage-step ul {
+      margin: 6px 0 0 16px;
+      font-size: 12px;
+    }
+
+    .accordion-card {
+      background: var(--card-bg);
+      border-radius: 22px;
+      padding: 18px 20px 16px;
+      box-shadow: var(--shadow-soft);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .accordion-card h3 {
+      margin: 0 0 6px;
+      font-size: 16px;
+    }
+
+    .accordion-card p {
+      margin: 0 0 6px;
+    }
+
+    .accordion {
+      margin-top: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    details {
+      border-radius: 16px;
+      border: 1px solid #e5e7eb;
+      background: #f9fafb;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    details[open] {
+      border-color: #2563eb;
+      background: #eef2ff;
+      box-shadow: 0 10px 24px rgba(37, 99, 235, 0.15);
+    }
+
+    summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .summary-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .substep-number {
+      width: 26px;
+      height: 26px;
+      border-radius: 999px;
+      background: #2563eb;
+      color: #f9fafb;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+
+    .substep-text-title {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .substep-text-tagline {
+      font-size: 12px;
+      color: #4b5563;
+    }
+
+    .summary-right {
+      font-size: 18px;
+      line-height: 1;
+      color: #9ca3af;
+      flex-shrink: 0;
+      transition: transform 0.15s ease, color 0.15s ease;
+    }
+
+    details[open] .summary-right {
+      color: #2563eb;
+      transform: rotate(90deg);
+    }
+
+    .accordion-body {
+      padding: 0 14px 12px 14px;
+      border-top: 1px solid #e5e7eb;
+      font-size: 13px;
+      line-height: 1.6;
+      background: rgba(255,255,255,0.7);
+    }
+
+    .accordion-body p {
+      margin-top: 8px;
+    }
+
+    .accordion-body ul,
+    .accordion-body ol {
+      margin: 6px 0 0 18px;
+      padding: 0;
+    }
+
+    .motivators-grid {
+      margin-top: 8px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .motivator-card {
+      background: #eff6ff;
+      border-radius: 14px;
+      padding: 10px 12px;
+      border: 1px solid #dbeafe;
+    }
+
+    .motivator-title {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .motivator-desc {
+      font-size: 12px;
+      margin-bottom: 4px;
+      color: #374151;
+    }
+
+    .motivator-keywords {
+      font-size: 12px;
+      color: #1f2933;
+    }
+
+    .motivator-keywords span {
+      background: #dbeafe;
+      border-radius: 999px;
+      padding: 2px 8px;
+      margin: 2px 4px 0 0;
+      display: inline-block;
+      font-size: 11px;
+    }
+
+    .quiz-cta {
+      text-align: center;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 10px 18px;
+      border-radius: 999px;
+      border: none;
+      background: var(--accent);
+      color: #f9fafb;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 12px 24px rgba(37, 99, 235, 0.4);
+    }
+
+    .btn-primary:hover {
+      filter: brightness(1.05);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid #e5e7eb;
+      background: #f9fafb;
+      color: #111827;
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    .btn-secondary:hover {
+      background: #f3f4f6;
+    }
+
+    .quiz-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.45);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      z-index: 50;
+    }
+
+    .quiz-overlay.open {
+      display: flex;
+    }
+
+    .quiz-modal {
+      background: #ffffff;
+      border-radius: 24px;
+      max-width: 820px;
+      width: 100%;
+      max-height: 90vh;
+      box-shadow: 0 20px 45px rgba(15,23,42,0.45);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .quiz-modal-header {
+      padding: 16px 20px 8px;
+      border-bottom: 1px solid #e5e7eb;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .quiz-modal-header h2 {
+      margin: 0;
+      font-size: 17px;
+    }
+
+    .quiz-modal-header p {
+      margin: 2px 0 0;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .quiz-modal-body {
+      padding: 12px 20px 16px;
+      overflow-y: auto;
+    }
+
+    .quiz-grid {
+      margin-top: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .quiz-row {
+      display: grid;
+      grid-template-columns: minmax(0, 2.2fr) minmax(0, 1.1fr);
+      gap: 8px;
+      align-items: center;
+      padding: 6px 8px;
+      border-radius: 12px;
+      background: #f9fafb;
+    }
+
+    .quiz-row-label {
+      font-size: 13px;
+    }
+
+    .quiz-select {
+      width: 100%;
+      padding: 6px 8px;
+      border-radius: 999px;
+      border: 1px solid #e5e7eb;
+      font-size: 13px;
+      background: #ffffff;
+    }
+
+    .quiz-actions {
+      margin-top: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .quiz-result {
+      font-size: 13px;
+    }
+
+    .quiz-result-success {
+      color: #166534;
+    }
+
+    .quiz-result-error {
+      color: #b91c1c;
+    }
+
+    @media (max-width: 1024px) {
+      .stage-flow-steps {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .motivators-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 960px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      
+      .stage-flow-steps {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .quiz-row {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .two-column-card,
+      .two-column-card--reverse {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 720px) {
+      .course-header h1 {
+        font-size: 24px;
+      }
+      .hero {
+        padding: 20px 18px;
+      }
+      .header-top {
+        flex-direction: column-reverse;
+        align-items: flex-start;
+      }
+    }
+  
+
+/* Layout after removal of mascot and call-recording blocks */
+.hero.hero--single,
+.two-column-card.layout--single,
+.logic-layout.layout--single,
+.goals-layout.layout--single {
+  grid-template-columns: minmax(0, 1fr);
+}
+</style>
+<link href="assets/course-shell.css" rel="stylesheet"/><script defer="True" src="assets/course-progress.js"></script></head>
+<body data-course-page="lesson" data-lesson="3">
+<div class="app">
+<div class="header-top"><a aria-label="DARALTAI — главная страница курса" class="mini-brand" href="index.html"><img alt="DARALTAI" src="assets/daraltai-logo.png"/><span>DARALTAI</span></a><a class="back-link" href="index.html">← К программе курса</a></div>
+<header class="course-header">
+<h1>Этап 3. Выявление потребностей</h1>
+<p>
+        Цель этапа – разговорить Клиента, определить его интересы и ведущий мотиватор.
+        Это позволит тебе успешно презентовать ту услугу и те средства для здоровья, в которых он действительно нуждается.
+      </p>
+<div class="steps-nav"><a class="step-pill" data-lesson-link="1" href="01_podgotovka.html"><span>Урок 1</span> Подготовка</a><a class="step-pill" data-lesson-link="2" href="02_contact.html"><span>Урок 2</span> Контакт</a><a aria-current="page" class="step-pill step-pill--active" data-lesson-link="3" href="03_potrebnosti.html"><span>Урок 3</span> Потребности</a><a class="step-pill" data-lesson-link="4" href="04_presentation.html"><span>Урок 4</span> Презентация</a><a class="step-pill" data-lesson-link="5" href="05_vozrazheniya.html"><span>Урок 5</span> Возражения</a><a class="step-pill" data-lesson-link="6" href="06_sdelka.html"><span>Урок 6</span> Сделка</a><a class="step-pill" data-lesson-link="7" href="07_itog.html"><span>Урок 7</span> Анализ</a></div>
+</header>
+<main>
+<section class="hero hero--single">
+<div class="hero-text">
+<h2>Определи потребность</h2>
+<p>
+            Вопросы — это твой главный инструмент на данном этапе.
+            Клиент сам расскажет о своих интересах и потребностях, если ты будешь задавать правильные вопросы
+            и внимательно слушать.
+          </p>
+<p>На этом этапе мы разберём:</p>
+<ul>
+<li>виды вопросов в продажах;</li>
+<li>«воронку вопросов» и последовательность их использования;</li>
+<li>ведущие мотиваторы Клиента;</li>
+<li>технику активного слушания «ПАУК».</li>
+</ul>
+<div class="hero-callout">
+<strong>Цель этапа:</strong>
+<ul>
+<li>разговорить Клиента и собрать максимум информации;</li>
+<li>понять его реальные потребности по здоровью;</li>
+<li>определить ведущий мотиватор, на который потом опираться в презентации.</li>
+</ul>
+</div>
+</div>
+</section>
+<section class="stage-flow">
+<div class="stage-flow-header">
+<h3>Логика этапа выявления потребностей</h3>
+<p>
+            Выявление потребностей — это не расспрос «для галочки», а управляемая беседа:
+            от общего к частному, от интересов к мотиватору и к тому решению, которое подойдёт Клиенту.
+          </p>
+</div>
+<div class="stage-flow-steps">
+<div class="stage-step">
+<div class="stage-step-inner">
+<div class="stage-step-number">1</div>
+<div class="stage-step-title">Вопросы</div>
+<div class="stage-step-tagline">Открытые, закрытые, альтернативные</div>
+<ul>
+<li>Собираем факты и ожидания Клиента.</li>
+<li>Помогаем ему самому сформулировать потребность.</li>
+</ul>
+</div>
+</div>
+<div class="stage-step">
+<div class="stage-step-inner">
+<div class="stage-step-number">2</div>
+<div class="stage-step-title">Воронка вопросов</div>
+<div class="stage-step-tagline">От широких вопросов к конкретике</div>
+<ul>
+<li>Начинаем с открытых вопросов.</li>
+<li>Переходим к альтернативным и закрытым.</li>
+</ul>
+</div>
+</div>
+<div class="stage-step">
+<div class="stage-step-inner">
+<div class="stage-step-number">3</div>
+<div class="stage-step-title">Мотиваторы Клиента</div>
+<div class="stage-step-tagline">Что им движет в момент покупки</div>
+<ul>
+<li>Безопасность, экономия, новизна, комфорт, престиж, привязанность.</li>
+</ul>
+</div>
+</div>
+<div class="stage-step">
+<div class="stage-step-inner">
+<div class="stage-step-number">4</div>
+<div class="stage-step-title">Активное слушание «ПАУК»</div>
+<div class="stage-step-tagline">Поддержка, активизация, уяснение, комментарий</div>
+<ul>
+<li>Поддерживаем речь Клиента.</li>
+<li>Уточняем, понимаем и подводим к решению.</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section class="accordion-card full-width">
+<h3>Виды вопросов и воронка</h3>
+<p>
+          Рекомендуем использовать три базовых вида вопросов и выстраивать их по принципу
+          «воронки вопросов».
+        </p>
+<div class="accordion">
+<details open="">
+<summary>
+<div class="summary-left">
+<div class="substep-number">1</div>
+<div>
+<div class="substep-text-title">Открытые, закрытые и альтернативные вопросы</div>
+<div class="substep-text-tagline">Инструменты для разведки потребностей</div>
+</div>
+</div>
+<div class="summary-right">›</div>
+</summary>
+<div class="accordion-body">
+<p>
+<strong>Открытые активные вопросы</strong> побуждают Клиента дать развёрнутый ответ.
+                Обычно начинаются со слов: «Расскажите…», «Поделитесь…», «Что для вас важно…».
+              </p>
+<p>
+<strong>Закрытые вопросы</strong> предполагают ответ «да» или «нет».
+                Бывают двух видов:
+              </p>
+<ul>
+<li><strong>уточняющие</strong> — «Правильно ли я вас понимаю, что…?»;</li>
+<li><strong>формирующие потребность</strong> — «Хотели бы вы…», когда
+                  уже знаешь текущие потребности Клиента.</li>
+</ul>
+<p>
+<strong>Альтернативные вопросы</strong> предлагают Клиенту выбор
+                из двух и более вариантов: «Вам удобнее… или…?».
+              </p>
+<p><strong>Пример связки вопросов под тему здоровья:</strong></p>
+<ul>
+<li>Открытый: «Расскажите, пожалуйста, как вы сейчас заботитесь о своём здоровье?»</li>
+<li>Уточняющий: «Правильно ли я понимаю, что для вас сейчас главное — поддержать иммунитет?»</li>
+<li>Альтернативный: «Вам ближе формат курса — в виде витаминов или в виде комплексной программы?»</li>
+<li>Формирующий потребность: «Хотели бы вы получить программу, которая поможет меньше болеть в сезон простуд?»</li>
+</ul>
+<p><strong>Ещё пример серии вопросов:</strong></p>
+<ul>
+<li>«Расскажите, какими средствами для поддержания здоровья вы сейчас пользуетесь?»</li>
+<li>«Может, принимаете витамины или какие-то добавки для иммунитета?»</li>
+<li>«Помимо вас кто-то из близких тоже пользуется такими средствами?»</li>
+</ul>
+<p class="trainer-title">
+                Хочешь потренироваться? Сопоставь вопросы с их видом.
+              </p>
+<button class="btn-primary" id="openQuestionTypeTrainer">
+                Тренажёр по видам вопросов
+              </button>
+</div>
+</details>
+<details>
+<summary>
+<div class="summary-left">
+<div class="substep-number">2</div>
+<div>
+<div class="substep-text-title">Воронка вопросов</div>
+<div class="substep-text-tagline">От широкого интереса к конкретному решению</div>
+</div>
+</div>
+<div class="summary-right">›</div>
+</summary>
+<div class="accordion-body">
+<p>
+<strong>Воронка вопросов</strong> — это схема, по которой мы выстраиваем диалог:
+                от общих открытых вопросов к альтернативным и закрытым.
+              </p>
+<ol>
+<li>
+<strong>Верхняя часть воронки — открытые вопросы.</strong><br/>
+                  С их помощью мы собираем максимум информации о ситуации, интересах и привычках Клиента.
+                </li>
+<li>
+<strong>Средняя часть — альтернативные вопросы.</strong><br/>
+                  Помогаем Клиенту сузить выбор и определиться с направлением решения.
+                </li>
+<li>
+<strong>Нижняя часть — закрытые вопросы.</strong><br/>
+                  Подтверждаем договорённости и уточняем детали: формат, срок, условия.
+                </li>
+</ol>
+<p>
+                Несколько точных вопросов по воронке могут привести к сделке гораздо быстрее,
+                чем длинный монолог продавца.
+              </p>
+<p class="trainer-title">
+                Попробуй выстроить «воронку» сам — по три вопроса на шаг.
+              </p>
+<button class="btn-primary" id="openFunnelTrainer">
+                Тренажёр по воронке вопросов
+              </button>
+</div>
+</details>
+</div>
+</section>
+<section class="accordion-card full-width">
+<h3>Ведущие мотиваторы Клиента</h3>
+<p>
+          Мотиватор — это то, что движет человеком в момент принятия решения что-то приобрести.
+          Исходя из интересов и ответов Клиента мотиваторов может быть несколько,
+          но твоя задача — определить ведущий.
+        </p>
+<div class="accordion">
+<details open="">
+<summary>
+<div class="summary-left">
+<div class="substep-number">3</div>
+<div>
+<div class="substep-text-title">Шесть ключевых мотиваторов</div>
+<div class="substep-text-tagline">И слова, которые «резонируют» с Клиентом</div>
+</div>
+</div>
+<div class="summary-right">›</div>
+</summary>
+<div class="accordion-body">
+<p>
+                Понять мотиватор можно по ключевым словам, которые использует Клиент.
+                Эти же слова мы будем использовать на этапе презентации.
+              </p>
+<div class="motivators-grid">
+<div class="motivator-card">
+<div class="motivator-title">Безопасность / тревожность</div>
+<div class="motivator-desc">
+                    Клиент стремится прежде всего обезопасить себя и близких:
+                    от болезни, осложнений, неприятных ситуаций.
+                  </div>
+<div class="motivator-keywords">
+<span>безопасность</span><span>надёжность</span><span>спокойно</span>
+<span>гарантия</span><span>качество</span><span>репутация</span>
+<span>не волнуйтесь</span><span>ответственность</span>
+</div>
+</div>
+<div class="motivator-card">
+<div class="motivator-title">Экономия</div>
+<div class="motivator-desc">
+                    Клиент хочет сэкономить, рационально использовать бюджет,
+                    получить максимум пользы за разумные деньги.
+                  </div>
+<div class="motivator-keywords">
+<span>экономия</span><span>выгода</span><span>скидка</span>
+<span>акция</span><span>в подарок</span><span>забота о бюджете</span>
+<span>сохранить расходы</span>
+</div>
+</div>
+<div class="motivator-card">
+<div class="motivator-title">Новизна</div>
+<div class="motivator-desc">
+                    Любит новые решения и последние достижения,
+                    интересуется новыми технологиями и форматами заботы о здоровье.
+                  </div>
+<div class="motivator-keywords">
+<span>новый</span><span>новаторский</span><span>новая технология</span>
+<span>последнее достижение</span><span>современный</span>
+<span>обновлённый</span><span>оригинальный</span>
+</div>
+</div>
+<div class="motivator-card">
+<div class="motivator-title">Комфорт</div>
+<div class="motivator-desc">
+                    Рациональный Клиент, для которого главное — удобство и понятность использования услуги.
+                  </div>
+<div class="motivator-keywords">
+<span>удобный</span><span>практичный</span><span>комфортный</span>
+<span>рациональный</span><span>эффективный</span><span>полезный</span>
+<span>подходящий</span><span>«как раз то, что нужно»</span>
+</div>
+</div>
+<div class="motivator-card">
+<div class="motivator-title">Престиж</div>
+<div class="motivator-desc">
+                    Хочет выделиться, выбрать лучшее, подчеркнуть свой статус и отношение к себе.
+                  </div>
+<div class="motivator-keywords">
+<span>эксклюзивный</span><span>уникальный</span><span>высокое качество</span>
+<span>достойный</span><span>лучший</span><span>фирменный</span>
+<span>превзойдёт ожидания</span>
+</div>
+</div>
+<div class="motivator-card">
+<div class="motivator-title">Привязанность</div>
+<div class="motivator-desc">
+                    Клиент консервативен, ценит привычные бренды, стабильность и традиции.
+                  </div>
+<div class="motivator-keywords">
+<span>знакомый</span><span>традиционный</span><span>фирменное качество</span>
+<span>привычный</span><span>постоянство</span><span>стабильность</span>
+<span>«такой же, как прежде»</span>
+</div>
+</div>
+</div>
+<p class="tagline">
+                Мотиваторы и ключевые слова помогают не только подобрать продукт,
+                но и правильно аргументировать выгоды и работать с возражениями.
+                Важно определять мотиватор не по одной фразе Клиента, а по всему разговору в целом.
+              </p>
+<p class="trainer-title">
+                Закрепим: соотнеси фразы Клиента и мотиваторы.
+              </p>
+<button class="btn-primary" id="openMotivatorTrainer">
+                Тренажёр по мотиваторам
+              </button>
+</div>
+</details>
+</div>
+</section>
+<section class="accordion-card full-width">
+<h3>Техника активного слушания «ПАУК»</h3>
+<p>
+          Чтобы Клиент охотно рассказывал о своих интересах и потребностях, важно не только спрашивать,
+          но и качественно слушать. Для этого используем технику «ПАУК».
+        </p>
+<div class="accordion">
+<details open="">
+<summary>
+<div class="summary-left">
+<div class="substep-number">4</div>
+<div>
+<div class="substep-text-title">П — Поддержка</div>
+<div class="substep-text-tagline">Дай Клиенту высказаться</div>
+</div>
+</div>
+<div class="summary-right">›</div>
+</summary>
+<div class="accordion-body">
+<p>Цель — дать Клиенту возможность спокойно выразить свою позицию.</p>
+<p><strong>Инструменты:</strong></p>
+<ul>
+<li>«поддакивание»: «да», «угу», «понимаю»;</li>
+<li>повторение последних слов Клиента;</li>
+<li>эмоциональное сопровождение: «здОрово», «ничего себе!», «отлично».</li>
+</ul>
+</div>
+</details>
+<details>
+<summary>
+<div class="summary-left">
+<div class="substep-number">5</div>
+<div>
+<div class="substep-text-title">А — Активизация</div>
+<div class="substep-text-tagline">Разговорить и получить информацию</div>
+</div>
+</div>
+<div class="summary-right">›</div>
+</summary>
+<div class="accordion-body">
+<p>Цель — разговорить собеседника и получить максимум подробностей.</p>
+<p><strong>Инструменты:</strong></p>
+<ul>
+<li>открытые вопросы: «Что для вас важно при выборе средств для здоровья?»;</li>
+<li>уточняющие вопросы по сказанному Клиентом;</li>
+<li>мягкие подталкивающие фразы: «Расскажите чуть подробнее…».</li>
+</ul>
+</div>
+</details>
+<details>
+<summary>
+<div class="summary-left">
+<div class="substep-number">6</div>
+<div>
+<div class="substep-text-title">У — Уяснение</div>
+<div class="substep-text-tagline">Понять Клиента правильно</div>
+</div>
+</div>
+<div class="summary-right">›</div>
+</summary>
+<div class="accordion-body">
+<p>Цель — убедиться, что ты верно понял ситуацию и ожидания Клиента.</p>
+<p><strong>Инструменты:</strong></p>
+<ul>
+<li>уточняющие вопросы: «Правильно ли я понимаю, что…?»;</li>
+<li>пересказ своими словами: «Если коротко, вы хотите…, верно?»;</li>
+<li>мягкое подведение итогов перед презентацией услуги.</li>
+</ul>
+</div>
+</details>
+<details>
+<summary>
+<div class="summary-left">
+<div class="substep-number">7</div>
+<div>
+<div class="substep-text-title">К — Комментирование</div>
+<div class="substep-text-tagline">Связать потребность с решением</div>
+</div>
+</div>
+<div class="summary-right">›</div>
+</summary>
+<div class="accordion-body">
+<p>
+                Цель — высказать свою профессиональную позицию и предложить вариант решения.
+              </p>
+<p><strong>Инструменты:</strong></p>
+<ul>
+<li>рекомендации: «Я могу посоветовать вам…»;</li>
+<li>конкретные предложения: «Я рекомендую курс, который поможет вам…»;</li>
+<li>логичный переход к этапу презентации услуги.</li>
+</ul>
+</div>
+</details>
+</div>
+<p class="tagline">
+          Выявление потребностей — важный и обязательный этап.
+          Несколько точных вопросов и грамотное слушание могут привести к сделке гораздо быстрее,
+          чем длинный монолог продавца.
+        </p>
+</section>
+<section class="quiz-cta full-width">
+<button class="btn-primary" id="openQuiz">
+          Проверить знания по выявлению потребностей
+        </button>
+</section>
+<nav aria-label="Переход между уроками" class="course-navigation"><a class="course-navigation__button course-navigation__button--prev" href="02_contact.html">← Урок 2: Контакт</a><div class="course-navigation__status">Урок 3 из 7</div><a class="course-navigation__button course-navigation__button--next" href="04_presentation.html">Урок 4: Презентация →</a></nav><footer class="course-page-footer">Обучающий курс DARALTAI · Телефонные продажи</footer></main>
+</div>
+<!-- Тренажёр: виды вопросов -->
+<div class="quiz-overlay" id="questionTypeTrainerOverlay">
+<div class="quiz-modal">
+<div class="quiz-modal-header">
+<div>
+<h2>Тренажёр: виды вопросов</h2>
+<p>Сопоставь вопросы и их вид: открытый, закрытый или альтернативный.</p>
+</div>
+<button class="btn-secondary" id="closeQuestionTypeTrainer">Закрыть</button>
+</div>
+<div class="quiz-modal-body">
+<div class="quiz-grid">
+<div class="quiz-row">
+<div class="quiz-row-label">
+              1) Вы принимаете витамины только сами или вместе с членами семьи?
+            </div>
+<select class="quiz-select question-type-select" data-correct="alt">
+<option value="">Выбери тип вопроса</option>
+<option value="open">Открытый</option>
+<option value="closed">Закрытый</option>
+<option value="alt">Альтернативный</option>
+</select>
+</div>
+<div class="quiz-row">
+<div class="quiz-row-label">
+              2) Вы больше ориентируетесь на комплексы для иммунитета или для энергии в течение дня?
+            </div>
+<select class="quiz-select question-type-select" data-correct="alt">
+<option value="">Выбери тип вопроса</option>
+<option value="open">Открытый</option>
+<option value="closed">Закрытый</option>
+<option value="alt">Альтернативный</option>
+</select>
+</div>
+<div class="quiz-row">
+<div class="quiz-row-label">
+              3) Какие средства для поддержания здоровья вы сейчас используете?
+            </div>
+<select class="quiz-select question-type-select" data-correct="open">
+<option value="">Выбери тип вопроса</option>
+<option value="open">Открытый</option>
+<option value="closed">Закрытый</option>
+<option value="alt">Альтернативный</option>
+</select>
+</div>
+<div class="quiz-row">
+<div class="quiz-row-label">
+              4) Что делают ваши близкие, чтобы поддерживать своё здоровье?
+            </div>
+<select class="quiz-select question-type-select" data-correct="open">
+<option value="">Выбери тип вопроса</option>
+<option value="open">Открытый</option>
+<option value="closed">Закрытый</option>
+<option value="alt">Альтернативный</option>
+</select>
+</div>
+<div class="quiz-row">
+<div class="quiz-row-label">
+              5) Хотели бы вы принимать витамины в формате готового курса на месяц?
+            </div>
+<select class="quiz-select question-type-select" data-correct="closed">
+<option value="">Выбери тип вопроса</option>
+<option value="open">Открытый</option>
+<option value="closed">Закрытый</option>
+<option value="alt">Альтернативный</option>
+</select>
+</div>
+<div class="quiz-row">
+<div class="quiz-row-label">
+              6) Для вас важнее поддержать иммунитет или снизить усталость?
+            </div>
+<select class="quiz-select question-type-select" data-correct="alt">
+<option value="">Выбери тип вопроса</option>
+<option value="open">Открытый</option>
+<option value="closed">Закрытый</option>
+<option value="alt">Альтернативный</option>
+</select>
+</div>
+<div class="quiz-row">
+<div class="quiz-row-label">
+              7) Любите ли вы пробовать новые программы для здоровья?
+            </div>
+<select class="quiz-select question-type-select" data-correct="closed">
+<option value="">Выбери тип вопроса</option>
+<option value="open">Открытый</option>
+<option value="closed">Закрытый</option>
+<option value="alt">Альтернативный</option>
+</select>
+</div>
+<div class="quiz-row">
+<div class="quiz-row-label">
+              8) Что для вас самое главное при выборе средств для здоровья?
+            </div>
+<select class="quiz-select question-type-select" data-correct="open">
+<option value="">Выбери тип вопроса</option>
+<option value="open">Открытый</option>
+<option value="closed">Закрытый</option>
+<option value="alt">Альтернативный</option>
+</select>
+</div>
+<div class="quiz-row">
+<div class="quiz-row-label">
+              9) Какими привычками в образе жизни вы поддерживаете своё здоровье?
+            </div>
+<select class="quiz-select question-type-select" data-correct="open">
+<option value="">Выбери тип вопроса</option>
+<option value="open">Открытый</option>
+<option value="closed">Закрытый</option>
+<option value="alt">Альтернативный</option>
+</select>
+</div>
+<div class="quiz-row">
+<div class="quiz-row-label">
+              10) Что для вас важно при выборе консультанта по здоровью?
+            </div>
+<select class="quiz-select question-type-select" data-correct="open">
+<option value="">Выбери тип вопроса</option>
+<option value="open">Открытый</option>
+<option value="closed">Закрытый</option>
+<option value="alt">Альтернативный</option>
+</select>
+</div>
+<div class="quiz-row">
+<div class="quiz-row-label">
+              11) Хотели бы вы получать напоминания о приёме средств в удобном приложении?
+            </div>
+<select class="quiz-select question-type-select" data-correct="closed">
+<option value="">Выбери тип вопроса</option>
+<option value="open">Открытый</option>
+<option value="closed">Закрытый</option>
+<option value="alt">Альтернативный</option>
+</select>
+</div>
+<div class="quiz-row">
+<div class="quiz-row-label">
+              12) Чаще вы следите за питанием или за уровнем физической активности?
+            </div>
+<select class="quiz-select question-type-select" data-correct="alt">
+<option value="">Выбери тип вопроса</option>
+<option value="open">Открытый</option>
+<option value="closed">Закрытый</option>
+<option value="alt">Альтернативный</option>
+</select>
+</div>
+<div class="quiz-row">
+<div class="quiz-row-label">
+              13) Планируете ли вы продолжать принимать те средства, которые используете сейчас?
+            </div>
+<select class="quiz-select question-type-select" data-correct="closed">
+<option value="">Выбери тип вопроса</option>
+<option value="open">Открытый</option>
+<option value="closed">Закрытый</option>
+<option value="alt">Альтернативный</option>
+</select>
+</div>
+</div>
+<div class="quiz-actions">
+<button class="btn-primary" id="checkQuestionTypeTrainer">Проверить</button>
+<div class="quiz-result" id="questionTypeTrainerResult"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Тренажёр: воронка вопросов (по 3 вопроса за шаг) -->
+<div class="quiz-overlay" id="funnelTrainerOverlay">
+<div class="quiz-modal">
+<div class="quiz-modal-header">
+<div>
+<h2>Тренажёр: воронка вопросов</h2>
+<p>На каждом шаге расставь 3 вопроса в порядке 1–2–3 (от общего к конкретному).</p>
+</div>
+<button class="btn-secondary" id="closeFunnelTrainer">Закрыть</button>
+</div>
+<div class="quiz-modal-body">
+<!-- Шаг 1 -->
+<div class="quiz-grid funnel-step" data-step="0">
+<div class="quiz-row">
+<div class="quiz-row-label">
+              Серия 1: a) Скажите, пожалуйста, как вы обычно заботитесь о здоровье в свободное время?
+            </div>
+<select class="quiz-select funnel-select" data-correct="1">
+<option value="">Номер по порядку</option>
+<option value="1">1 (первый — открытый)</option>
+<option value="2">2 (второй — альтернативный)</option>
+<option value="3">3 (третий — уточняющий/формирующий)</option>
+</select>
+</div>
+<div class="quiz-row">
+<div class="quiz-row-label">
+              Серия 1: b) А больше уделяете внимание физическим упражнениям или витаминам и добавкам?
+            </div>
+<select class="quiz-select funnel-select" data-correct="2">
+<option value="">Номер по порядку</option>
+<option value="1">1 (первый — открытый)</option>
+<option value="2">2 (второй — альтернативный)</option>
+<option value="3">3 (третий — уточняющий/формирующий)</option>
+</select>
+</div>
+<div class="quiz-row">
+<div class="quiz-row-label">
+              Серия 1: c) Ну и новые программы по здоровью пробуете, верно?
+            </div>
+<select class="quiz-select funnel-select" data-correct="3">
+<option value="">Номер по порядку</option>
+<option value="1">1 (первый — открытый)</option>
+<option value="2">2 (второй — альтернативный)</option>
+<option value="3">3 (третий — уточняющий/формирующий)</option>
+</select>
+</div>
+</div>
+<!-- Шаг 2 -->
+<div class="quiz-grid funnel-step" data-step="1" style="display:none">
+<div class="quiz-row">
+<div class="quiz-row-label">
+              Серия 2: a) Для чего в первую очередь хотите улучшить своё здоровье?
+            </div>
+<select class="quiz-select funnel-select" data-correct="1">
+<option value="">Номер по порядку</option>
+<option value="1">1 (первый — открытый)</option>
+<option value="2">2 (второй — альтернативный)</option>
+<option value="3">3 (третий — уточняющий/формирующий)</option>
+</select>
+</div>
+<div class="quiz-row">
+<div class="quiz-row-label">
+              Серия 2: b) Вы в основном думаете о поддержке иммунитета или о снижении усталости?
+            </div>
+<select class="quiz-select funnel-select" data-correct="2">
+<option value="">Номер по порядку</option>
+<option value="1">1 (первый — открытый)</option>
+<option value="2">2 (второй — альтернативный)</option>
+<option value="3">3 (третий — уточняющий/формирующий)</option>
+</select>
+</div>
+<div class="quiz-row">
+<div class="quiz-row-label">
+              Серия 2: c) Правильно ли я понимаю, что вам важно меньше болеть и реже чувствовать усталость?
+            </div>
+<select class="quiz-select funnel-select" data-correct="3">
+<option value="">Номер по порядку</option>
+<option value="1">1 (первый — открытый)</option>
+<option value="2">2 (второй — альтернативный)</option>
+<option value="3">3 (третий — уточняющий/формирующий)</option>
+</select>
+</div>
+</div>
+<!-- Шаг 3 -->
+<div class="quiz-grid funnel-step" data-step="2" style="display:none">
+<div class="quiz-row">
+<div class="quiz-row-label">
+              Серия 3: a) Скажите, пожалуйста, как вы сейчас защищаете себя от сезонных простуд и заболеваний?
+            </div>
+<select class="quiz-select funnel-select" data-correct="1">
+<option value="">Номер по порядку</option>
+<option value="1">1 (первый — открытый)</option>
+<option value="2">2 (второй — альтернативный)</option>
+<option value="3">3 (третий — уточняющий/формирующий)</option>
+</select>
+</div>
+<div class="quiz-row">
+<div class="quiz-row-label">
+              Серия 3: b) Вы больше полагаетесь на витамины или на профилактические обследования?
+            </div>
+<select class="quiz-select funnel-select" data-correct="2">
+<option value="">Номер по порядку</option>
+<option value="1">1 (первый — открытый)</option>
+<option value="2">2 (второй — альтернативный)</option>
+<option value="3">3 (третий — уточняющий/формирующий)</option>
+</select>
+</div>
+<div class="quiz-row">
+<div class="quiz-row-label">
+              Серия 3: c) Хотели бы вы пройти программу, которая надёжно укрепит иммунитет при минимальных затратах?
+            </div>
+<select class="quiz-select funnel-select" data-correct="3">
+<option value="">Номер по порядку</option>
+<option value="1">1 (первый — открытый)</option>
+<option value="2">2 (второй — альтернативный)</option>
+<option value="3">3 (третий — уточняющий/формирующий)</option>
+</select>
+</div>
+</div>
+<div class="quiz-actions">
+<button class="btn-primary" id="checkFunnelTrainer">Далее</button>
+<div class="quiz-result" id="funnelTrainerResult"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Тренажёр: мотиваторы (15 примеров) -->
+<div class="quiz-overlay" id="motivatorTrainerOverlay">
+<div class="quiz-modal">
+<div class="quiz-modal-header">
+<div>
+<h2>Тренажёр: мотиваторы Клиента</h2>
+<p>Соотнеси фразы Клиента и ведущий мотиватор (в контексте здоровья).</p>
+</div>
+<button class="btn-secondary" id="closeMotivatorTrainer">Закрыть</button>
+</div>
+<div class="quiz-modal-body">
+<div class="quiz-grid">
+<div class="quiz-row">
+<div class="quiz-row-label">
+              1) Я выбираю программы, где врач наблюдает меня регулярно — так я чувствую себя спокойнее.
+            </div>
+<select class="quiz-select motivator-select" data-correct="safety">
+<option value="">Выбери мотиватор</option>
+<option value="safety">Безопасность / тревожность</option>
+<option value="eco">Экономия</option>
+<option value="new">Новизна</option>
+<option value="comfort">Комфорт</option>
+<option value="prestige">Престиж</option>
+<option value="attach">Привязанность</option>
+</select>
+</div>
+<div class="quiz-row">
+<div class="quiz-row-label">
+              2) Для меня важно не переплачивать за витамины, беру то, что выгоднее по цене.
+            </div>
+<select class="quiz-select motivator-select" data-correct="eco">
+<option value="">Выбери мотиватор</option>
+<option value="safety">Безопасность / тревожность</option>
+<option value="eco">Экономия</option>
+<option value="new">Новизна</option>
+<option value="comfort">Комфорт</option>
+<option value="prestige">Престиж</option>
+<option value="attach">Привязанность</option>
+</select>
+</div>
+<div class="quiz-row">
+<div class="quiz-row-label">
+              3) Всегда первым пробую новые средства для здоровья, как только они появляются.
+            </div>
+<select class="quiz-select motivator-select" data-correct="new">
+<option value="">Выбери мотиватор</option>
+<option value="safety">Безопасность / тревожность</option>
+<option value="eco">Экономия</option>
+<option value="new">Новизна</option>
+<option value="comfort">Комфорт</option>
+<option value="prestige">Престиж</option>
+<option value="attach">Привязанность</option>
+</select>
+</div>
+<div class="quiz-row">
+<div class="quiz-row-label">
+              4) Главное, чтобы всё было удобно: напоминания, упаковка, схема приёма.
+            </div>
+<select class="quiz-select motivator-select" data-correct="comfort">
+<option value="">Выбери мотиватор</option>
+<option value="safety">Безопасность / тревожность</option>
+<option value="eco">Экономия</option>
+<option value="new">Новизна</option>
+<option value="comfort">Комфорт</option>
+<option value="prestige">Престиж</option>
+<option value="attach">Привязанность</option>
+</select>
+</div>
+<div class="quiz-row">
+<div class="quiz-row-label">
+              5) Я хочу пользоваться только премиальными линиями, чтобы быть уверенным в лучшем качестве.
+            </div>
+<select class="quiz-select motivator-select" data-correct="prestige">
+<option value="">Выбери мотиватор</option>
+<option value="safety">Безопасность / тревожность</option>
+<option value="eco">Экономия</option>
+<option value="new">Новизна</option>
+<option value="comfort">Комфорт</option>
+<option value="prestige">Престиж</option>
+<option value="attach">Привязанность</option>
+</select>
+</div>
+<div class="quiz-row">
+<div class="quiz-row-label">
+              6) Я уже много лет покупаю одно и то же средство и не хочу его менять.
+            </div>
+<select class="quiz-select motivator-select" data-correct="attach">
+<option value="">Выбери мотиватор</option>
+<option value="safety">Безопасность / тревожность</option>
+<option value="eco">Экономия</option>
+<option value="new">Новизна</option>
+<option value="comfort">Комфорт</option>
+<option value="prestige">Престиж</option>
+<option value="attach">Привязанность</option>
+</select>
+</div>
+<div class="quiz-row">
+<div class="quiz-row-label">
+              7) Мне важно, чтобы средство было безопасным даже при длительном приёме.
+            </div>
+<select class="quiz-select motivator-select" data-correct="safety">
+<option value="">Выбери мотиватор</option>
+<option value="safety">Безопасность / тревожность</option>
+<option value="eco">Экономия</option>
+<option value="new">Новизна</option>
+<option value="comfort">Комфорт</option>
+<option value="prestige">Престиж</option>
+<option value="attach">Привязанность</option>
+</select>
+</div>
+<div class="quiz-row">
+<div class="quiz-row-label">
+              8) Если есть акция или набор дешевле — я выбираю его.
+            </div>
+<select class="quiz-select motivator-select" data-correct="eco">
+<option value="">Выбери мотиватор</option>
+<option value="safety">Безопасность / тревожность</option>
+<option value="eco">Экономия</option>
+<option value="new">Новизна</option>
+<option value="comfort">Комфорт</option>
+<option value="prestige">Престиж</option>
+<option value="attach">Привязанность</option>
+</select>
+</div>
+<div class="quiz-row">
+<div class="quiz-row-label">
+              9) Интересуюсь именно новыми формулами, а не старыми вариантами.
+            </div>
+<select class="quiz-select motivator-select" data-correct="new">
+<option value="">Выбери мотиватор</option>
+<option value="safety">Безопасность / тревожность</option>
+<option value="eco">Экономия</option>
+<option value="new">Новизна</option>
+<option value="comfort">Комфорт</option>
+<option value="prestige">Престиж</option>
+<option value="attach">Привязанность</option>
+</select>
+</div>
+<div class="quiz-row">
+<div class="quiz-row-label">
+              10) Мне важно, чтобы всё можно было принимать без лишних усилий, в привычном режиме дня.
+            </div>
+<select class="quiz-select motivator-select" data-correct="comfort">
+<option value="">Выбери мотиватор</option>
+<option value="safety">Безопасность / тревожность</option>
+<option value="eco">Экономия</option>
+<option value="new">Новизна</option>
+<option value="comfort">Комфорт</option>
+<option value="prestige">Престиж</option>
+<option value="attach">Привязанность</option>
+</select>
+</div>
+<div class="quiz-row">
+<div class="quiz-row-label">
+              11) Я выбираю бренды, которые подчёркивают мой уровень и отношение к себе.
+            </div>
+<select class="quiz-select motivator-select" data-correct="prestige">
+<option value="">Выбери мотиватор</option>
+<option value="safety">Безопасность / тревожность</option>
+<option value="eco">Экономия</option>
+<option value="new">Новизна</option>
+<option value="comfort">Комфорт</option>
+<option value="prestige">Престиж</option>
+<option value="attach">Привязанность</option>
+</select>
+</div>
+<div class="quiz-row">
+<div class="quiz-row-label">
+              12) Я доверяю только тем маркам, к которым привык, — не люблю экспериментов.
+            </div>
+<select class="quiz-select motivator-select" data-correct="attach">
+<option value="">Выбери мотиватор</option>
+<option value="safety">Безопасность / тревожность</option>
+<option value="eco">Экономия</option>
+<option value="new">Новизна</option>
+<option value="comfort">Комфорт</option>
+<option value="prestige">Престиж</option>
+<option value="attach">Привязанность</option>
+</select>
+</div>
+<div class="quiz-row">
+<div class="quiz-row-label">
+              13) Я переживаю, чтобы не было побочных эффектов и всё было проверено.
+            </div>
+<select class="quiz-select motivator-select" data-correct="safety">
+<option value="">Выбери мотиватор</option>
+<option value="safety">Безопасность / тревожность</option>
+<option value="eco">Экономия</option>
+<option value="new">Новизна</option>
+<option value="comfort">Комфорт</option>
+<option value="prestige">Престиж</option>
+<option value="attach">Привязанность</option>
+</select>
+</div>
+<div class="quiz-row">
+<div class="quiz-row-label">
+              14) Лучше я возьму не самое модное средство, но по разумной цене.
+            </div>
+<select class="quiz-select motivator-select" data-correct="eco">
+<option value="">Выбери мотиватор</option>
+<option value="safety">Безопасность / тревожность</option>
+<option value="eco">Экономия</option>
+<option value="new">Новизна</option>
+<option value="comfort">Комфорт</option>
+<option value="prestige">Престиж</option>
+<option value="attach">Привязанность</option>
+</select>
+</div>
+<div class="quiz-row">
+<div class="quiz-row-label">
+              15) Я стараюсь оставаться на знакомых схемах заботы о здоровье — они уже проверены временем.
+            </div>
+<select class="quiz-select motivator-select" data-correct="attach">
+<option value="">Выбери мотиватор</option>
+<option value="safety">Безопасность / тревожность</option>
+<option value="eco">Экономия</option>
+<option value="new">Новизна</option>
+<option value="comfort">Комфорт</option>
+<option value="prestige">Престиж</option>
+<option value="attach">Привязанность</option>
+</select>
+</div>
+</div>
+<div class="quiz-actions">
+<button class="btn-primary" id="checkMotivatorTrainer">Проверить</button>
+<div class="quiz-result" id="motivatorTrainerResult"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Итоговый тест по этапу -->
+<div class="quiz-overlay" id="quizOverlay">
+<div class="quiz-modal">
+<div class="quiz-modal-header">
+<div>
+<h2>Тест: выявление потребностей</h2>
+<p>Выбери правильные варианты ответов по этапу «Определи потребность».</p>
+</div>
+<button class="btn-secondary" id="closeQuiz">Закрыть</button>
+</div>
+<div class="quiz-modal-body">
+<div class="quiz-grid">
+<div class="quiz-row">
+<div class="quiz-row-label">Главная цель этапа выявления потребностей:</div>
+<select class="quiz-select" data-correct="goal">
+<option value="">Выбери вариант</option>
+<option value="goal">Разговорить Клиента, понять его интересы и мотиватор</option>
+<option value="sell">Сразу закрыть продажу</option>
+<option value="smalltalk">Поболтать для поддержания контакта</option>
+</select>
+</div>
+<div class="quiz-row">
+<div class="quiz-row-label">Какой тип вопросов даёт развёрнутый ответ Клиента?</div>
+<select class="quiz-select" data-correct="open">
+<option value="">Выбери вариант</option>
+<option value="open">Открытые активные вопросы</option>
+<option value="closed">Закрытые вопросы</option>
+<option value="alt">Альтернативные вопросы</option>
+</select>
+</div>
+<div class="quiz-row">
+<div class="quiz-row-label">Какой тип вопросов предлагает выбор из нескольких вариантов?</div>
+<select class="quiz-select" data-correct="alt">
+<option value="">Выбери вариант</option>
+<option value="open">Открытые</option>
+<option value="closed">Закрытые</option>
+<option value="alt">Альтернативные</option>
+</select>
+</div>
+<div class="quiz-row">
+<div class="quiz-row-label">Какой вопрос относится к формирующим потребность?</div>
+<select class="quiz-select" data-correct="form">
+<option value="">Выбери вариант</option>
+<option value="form">
+                «Хотели бы вы получить программу, которая поможет меньше болеть в сезон простуд?»
+              </option>
+<option value="clarify">«Правильно ли я понимаю, что вы хотите поддержать иммунитет?»</option>
+<option value="neutral">«Как вы относитесь к здоровому образу жизни?»</option>
+</select>
+</div>
+<div class="quiz-row">
+<div class="quiz-row-label">Как выстраивается «воронка вопросов»?</div>
+<select class="quiz-select" data-correct="funnel">
+<option value="">Выбери вариант</option>
+<option value="funnel">Сначала открытые, затем альтернативные и в конце закрытые</option>
+<option value="reverse">Сначала закрытые, потом открытые</option>
+<option value="random">Вопросы задаём в любой последовательности</option>
+</select>
+</div>
+<div class="quiz-row">
+<div class="quiz-row-label">
+              Какой мотиватор описывает Клиента, который прежде всего думает о защите себя и близких?
+            </div>
+<select class="quiz-select" data-correct="safe">
+<option value="">Выбери вариант</option>
+<option value="eco">Экономия</option>
+<option value="safe">Безопасность / тревожность</option>
+<option value="prestige">Престиж</option>
+</select>
+</div>
+<div class="quiz-row">
+<div class="quiz-row-label">
+              Какой мотиватор у Клиента, который любит новинки и новые технологии заботы о здоровье?
+            </div>
+<select class="quiz-select" data-correct="new">
+<option value="">Выбери вариант</option>
+<option value="attach">Привязанность</option>
+<option value="comfort">Комфорт</option>
+<option value="new">Новизна</option>
+</select>
+</div>
+<div class="quiz-row">
+<div class="quiz-row-label">
+              Что означает буква «У» в технике активного слушания «ПАУК»?
+            </div>
+<select class="quiz-select" data-correct="u">
+<option value="">Выбери вариант</option>
+<option value="support">Удержание внимания</option>
+<option value="u">Уяснение сказанного Клиентом</option>
+<option value="manage">Управление диалогом</option>
+</select>
+</div>
+<div class="quiz-row">
+<div class="quiz-row-label">
+              На каком шаге «ПАУК» мы даём рекомендации и свою точку зрения?
+            </div>
+<select class="quiz-select" data-correct="k">
+<option value="">Выбери вариант</option>
+<option value="p">П — Поддержка</option>
+<option value="a">А — Активизация</option>
+<option value="k">К — Комментирование</option>
+</select>
+</div>
+<div class="quiz-row">
+<div class="quiz-row-label">
+              Что помогает выбрать и презентовать Клиенту наиболее подходящий продукт?
+            </div>
+<select class="quiz-select" data-correct="combo">
+<option value="">Выбери вариант</option>
+<option value="script">Только хорошо выученный скрипт</option>
+<option value="combo">Сочетание вопросов, мотиваторов и техники активного слушания</option>
+<option value="discounts">Только размер скидки</option>
+</select>
+</div>
+</div>
+<div class="quiz-actions">
+<button class="btn-primary" id="checkQuiz">Проверить ответы</button>
+<div class="quiz-result" id="quizResult"></div>
+</div>
+</div>
+</div>
+</div>
+<script>
+    (function() {
+      function closeOverlay(overlay) {
+        overlay.classList.remove('open');
+      }
+
+      /* ===== Итоговый тест по этапу ===== */
+      const quizOverlay = document.getElementById('quizOverlay');
+      const openQuizBtn = document.getElementById('openQuiz');
+      const closeQuizBtn = document.getElementById('closeQuiz');
+      const checkQuizBtn = document.getElementById('checkQuiz');
+      const quizResultEl = document.getElementById('quizResult');
+
+      if (openQuizBtn) {
+        openQuizBtn.addEventListener('click', () => {
+          quizOverlay.classList.add('open');
+          quizResultEl.textContent = '';
+          quizOverlay.querySelectorAll('.quiz-select').forEach(sel => {
+            sel.value = '';
+            sel.style.borderColor = '#e5e7eb';
+            sel.style.backgroundColor = '#ffffff';
+          });
+        });
+      }
+
+      if (closeQuizBtn) {
+        closeQuizBtn.addEventListener('click', () => closeOverlay(quizOverlay));
+      }
+
+      quizOverlay.addEventListener('click', (e) => {
+        if (e.target === quizOverlay) closeOverlay(quizOverlay);
+      });
+
+      if (checkQuizBtn) {
+        checkQuizBtn.addEventListener('click', () => {
+          const selects = quizOverlay.querySelectorAll('.quiz-select');
+          let allFilled = true;
+          let allCorrect = true;
+
+          selects.forEach(select => {
+            const value = select.value;
+            const correct = select.dataset.correct;
+
+            select.style.borderColor = '#e5e7eb';
+            select.style.backgroundColor = '#ffffff';
+
+            if (!value) {
+              allFilled = false;
+              allCorrect = false;
+              select.style.borderColor = '#f97316';
+              select.style.backgroundColor = '#fff7ed';
+            } else if (value !== correct) {
+              allCorrect = false;
+              select.style.borderColor = '#b91c1c';
+              select.style.backgroundColor = '#fef2f2';
+            } else {
+              select.style.borderColor = '#22c55e';
+              select.style.backgroundColor = '#ecfdf5';
+            }
+          });
+
+          if (!allFilled) {
+            quizResultEl.textContent = 'Заполни все поля и попробуй ещё раз.';
+            quizResultEl.className = 'quiz-result quiz-result-error';
+            return;
+          }
+
+          if (allCorrect) {
+            quizResultEl.textContent = 'Отлично! Все ответы верны.';
+            quizResultEl.className = 'quiz-result quiz-result-success';
+          } else {
+            quizResultEl.textContent = 'Есть неточности. Вернись к теории по выявлению потребностей и попробуй ещё раз.';
+            quizResultEl.className = 'quiz-result quiz-result-error';
+          }
+        });
+      }
+
+      /* ===== Тренажёр: виды вопросов ===== */
+      const questionOverlay = document.getElementById('questionTypeTrainerOverlay');
+      const openQuestionBtn = document.getElementById('openQuestionTypeTrainer');
+      const closeQuestionBtn = document.getElementById('closeQuestionTypeTrainer');
+      const checkQuestionBtn = document.getElementById('checkQuestionTypeTrainer');
+      const questionResultEl = document.getElementById('questionTypeTrainerResult');
+
+      if (openQuestionBtn) {
+        openQuestionBtn.addEventListener('click', () => {
+          questionOverlay.classList.add('open');
+          questionResultEl.textContent = '';
+          questionOverlay.querySelectorAll('.question-type-select').forEach(sel => {
+            sel.value = '';
+            sel.style.borderColor = '#e5e7eb';
+            sel.style.backgroundColor = '#ffffff';
+          });
+        });
+      }
+
+      if (closeQuestionBtn) {
+        closeQuestionBtn.addEventListener('click', () => closeOverlay(questionOverlay));
+      }
+
+      questionOverlay.addEventListener('click', (e) => {
+        if (e.target === questionOverlay) closeOverlay(questionOverlay);
+      });
+
+      if (checkQuestionBtn) {
+        checkQuestionBtn.addEventListener('click', () => {
+          const selects = questionOverlay.querySelectorAll('.question-type-select');
+          let allFilled = true;
+          let allCorrect = true;
+
+          selects.forEach(select => {
+            const value = select.value;
+            const correct = select.dataset.correct;
+
+            select.style.borderColor = '#e5e7eb';
+            select.style.backgroundColor = '#ffffff';
+
+            if (!value) {
+              allFilled = false;
+              allCorrect = false;
+              select.style.borderColor = '#f97316';
+              select.style.backgroundColor = '#fff7ed';
+            } else if (value !== correct) {
+              allCorrect = false;
+              select.style.borderColor = '#b91c1c';
+              select.style.backgroundColor = '#fef2f2';
+            } else {
+              select.style.borderColor = '#22c55e';
+              select.style.backgroundColor = '#ecfdf5';
+            }
+          });
+
+          if (!allFilled) {
+            questionResultEl.textContent = 'Заполни все поля и попробуй ещё раз.';
+            questionResultEl.className = 'quiz-result quiz-result-error';
+            return;
+          }
+
+          if (allCorrect) {
+            questionResultEl.textContent = 'Отлично! Ты правильно определяешь виды вопросов.';
+            questionResultEl.className = 'quiz-result quiz-result-success';
+          } else {
+            questionResultEl.textContent = 'Есть ошибки. Вернись к теории по видам вопросов и попробуй ещё раз.';
+            questionResultEl.className = 'quiz-result quiz-result-error';
+          }
+        });
+      }
+
+      /* ===== Тренажёр: воронка вопросов (по шагам) ===== */
+      const funnelOverlay = document.getElementById('funnelTrainerOverlay');
+      const openFunnelBtn = document.getElementById('openFunnelTrainer');
+      const closeFunnelBtn = document.getElementById('closeFunnelTrainer');
+      const checkFunnelBtn = document.getElementById('checkFunnelTrainer');
+      const funnelResultEl = document.getElementById('funnelTrainerResult');
+      const funnelSteps = funnelOverlay.querySelectorAll('.funnel-step');
+      let funnelCurrentStep = 0;
+
+      function showFunnelStep(index) {
+        funnelSteps.forEach((step, i) => {
+          step.style.display = i === index ? 'flex' : 'none';
+        });
+        funnelResultEl.textContent = '';
+        if (index === funnelSteps.length - 1) {
+          checkFunnelBtn.textContent = 'Завершить';
+        } else {
+          checkFunnelBtn.textContent = 'Далее';
+        }
+      }
+
+      if (openFunnelBtn) {
+        openFunnelBtn.addEventListener('click', () => {
+          funnelOverlay.classList.add('open');
+          funnelCurrentStep = 0;
+          funnelOverlay.querySelectorAll('.funnel-select').forEach(sel => {
+            sel.value = '';
+            sel.style.borderColor = '#e5e7eb';
+            sel.style.backgroundColor = '#ffffff';
+          });
+          showFunnelStep(funnelCurrentStep);
+        });
+      }
+
+      if (closeFunnelBtn) {
+        closeFunnelBtn.addEventListener('click', () => closeOverlay(funnelOverlay));
+      }
+
+      funnelOverlay.addEventListener('click', (e) => {
+        if (e.target === funnelOverlay) closeOverlay(funnelOverlay);
+      });
+
+      if (checkFunnelBtn) {
+        checkFunnelBtn.addEventListener('click', () => {
+          const stepEl = funnelSteps[funnelCurrentStep];
+          const selects = stepEl.querySelectorAll('.funnel-select');
+          let allFilled = true;
+          let allCorrect = true;
+
+          selects.forEach(select => {
+            const value = select.value;
+            const correct = select.dataset.correct;
+
+            select.style.borderColor = '#e5e7eb';
+            select.style.backgroundColor = '#ffffff';
+
+            if (!value) {
+              allFilled = false;
+              allCorrect = false;
+              select.style.borderColor = '#f97316';
+              select.style.backgroundColor = '#fff7ed';
+            } else if (value !== correct) {
+              allCorrect = false;
+              select.style.borderColor = '#b91c1c';
+              select.style.backgroundColor = '#fef2f2';
+            } else {
+              select.style.borderColor = '#22c55e';
+              select.style.backgroundColor = '#ecfdf5';
+            }
+          });
+
+          if (!allFilled) {
+            funnelResultEl.textContent = 'Заполни все номера на этом шаге и попробуй ещё раз.';
+            funnelResultEl.className = 'quiz-result quiz-result-error';
+            return;
+          }
+
+          if (!allCorrect) {
+            funnelResultEl.textContent = 'Есть неточности. Подумай, какой вопрос должен быть первым, вторым и третьим, и попробуй ещё раз.';
+            funnelResultEl.className = 'quiz-result quiz-result-error';
+            return;
+          }
+
+          if (funnelCurrentStep < funnelSteps.length - 1) {
+            funnelCurrentStep += 1;
+            showFunnelStep(funnelCurrentStep);
+          } else {
+            funnelResultEl.textContent = 'Супер! Ты правильно выстроил все воронки вопросов.';
+            funnelResultEl.className = 'quiz-result quiz-result-success';
+          }
+        });
+      }
+
+      /* ===== Тренажёр: мотиваторы ===== */
+      const motivatorOverlay = document.getElementById('motivatorTrainerOverlay');
+      const openMotivatorBtn = document.getElementById('openMotivatorTrainer');
+      const closeMotivatorBtn = document.getElementById('closeMotivatorTrainer');
+      const checkMotivatorBtn = document.getElementById('checkMotivatorTrainer');
+      const motivatorResultEl = document.getElementById('motivatorTrainerResult');
+
+      if (openMotivatorBtn) {
+        openMotivatorBtn.addEventListener('click', () => {
+          motivatorOverlay.classList.add('open');
+          motivatorResultEl.textContent = '';
+          motivatorOverlay.querySelectorAll('.motivator-select').forEach(sel => {
+            sel.value = '';
+            sel.style.borderColor = '#e5e7eb';
+            sel.style.backgroundColor = '#ffffff';
+          });
+        });
+      }
+
+      if (closeMotivatorBtn) {
+        closeMotivatorBtn.addEventListener('click', () => closeOverlay(motivatorOverlay));
+      }
+
+      motivatorOverlay.addEventListener('click', (e) => {
+        if (e.target === motivatorOverlay) closeOverlay(motivatorOverlay);
+      });
+
+      if (checkMotivatorBtn) {
+        checkMotivatorBtn.addEventListener('click', () => {
+          const selects = motivatorOverlay.querySelectorAll('.motivator-select');
+          let allFilled = true;
+          let allCorrect = true;
+
+          selects.forEach(select => {
+            const value = select.value;
+            const correct = select.dataset.correct;
+
+            select.style.borderColor = '#e5e7eb';
+            select.style.backgroundColor = '#ffffff';
+
+            if (!value) {
+              allFilled = false;
+              allCorrect = false;
+              select.style.borderColor = '#f97316';
+              select.style.backgroundColor = '#fff7ed';
+            } else if (value !== correct) {
+              allCorrect = false;
+              select.style.borderColor = '#b91c1c';
+              select.style.backgroundColor = '#fef2f2';
+            } else {
+              select.style.borderColor = '#22c55e';
+              select.style.backgroundColor = '#ecfdf5';
+            }
+          });
+
+          if (!allFilled) {
+            motivatorResultEl.textContent = 'Заполни все строки и попробуй ещё раз.';
+            motivatorResultEl.className = 'quiz-result quiz-result-error';
+            return;
+          }
+
+          if (allCorrect) {
+            motivatorResultEl.textContent = 'Отлично! Ты уверенно определяешь мотиваторы Клиента.';
+            motivatorResultEl.className = 'quiz-result quiz-result-success';
+          } else {
+            motivatorResultEl.textContent = 'Есть ошибки. Помни, мотиватор важен в контексте всего разговора. Перечитай блок про мотиваторы и попробуй ещё раз.';
+            motivatorResultEl.className = 'quiz-result quiz-result-error';
+          }
+        });
+      }
+    })();
+  </script>
+</body>
+</html>

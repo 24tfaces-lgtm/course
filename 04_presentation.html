@@ -1,0 +1,1468 @@
+<!DOCTYPE html>
+
+<html lang="ru">
+<head>
+<meta charset="utf-8"/>
+<title>Урок 4. Презентация продукта | DARALTAI</title>
+<style>
+    :root {
+      --bg: #eaf4ff;
+      --card-bg: #ffffff;
+      --accent: #2563eb;
+      --accent-soft: #fee68a;
+      --text-main: #111827;
+      --text-muted: #4b5563;
+      --radius-lg: 24px;
+      --shadow-soft: 0 18px 40px rgba(15, 23, 42, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #f6fbff 0, var(--bg) 55%, #dbeafe 100%);
+      color: var(--text-main);
+    }
+
+    .app {
+      max-width: 1160px;
+      margin: 32px auto 40px;
+      padding: 0 24px;
+    }
+
+    
+
+    
+
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 6px;
+    }
+
+    .back-link {
+      font-size: 13px;
+      text-decoration: none;
+      color: #2563eb;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(37, 99, 235, 0.06);
+    }
+
+    .back-link:hover {
+      background: rgba(37, 99, 235, 0.12);
+    }
+
+    .course-header h1 {
+      margin: 0 0 4px;
+      font-size: 30px;
+    }
+
+    .course-header p {
+      margin: 0 0 8px;
+      max-width: 780px;
+      color: var(--text-muted);
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    main {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+
+    .steps-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 4px;
+      font-size: 13px;
+    }
+
+    .step-pill {
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid #e5e7eb;
+      background: rgba(255, 255, 255, 0.9);
+      color: var(--text-muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .step-pill span {
+      font-weight: 600;
+      color: #4b5563;
+    }
+
+    .step-pill--active {
+      border-color: #2563eb;
+      background: #dbeafe;
+      color: #1d4ed8;
+    }
+
+    .step-pill--active span {
+      color: #1d4ed8;
+    }
+
+    .hero {
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-soft);
+      padding: 26px 28px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.2fr);
+      gap: 24px;
+      align-items: center;
+    }
+
+    .hero-text h2 {
+      margin: 0 0 10px;
+      font-size: 22px;
+    }
+
+    .hero-text p {
+      margin: 0 0 6px;
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text-main);
+    }
+
+    .hero-text ul {
+      margin: 6px 0 0 18px;
+      padding: 0;
+      font-size: 14px;
+    }
+
+    .hero-callout {
+      margin-top: 10px;
+      background: #fef3c7;
+      border-radius: 14px;
+      padding: 10px 12px;
+      font-size: 13px;
+      line-height: 1.5;
+      color: #7c2d12;
+    }
+
+    .hero-callout ul {
+      margin: 6px 0 0 18px;
+      padding: 0;
+    }
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 18px 20px 18px;
+      box-shadow: 0 14px 30px rgba(15, 23, 42, 0.08);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 16px;
+    }
+
+    .card p {
+      margin: 0 0 6px;
+    }
+
+    .card ul,
+    .card ol {
+      margin: 6px 0 0 18px;
+      padding: 0;
+    }
+
+    .full-width {
+      grid-column: 1 / -1;
+    }
+
+    .stage-flow {
+      background: var(--card-bg);
+      border-radius: 22px;
+      padding: 18px 20px 20px;
+      box-shadow: var(--shadow-soft);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .stage-flow h3 {
+      margin: 0 0 6px;
+      font-size: 17px;
+    }
+
+    .stage-flow p {
+      margin: 0 0 6px;
+    }
+
+    .stage-flow-steps {
+      margin-top: 14px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .stage-step {
+      position: relative;
+      padding: 12px 12px 12px 14px;
+      border-radius: 16px;
+      background: #eff6ff;
+      border: 1px solid #dbeafe;
+    }
+
+    .stage-step::before {
+      content: "";
+      position: absolute;
+      left: 10px;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      border-radius: 999px;
+      background: linear-gradient(to bottom, #2563eb, #4f46e5);
+      opacity: 0.6;
+    }
+
+    .stage-step-inner {
+      margin-left: 14px;
+    }
+
+    .stage-step-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      background: #2563eb;
+      color: #f9fafb;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .stage-step-title {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .stage-step-tagline {
+      font-size: 12px;
+      color: #4b5563;
+      margin-bottom: 4px;
+    }
+
+    .stage-step ul {
+      margin: 6px 0 0 16px;
+      font-size: 12px;
+    }
+
+    .accordion-card {
+      background: var(--card-bg);
+      border-radius: 22px;
+      padding: 18px 20px 16px;
+      box-shadow: var(--shadow-soft);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .accordion-card h3 {
+      margin: 0 0 6px;
+      font-size: 16px;
+    }
+
+    .accordion-card p {
+      margin: 0 0 6px;
+    }
+
+    .accordion {
+      margin-top: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    details {
+      border-radius: 16px;
+      border: 1px solid #e5e7eb;
+      background: #f9fafb;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    details[open] {
+      border-color: #2563eb;
+      background: #eef2ff;
+      box-shadow: 0 10px 24px rgba(37, 99, 235, 0.15);
+    }
+
+    summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .summary-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .substep-number {
+      width: 26px;
+      height: 26px;
+      border-radius: 999px;
+      background: #2563eb;
+      color: #f9fafb;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+
+    .substep-text-title {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .substep-text-tagline {
+      font-size: 12px;
+      color: #4b5563;
+    }
+
+    .summary-right {
+      font-size: 18px;
+      line-height: 1;
+      color: #9ca3af;
+      flex-shrink: 0;
+      transition: transform 0.15s ease, color 0.15s ease;
+    }
+
+    details[open] .summary-right {
+      color: #2563eb;
+      transform: rotate(90deg);
+    }
+
+    .accordion-body {
+      padding: 0 14px 12px 14px;
+      border-top: 1px solid #e5e7eb;
+      font-size: 13px;
+      line-height: 1.6;
+      background: rgba(255, 255, 255, 0.7);
+    }
+
+    .accordion-body p {
+      margin-top: 8px;
+    }
+
+    .accordion-body ul,
+    .accordion-body ol {
+      margin: 6px 0 0 18px;
+      padding: 0;
+    }
+
+    table.feature-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 8px;
+      font-size: 13px;
+    }
+
+    table.feature-table th,
+    table.feature-table td {
+      border: 1px solid #e5e7eb;
+      padding: 6px 8px;
+      vertical-align: top;
+    }
+
+    table.feature-table th {
+      background: #eff6ff;
+      font-weight: 600;
+      text-align: left;
+    }
+
+    .tagline {
+      margin-top: 6px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .quiz-cta {
+      text-align: center;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 10px 18px;
+      border-radius: 999px;
+      border: none;
+      background: var(--accent);
+      color: #f9fafb;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 12px 24px rgba(37, 99, 235, 0.4);
+    }
+
+    .btn-primary:hover {
+      filter: brightness(1.05);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid #e5e7eb;
+      background: #f9fafb;
+      color: #111827;
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    .btn-secondary:hover {
+      background: #f3f4f6;
+    }
+
+    .quiz-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.45);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      z-index: 50;
+    }
+
+    .quiz-overlay.open {
+      display: flex;
+    }
+
+    .quiz-modal {
+      background: #ffffff;
+      border-radius: 24px;
+      max-width: 880px;
+      width: 100%;
+      max-height: 90vh;
+      box-shadow: 0 20px 45px rgba(15, 23, 42, 0.45);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .quiz-modal-header {
+      padding: 16px 20px 8px;
+      border-bottom: 1px solid #e5e7eb;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .quiz-modal-header h2 {
+      margin: 0;
+      font-size: 17px;
+    }
+
+    .quiz-modal-header p {
+      margin: 2px 0 0;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .quiz-modal-body {
+      padding: 12px 20px 16px;
+      overflow-y: auto;
+    }
+
+    .quiz-grid {
+      margin-top: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .quiz-row {
+      padding: 6px 8px;
+      border-radius: 12px;
+      background: #f9fafb;
+      display: grid;
+      grid-template-columns: minmax(0, 2.4fr) minmax(0, 1.2fr);
+      gap: 8px;
+      align-items: center;
+    }
+
+    .quiz-row-label {
+      font-size: 13px;
+    }
+
+    .quiz-select {
+      width: 100%;
+      padding: 6px 8px;
+      border-radius: 999px;
+      border: 1px solid #e5e7eb;
+      font-size: 13px;
+      background: #ffffff;
+    }
+
+    .quiz-actions {
+      margin-top: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .quiz-result {
+      font-size: 13px;
+    }
+
+    .quiz-result-success {
+      color: #166534;
+    }
+
+    .quiz-result-error {
+      color: #b91c1c;
+    }
+
+    @media (max-width: 1024px) {
+      .stage-flow-steps {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 960px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      
+
+      .stage-flow-steps {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .quiz-row {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 720px) {
+      .course-header h1 {
+        font-size: 24px;
+      }
+
+      .hero {
+        padding: 20px 18px;
+      }
+
+      .header-top {
+        flex-direction: column-reverse;
+        align-items: flex-start;
+      }
+    }
+  
+
+/* Layout after removal of mascot and call-recording blocks */
+.hero.hero--single,
+.two-column-card.layout--single,
+.logic-layout.layout--single,
+.goals-layout.layout--single {
+  grid-template-columns: minmax(0, 1fr);
+}
+</style>
+<link href="assets/course-shell.css" rel="stylesheet"/><script defer="True" src="assets/course-progress.js"></script></head>
+<body data-course-page="lesson" data-lesson="4">
+<div class="app">
+<div class="header-top"><a aria-label="DARALTAI — главная страница курса" class="mini-brand" href="index.html"><img alt="DARALTAI" src="assets/daraltai-logo.png"/><span>DARALTAI</span></a><a class="back-link" href="index.html">← К программе курса</a></div>
+<header class="course-header">
+<h1>Этап 4. Презентация: «Мотивируй выгодами»</h1>
+<p>
+      Цель этапа – донести до Клиента выгоды, которые он получит от пользования услугой
+      и продуктами для здоровья. Презентация строится на уже выявленных потребностях и мотиваторах.
+    </p>
+<div class="steps-nav"><a class="step-pill" data-lesson-link="1" href="01_podgotovka.html"><span>Урок 1</span> Подготовка</a><a class="step-pill" data-lesson-link="2" href="02_contact.html"><span>Урок 2</span> Контакт</a><a class="step-pill" data-lesson-link="3" href="03_potrebnosti.html"><span>Урок 3</span> Потребности</a><a aria-current="page" class="step-pill step-pill--active" data-lesson-link="4" href="04_presentation.html"><span>Урок 4</span> Презентация</a><a class="step-pill" data-lesson-link="5" href="05_vozrazheniya.html"><span>Урок 5</span> Возражения</a><a class="step-pill" data-lesson-link="6" href="06_sdelka.html"><span>Урок 6</span> Сделка</a><a class="step-pill" data-lesson-link="7" href="07_itog.html"><span>Урок 7</span> Анализ</a></div>
+</header>
+<main>
+<section class="hero hero--single">
+<div class="hero-text">
+<h2>Мотивируй выгодами</h2>
+<p>
+          Презентацию нужно проводить на основании тех потребностей,
+          которые ты уже выяснил с помощью вопросов. На этом этапе
+          мы говорим не просто о свойствах продукта, а о том, какую
+          пользу Клиент реально получит.
+        </p>
+<p>На этом этапе мы рассмотрим:</p>
+<ul>
+<li>технику <strong>«Свойство–выгода»</strong>;</li>
+<li>технику <strong>«Болты»</strong> — расширенную «Свойство–выгода»;</li>
+<li>приём <strong>«Встроенная рекомендация»</strong>.</li>
+</ul>
+<div class="hero-callout">
+<strong>Главный принцип презентации:</strong>
+<ul>
+<li>говори на языке выгод Клиента, а не характеристик продукта;</li>
+<li>связывай каждое свойство с конкретной пользой для здоровья;</li>
+<li>избегай частицы <strong>«не»</strong> в формулировках выгоды — она запускает отрицание.</li>
+</ul>
+</div>
+</div>
+</section>
+<section class="stage-flow">
+<h3>Логика этапа презентации</h3>
+<p>
+        Презентация опирается на всё, что ты сделал раньше: подготовку,
+        установление контакта и выявление потребностей. Сейчас ты связываешь продукт
+        с жизнью Клиента.
+      </p>
+<div class="stage-flow-steps">
+<div class="stage-step">
+<div class="stage-step-inner">
+<div class="stage-step-number">1</div>
+<div class="stage-step-title">Свойство → Выгода</div>
+<div class="stage-step-tagline">Факты против пользы</div>
+<ul>
+<li>Описание продукта превращаем в конкретную пользу.</li>
+<li>Используем связующие фразы: «позволит вам…», «даст возможность…».</li>
+</ul>
+</div>
+</div>
+<div class="stage-step">
+<div class="stage-step-inner">
+<div class="stage-step-number">2</div>
+<div class="stage-step-title">Техника «Болты»</div>
+<div class="stage-step-tagline">Расширенная презентация</div>
+<ul>
+<li>Название → характеристика → преимущество → выгода.</li>
+<li>Завершаем аксиомным вопросом: «Так ведь?», «Согласны?».</li>
+</ul>
+</div>
+</div>
+<div class="stage-step">
+<div class="stage-step-inner">
+<div class="stage-step-number">3</div>
+<div class="stage-step-title">Встроенная рекомендация</div>
+<div class="stage-step-tagline">Эффект «хита продаж»</div>
+<ul>
+<li>Показываем, что продукт уже выбирают другие люди.</li>
+<li>Поддерживаем уверенность Клиента в решении.</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<!-- Техника «Свойство–выгода» -->
+<section class="accordion-card full-width">
+<h3>Техника «Свойство–выгода»</h3>
+<p>
+        Техника строится на связке: <strong>свойство продукта → связующая фраза → выгода для Клиента</strong>.
+      </p>
+<div class="accordion">
+<details open="">
+<summary>
+<div class="summary-left">
+<div class="substep-number">1</div>
+<div>
+<div class="substep-text-title">Свойство и выгода</div>
+<div class="substep-text-tagline">Клиент покупает не свойства, а пользу</div>
+</div>
+</div>
+<div class="summary-right">›</div>
+</summary>
+<div class="accordion-body">
+<p>
+<strong>Свойство</strong> – это факт, характеристика товара:
+              состав, формат, длительность курса, наличие приложения и т.п.
+            </p>
+<p>
+<strong>Выгода</strong> – это ответ на вопрос:
+              <em>«Что я лично получу от этого? Как изменится моя жизнь/здоровье?»</em>
+</p>
+<p>
+              Чтобы объединить свойство и выгоду, мы используем связующую фразу:
+            </p>
+<ul>
+<li>«позволит вам…»</li>
+<li>«поможет вам…»</li>
+<li>«обеспечит вам…»</li>
+<li>«вы сможете…»</li>
+<li>«даст вам возможность…» и т.д.</li>
+</ul>
+<table class="feature-table">
+<thead>
+<tr>
+<th>Свойство продукта</th>
+<th>Связующая фраза</th>
+<th>Выгода для Клиента (здоровье)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Курс «Иммунитет 30 дней» с чёткой схемой приёма средств</td>
+<td>даст вам возможность…</td>
+<td>
+                  пройти полный цикл без пропусков и постепенно укрепить иммунитет,
+                  чтобы реже болеть в сезон простуд.
+                </td>
+</tr>
+<tr>
+<td>Онлайн-платформа с видео-тренировками разного уровня</td>
+<td>позволит вам…</td>
+<td>
+                  выбирать комфортную нагрузку и заниматься дома в удобное время,
+                  не тратя время на дорогу в зал.
+                </td>
+</tr>
+<tr>
+<td>Еженедельные консультации врача по видеосвязи</td>
+<td>обеспечат вам…</td>
+<td>
+                  регулярную поддержку специалиста, чтобы вовремя корректировать план и
+                  двигаться к результату без лишнего стресса.
+                </td>
+</tr>
+</tbody>
+</table>
+<p class="tagline">
+              Чем конкретнее выгода привязана к жизни Клиента (семья, время,
+              деньги, комфорт, здоровье), тем сильнее звучит презентация.
+            </p>
+<p><strong>Попробуем потренироваться:</strong> подбери верную выгоду под свойство.</p>
+<button class="btn-primary" id="openFeatureBenefitTrainer">
+              Тренажёр «Свойство–выгода»
+            </button>
+</div>
+</details>
+<details>
+<summary>
+<div class="summary-left">
+<div class="substep-number">2</div>
+<div>
+<div class="substep-text-title">Расширенное объяснение техники</div>
+<div class="substep-text-tagline">Зачем продавцу знать свойства в деталях</div>
+</div>
+</div>
+<div class="summary-right">›</div>
+</summary>
+<div class="accordion-body">
+<p>
+              Свойства товара – это отличительные особенности, по которым его различают:
+              и внешние (дизайн, размер, формат упаковки), и внутренние (состав, технологии,
+              длительность курса, наличие обратной связи с врачом).
+            </p>
+<p>
+              Продавец должен хорошо знать, какие свойства особенно значимы для его продукта.
+              Среди них обязательно есть свойства, которые критичны для решения задач Клиента.
+            </p>
+<p>
+              Алгоритм презентации по технике «Свойство–выгода»:
+            </p>
+<ol>
+<li>Назови <strong>свойство</strong> продукта.</li>
+<li>Используй <strong>связующую фразу</strong>: «это позволит вам…», «благодаря этому вы получите…».</li>
+<li>Покажи <strong>выгоду</strong>, привязанную к конкретным потребностям Клиента.</li>
+</ol>
+<p>
+<strong>Пример:</strong><br/>
+              «Комплекс для поддержания суставов содержит коллаген и витамин D
+              (свойство). Благодаря этому вы сможете легче переносить нагрузку на
+              колени и спину (выгода), чтобы дольше оставаться активным и подвижным».
+            </p>
+<p>
+              Избегай формулировок с частицей <strong>«не»</strong> в описании пользы:
+              вместо «вы не будете болеть», лучше «вы будете болеть реже и легче
+              переносить сезон простуд».
+            </p>
+</div>
+</details>
+</div>
+</section>
+<!-- Техника «Болты» -->
+<section class="accordion-card full-width">
+<h3>Техника «Болты»</h3>
+<p>
+        Техника «Болты» — это расширенная версия «Свойство–выгода».
+        Здесь мы последовательно проговариваем: <strong>название / свойство → характеристика →
+        преимущество → выгода → аксиомный вопрос</strong>.
+      </p>
+<div class="accordion">
+<details open="">
+<summary>
+<div class="summary-left">
+<div class="substep-number">3</div>
+<div>
+<div class="substep-text-title">Структура техники «Болты»</div>
+<div class="substep-text-tagline">Пять элементов сильной презентации</div>
+</div>
+</div>
+<div class="summary-right">›</div>
+</summary>
+<div class="accordion-body">
+<table class="feature-table">
+<thead>
+<tr>
+<th>Название / свойство</th>
+<th>Характеристика</th>
+<th>Преимущество</th>
+<th>Выгода</th>
+<th>Аксиомный вопрос</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Курс «Энергия дня»</td>
+<td>это месячная программа с витаминами группы B и адаптогенами</td>
+<td>помогает мягко повышать уровень энергии без резких скачков</td>
+<td>благодаря этому вы сможете меньше уставать к вечеру и оставаться в ресурсе для семьи и работы</td>
+<td>Согласитесь, приятно чувствовать бодрость до конца дня, верно?</td>
+</tr>
+<tr>
+<td>Программа «Спокойный сон»</td>
+<td>включает мягкие растительные компоненты и вечерние ритуалы</td>
+<td>помогает легче засыпать и глубже восстанавливаться ночью</td>
+<td>тем самым вы просыпаетесь отдохнувшим и спокойным, без утренней разбитости</td>
+<td>Правда здорово просыпаться с ощущением отдыха, так ведь?</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Аксиомные вопросы должны быть разными — не повторяй одно и то же «Так ведь?» подряд.</li>
+<li>Не нужно «прокручивать болты» на каждом свойстве — выбирай ключевые.</li>
+<li>Смягчай аксиомные вопросы обращением по имени.</li>
+<li>Используй в характеристиках конкретные цифры и факты.</li>
+</ul>
+<p><strong>Сейчас потренируемся выделять части «болта» в готовой презентации.</strong></p>
+<button class="btn-primary" id="openBoltsTrainer">
+              Тренажёр по технике «Болты»
+            </button>
+</div>
+</details>
+<details>
+<summary>
+<div class="summary-left">
+<div class="substep-number">4</div>
+<div>
+<div class="substep-text-title">Импульсные продажи и встроенная рекомендация</div>
+<div class="substep-text-tagline">Как усилить желание купить «здесь и сейчас»</div>
+</div>
+</div>
+<div class="summary-right">›</div>
+</summary>
+<div class="accordion-body">
+<p>
+              Задача <strong>импульсных продаж</strong> — вызвать интерес к товару и
+              побудить Клиента принять решение сейчас, а не «когда-нибудь».
+            </p>
+<p>
+              Приём <strong>«Встроенная рекомендация»</strong> — это когда ты
+              аккуратно показываешь, что продукт уже оценили другие люди:
+            </p>
+<ul>
+<li>«Этот курс чаще всего выбирают Клиенты, которым важно укрепить иммунитет ко всему сезону»;</li>
+<li>«Отличный выбор, такой же комплекс я рекомендовал своим близким — они очень довольны результатом»;</li>
+<li>«Большинство людей, кто активно занимается спортом, берут именно этот набор для суставов»;</li>
+<li>«В вашем доме уже многие жители подключили нашу программу здоровья, чтобы меньше болеть зимой».</li>
+</ul>
+<p>
+              Человек — социальное существо. Если «похожие на него» люди уже
+              сделали выбор, Клиенту легче принять решение.
+            </p>
+<p class="tagline">
+              Важно: никакой выдумки — только реальные факты и честные формулировки.
+            </p>
+</div>
+</details>
+</div>
+</section>
+<section class="quiz-cta full-width">
+<button class="btn-primary" id="openFinalQuiz">
+        Проверить знания по этапу «Мотивируй выгодами»
+      </button>
+</section>
+<nav aria-label="Переход между уроками" class="course-navigation"><a class="course-navigation__button course-navigation__button--prev" href="03_potrebnosti.html">← Урок 3: Потребности</a><div class="course-navigation__status">Урок 4 из 7</div><a class="course-navigation__button course-navigation__button--next" href="05_vozrazheniya.html">Урок 5: Возражения →</a></nav><footer class="course-page-footer">Обучающий курс DARALTAI · Телефонные продажи</footer></main>
+</div>
+<!-- Тренажёр «Свойство–выгода» -->
+<div class="quiz-overlay" id="featureBenefitOverlay">
+<div class="quiz-modal">
+<div class="quiz-modal-header">
+<div>
+<h2>Тренажёр: техника «Свойство–выгода»</h2>
+<p>Подбери корректную выгоду к каждому свойству продукта для здоровья.</p>
+</div>
+<button class="btn-secondary" id="closeFeatureBenefitOverlay">Закрыть</button>
+</div>
+<div class="quiz-modal-body">
+<div class="quiz-grid">
+<div class="quiz-row">
+<div class="quiz-row-label">
+<strong>1) Курс «Иммунитет 30 дней»</strong> — это программа с
+            чёткой схемой приёма средств и напоминаниями в приложении.<br/><br/>
+            Вариант A: даст вам возможность постепенно укреплять иммунитет и пройти полный курс без пропусков.<br/>
+            Вариант B: поможет вам экономить на покупке бытовой техники.
+          </div>
+<select class="quiz-select feature-benefit-select" data-correct="A">
+<option value="">Выбери верную выгоду</option>
+<option value="A">Вариант A</option>
+<option value="B">Вариант B</option>
+</select>
+</div>
+<div class="quiz-row">
+<div class="quiz-row-label">
+<strong>2) Онлайн-платформа с видео-тренировками</strong> — занятия
+            разной длительности и уровня сложности, доступные с телефона и ноутбука.<br/><br/>
+            Вариант A: позволит вам тренироваться дома в удобное время и подбирать нагрузку под своё самочувствие.<br/>
+            Вариант B: обеспечит вам бесплатный доступ к любым фильмам и сериалам.
+          </div>
+<select class="quiz-select feature-benefit-select" data-correct="A">
+<option value="">Выбери верную выгоду</option>
+<option value="A">Вариант A</option>
+<option value="B">Вариант B</option>
+</select>
+</div>
+<div class="quiz-row">
+<div class="quiz-row-label">
+<strong>3) Гибкий график онлайн-консультаций врача</strong> — приём
+            по видеосвязи утром, днём и вечером по записи.<br/><br/>
+            Вариант A: даст вам возможность получать рекомендации врача, не тратя время на дорогу в клинику, и быстрее корректировать план здоровья.<br/>
+            Вариант B: поможет вам реже пользоваться такси по пути на работу.
+          </div>
+<select class="quiz-select feature-benefit-select" data-correct="A">
+<option value="">Выбери верную выгоду</option>
+<option value="A">Вариант A</option>
+<option value="B">Вариант B</option>
+</select>
+</div>
+</div>
+<div class="quiz-actions">
+<button class="btn-primary" id="checkFeatureBenefit">
+          Проверить
+        </button>
+<div class="quiz-result" id="featureBenefitResult"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Тренажёр по технике «Болты» -->
+<div class="quiz-overlay" id="boltsOverlay">
+<div class="quiz-modal">
+<div class="quiz-modal-header">
+<div>
+<h2>Тренажёр: техника «Болты»</h2>
+<p>Определи, к какой части техники относится каждая фраза.</p>
+</div>
+<button class="btn-secondary" id="closeBoltsOverlay">Закрыть</button>
+</div>
+<div class="quiz-modal-body">
+<p style="font-size:13px;margin-bottom:8px;">
+        Выбери для каждой фразы: <strong>Свойство/название</strong>, <strong>Характеристика</strong>,
+        <strong>Преимущество</strong>, <strong>Выгода</strong> или <strong>Аксиомный вопрос</strong>.
+      </p>
+<div class="quiz-grid">
+<!-- Сценарий 1 -->
+<div class="quiz-row">
+<div class="quiz-row-label">
+            1) «Курс “Здоровые суставы”»
+          </div>
+<select class="quiz-select bolts-select" data-correct="prop">
+<option value="">Выбери часть «Болта»</option>
+<option value="prop">Свойство / название</option>
+<option value="char">Характеристика</option>
+<option value="adv">Преимущество</option>
+<option value="ben">Выгода</option>
+<option value="ax">Аксиомный вопрос</option>
+</select>
+</div>
+<div class="quiz-row">
+<div class="quiz-row-label">
+            2) «это программа с коллагеном и витамином D, рассчитанная на 2 месяца»
+          </div>
+<select class="quiz-select bolts-select" data-correct="char">
+<option value="">Выбери часть «Болта»</option>
+<option value="prop">Свойство / название</option>
+<option value="char">Характеристика</option>
+<option value="adv">Преимущество</option>
+<option value="ben">Выгода</option>
+<option value="ax">Аксиомный вопрос</option>
+</select>
+</div>
+<div class="quiz-row">
+<div class="quiz-row-label">
+            3) «которая мягко поддерживает здоровье суставов без лишней нагрузки на организм»
+          </div>
+<select class="quiz-select bolts-select" data-correct="adv">
+<option value="">Выбери часть «Болта»</option>
+<option value="prop">Свойство / название</option>
+<option value="char">Характеристика</option>
+<option value="adv">Преимущество</option>
+<option value="ben">Выгода</option>
+<option value="ax">Аксиомный вопрос</option>
+</select>
+</div>
+<div class="quiz-row">
+<div class="quiz-row-label">
+            4) «тем самым вы сможете легче переносить нагрузку и свободно гулять без лишнего дискомфорта»
+          </div>
+<select class="quiz-select bolts-select" data-correct="ben">
+<option value="">Выбери часть «Болта»</option>
+<option value="prop">Свойство / название</option>
+<option value="char">Характеристика</option>
+<option value="adv">Преимущество</option>
+<option value="ben">Выгода</option>
+<option value="ax">Аксиомный вопрос</option>
+</select>
+</div>
+<div class="quiz-row">
+<div class="quiz-row-label">
+            5) «Согласитесь, приятно чувствовать уверенность в своих движениях, так ведь?»
+          </div>
+<select class="quiz-select bolts-select" data-correct="ax">
+<option value="">Выбери часть «Болта»</option>
+<option value="prop">Свойство / название</option>
+<option value="char">Характеристика</option>
+<option value="adv">Преимущество</option>
+<option value="ben">Выгода</option>
+<option value="ax">Аксиомный вопрос</option>
+</select>
+</div>
+<!-- Сценарий 2 -->
+<div class="quiz-row">
+<div class="quiz-row-label">
+            6) «Программа “Спокойный сон”»
+          </div>
+<select class="quiz-select bolts-select" data-correct="prop">
+<option value="">Выбери часть «Болта»</option>
+<option value="prop">Свойство / название</option>
+<option value="char">Характеристика</option>
+<option value="adv">Преимущество</option>
+<option value="ben">Выгода</option>
+<option value="ax">Аксиомный вопрос</option>
+</select>
+</div>
+<div class="quiz-row">
+<div class="quiz-row-label">
+            7) «включает мягкие растительные компоненты и вечерние упражнения на расслабление»
+          </div>
+<select class="quiz-select bolts-select" data-correct="char">
+<option value="">Выбери часть «Болта»</option>
+<option value="prop">Свойство / название</option>
+<option value="char">Характеристика</option>
+<option value="adv">Преимущество</option>
+<option value="ben">Выгода</option>
+<option value="ax">Аксиомный вопрос</option>
+</select>
+</div>
+<div class="quiz-row">
+<div class="quiz-row-label">
+            8) «помогает легче засыпать и глубже отдыхать ночью»
+          </div>
+<select class="quiz-select bolts-select" data-correct="adv">
+<option value="">Выбери часть «Болта»</option>
+<option value="prop">Свойство / название</option>
+<option value="char">Характеристика</option>
+<option value="adv">Преимущество</option>
+<option value="ben">Выгода</option>
+<option value="ax">Аксиомный вопрос</option>
+</select>
+</div>
+<div class="quiz-row">
+<div class="quiz-row-label">
+            9) «благодаря этому вы просыпаетесь спокойнее, с ясной головой и без утренней разбитости»
+          </div>
+<select class="quiz-select bolts-select" data-correct="ben">
+<option value="">Выбери часть «Болта»</option>
+<option value="prop">Свойство / название</option>
+<option value="char">Характеристика</option>
+<option value="adv">Преимущество</option>
+<option value="ben">Выгода</option>
+<option value="ax">Аксиомный вопрос</option>
+</select>
+</div>
+<div class="quiz-row">
+<div class="quiz-row-label">
+            10) «Правда приятно начинать день в хорошем настроении и с запасом сил, согласны?»
+          </div>
+<select class="quiz-select bolts-select" data-correct="ax">
+<option value="">Выбери часть «Болта»</option>
+<option value="prop">Свойство / название</option>
+<option value="char">Характеристика</option>
+<option value="adv">Преимущество</option>
+<option value="ben">Выгода</option>
+<option value="ax">Аксиомный вопрос</option>
+</select>
+</div>
+</div>
+<div class="quiz-actions">
+<button class="btn-primary" id="checkBolts">
+          Проверить
+        </button>
+<div class="quiz-result" id="boltsResult"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Итоговый тест по этапу презентации -->
+<div class="quiz-overlay" id="finalQuizOverlay">
+<div class="quiz-modal">
+<div class="quiz-modal-header">
+<div>
+<h2>Тест: этап «Мотивируй выгодами»</h2>
+<p>Выбери правильные варианты по технике презентации и выгод.</p>
+</div>
+<button class="btn-secondary" id="closeFinalQuiz">Закрыть</button>
+</div>
+<div class="quiz-modal-body">
+<div class="quiz-grid">
+<div class="quiz-row">
+<div class="quiz-row-label">
+            Основная цель этапа презентации:
+          </div>
+<select class="quiz-select final-select" data-correct="goal">
+<option value="">Выбери вариант</option>
+<option value="goal">Показать Клиенту выгоды продукта на основе его потребностей</option>
+<option value="info">Просто рассказать максимум фактов о компании</option>
+<option value="smalltalk">Поддержать разговор, не переходя к сути</option>
+</select>
+</div>
+<div class="quiz-row">
+<div class="quiz-row-label">
+            Что такое «свойство» в технике «Свойство–выгода»?
+          </div>
+<select class="quiz-select final-select" data-correct="prop">
+<option value="">Выбери вариант</option>
+<option value="prop">Факт, характеристика продукта</option>
+<option value="ben">Эмоциональное состояние Клиента</option>
+<option value="q">Любой вопрос Клиенту</option>
+</select>
+</div>
+<div class="quiz-row">
+<div class="quiz-row-label">
+            Что такое «выгода»?
+          </div>
+<select class="quiz-select final-select" data-correct="ben">
+<option value="">Выбери вариант</option>
+<option value="desc">Краткое описание услуги</option>
+<option value="ben">Ответ на вопрос «Что это даёт лично Клиенту?»</option>
+<option value="price">Информация о цене</option>
+</select>
+</div>
+<div class="quiz-row">
+<div class="quiz-row-label">
+            Какая связующая фраза подходит для техники «Свойство–выгода»?
+          </div>
+<select class="quiz-select final-select" data-correct="link">
+<option value="">Выбери вариант</option>
+<option value="link">«Это позволит вам…»</option>
+<option value="no">«Это не так уж и дорого…»</option>
+<option value="maybe">«Ну, может, когда-нибудь пригодится…»</option>
+</select>
+</div>
+<div class="quiz-row">
+<div class="quiz-row-label">
+            Какой элемент <strong>не</strong> входит в технику «Болты»?
+          </div>
+<select class="quiz-select final-select" data-correct="not">
+<option value="">Выбери вариант</option>
+<option value="name">Название / свойство</option>
+<option value="adv">Преимущество</option>
+<option value="ax">Аксиомный вопрос</option>
+<option value="not">Возражение Клиента</option>
+</select>
+</div>
+<div class="quiz-row">
+<div class="quiz-row-label">
+            Зачем нужен аксиомный вопрос в конце «болта»?
+          </div>
+<select class="quiz-select final-select" data-correct="ax">
+<option value="">Выбери вариант</option>
+<option value="ax">Чтобы получить маленькое «да» и закрепить согласие Клиента</option>
+<option value="stop">Чтобы резко завершить разговор</option>
+<option value="joke">Чтобы пошутить и сменить тему</option>
+</select>
+</div>
+<div class="quiz-row">
+<div class="quiz-row-label">
+            Почему важно избегать частицы «не» в формулировке выгоды?
+          </div>
+<select class="quiz-select final-select" data-correct="ne">
+<option value="">Выбери вариант</option>
+<option value="ne">Она запускает у Клиента внутреннее отрицание</option>
+<option value="style">Так «красивее» звучит текст</option>
+<option value="law">Это запрещено законом</option>
+</select>
+</div>
+<div class="quiz-row">
+<div class="quiz-row-label">
+            Что делает приём «Встроенная рекомендация»?
+          </div>
+<select class="quiz-select final-select" data-correct="rec">
+<option value="">Выбери вариант</option>
+<option value="rec">Показывает, что продукт уже выбирают другие Клиенты</option>
+<option value="discount">Обещает скрытую скидку</option>
+<option value="silence">Помогает молчать вместо презентации</option>
+</select>
+</div>
+</div>
+<div class="quiz-actions">
+<button class="btn-primary" id="checkFinalQuiz">
+          Проверить ответы
+        </button>
+<div class="quiz-result" id="finalQuizResult"></div>
+</div>
+</div>
+</div>
+</div>
+<script>
+  (function() {
+    function closeOverlay(overlay) {
+      overlay.classList.remove('open');
+    }
+
+    /* ===== Тренажёр «Свойство–выгода» ===== */
+    const featureOverlay = document.getElementById('featureBenefitOverlay');
+    const openFeatureBtn = document.getElementById('openFeatureBenefitTrainer');
+    const closeFeatureBtn = document.getElementById('closeFeatureBenefitOverlay');
+    const checkFeatureBtn = document.getElementById('checkFeatureBenefit');
+    const featureResultEl = document.getElementById('featureBenefitResult');
+
+    if (openFeatureBtn) {
+      openFeatureBtn.addEventListener('click', () => {
+        featureOverlay.classList.add('open');
+        featureResultEl.textContent = '';
+        featureOverlay.querySelectorAll('.feature-benefit-select').forEach(sel => {
+          sel.value = '';
+          sel.style.borderColor = '#e5e7eb';
+          sel.style.backgroundColor = '#ffffff';
+        });
+      });
+    }
+
+    if (closeFeatureBtn) {
+      closeFeatureBtn.addEventListener('click', () => closeOverlay(featureOverlay));
+    }
+
+    featureOverlay.addEventListener('click', (e) => {
+      if (e.target === featureOverlay) closeOverlay(featureOverlay);
+    });
+
+    if (checkFeatureBtn) {
+      checkFeatureBtn.addEventListener('click', () => {
+        const selects = featureOverlay.querySelectorAll('.feature-benefit-select');
+        let allFilled = true;
+        let allCorrect = true;
+
+        selects.forEach(select => {
+          const value = select.value;
+          const correct = select.dataset.correct;
+          select.style.borderColor = '#e5e7eb';
+          select.style.backgroundColor = '#ffffff';
+
+          if (!value) {
+            allFilled = false;
+            allCorrect = false;
+            select.style.borderColor = '#f97316';
+            select.style.backgroundColor = '#fff7ed';
+          } else if (value !== correct) {
+            allCorrect = false;
+            select.style.borderColor = '#b91c1c';
+            select.style.backgroundColor = '#fef2f2';
+          } else {
+            select.style.borderColor = '#22c55e';
+            select.style.backgroundColor = '#ecfdf5';
+          }
+        });
+
+        if (!allFilled) {
+          featureResultEl.textContent = 'Заполни все варианты и попробуй ещё раз.';
+          featureResultEl.className = 'quiz-result quiz-result-error';
+          return;
+        }
+
+        if (allCorrect) {
+          featureResultEl.textContent = 'Отлично! Ты правильно связываешь свойства с выгодами.';
+          featureResultEl.className = 'quiz-result quiz-result-success';
+        } else {
+          featureResultEl.textContent = 'Есть неточности. Вспомни, какая выгода действительно связана со здоровьем Клиента, и попробуй ещё раз.';
+          featureResultEl.className = 'quiz-result quiz-result-error';
+        }
+      });
+    }
+
+    /* ===== Тренажёр по технике «Болты» ===== */
+    const boltsOverlay = document.getElementById('boltsOverlay');
+    const openBoltsBtn = document.getElementById('openBoltsTrainer');
+    const closeBoltsBtn = document.getElementById('closeBoltsOverlay');
+    const checkBoltsBtn = document.getElementById('checkBolts');
+    const boltsResultEl = document.getElementById('boltsResult');
+
+    if (openBoltsBtn) {
+      openBoltsBtn.addEventListener('click', () => {
+        boltsOverlay.classList.add('open');
+        boltsResultEl.textContent = '';
+        boltsOverlay.querySelectorAll('.bolts-select').forEach(sel => {
+          sel.value = '';
+          sel.style.borderColor = '#e5e7eb';
+          sel.style.backgroundColor = '#ffffff';
+        });
+      });
+    }
+
+    if (closeBoltsBtn) {
+      closeBoltsBtn.addEventListener('click', () => closeOverlay(boltsOverlay));
+    }
+
+    boltsOverlay.addEventListener('click', (e) => {
+      if (e.target === boltsOverlay) closeOverlay(boltsOverlay);
+    });
+
+    if (checkBoltsBtn) {
+      checkBoltsBtn.addEventListener('click', () => {
+        const selects = boltsOverlay.querySelectorAll('.bolts-select');
+        let allFilled = true;
+        let allCorrect = true;
+
+        selects.forEach(select => {
+          const value = select.value;
+          const correct = select.dataset.correct;
+          select.style.borderColor = '#e5e7eb';
+          select.style.backgroundColor = '#ffffff';
+
+          if (!value) {
+            allFilled = false;
+            allCorrect = false;
+            select.style.borderColor = '#f97316';
+            select.style.backgroundColor = '#fff7ed';
+          } else if (value !== correct) {
+            allCorrect = false;
+            select.style.borderColor = '#b91c1c';
+            select.style.backgroundColor = '#fef2f2';
+          } else {
+            select.style.borderColor = '#22c55e';
+            select.style.backgroundColor = '#ecfdf5';
+          }
+        });
+
+        if (!allFilled) {
+          boltsResultEl.textContent = 'Заполни все строки и попробуй ещё раз.';
+          boltsResultEl.className = 'quiz-result quiz-result-error';
+          return;
+        }
+
+        if (allCorrect) {
+          boltsResultEl.textContent = 'Супер! Ты уверенно разбираешься в структуре «Болтов».';
+          boltsResultEl.className = 'quiz-result quiz-result-success';
+        } else {
+          boltsResultEl.textContent = 'Есть ошибки. Вспомни: название/свойство → характеристика → преимущество → выгода → аксиомный вопрос, и попробуй ещё раз.';
+          boltsResultEl.className = 'quiz-result quiz-result-error';
+        }
+      });
+    }
+
+    /* ===== Итоговый тест ===== */
+    const finalOverlay = document.getElementById('finalQuizOverlay');
+    const openFinalBtn = document.getElementById('openFinalQuiz');
+    const closeFinalBtn = document.getElementById('closeFinalQuiz');
+    const checkFinalBtn = document.getElementById('checkFinalQuiz');
+    const finalResultEl = document.getElementById('finalQuizResult');
+
+    if (openFinalBtn) {
+      openFinalBtn.addEventListener('click', () => {
+        finalOverlay.classList.add('open');
+        finalResultEl.textContent = '';
+        finalOverlay.querySelectorAll('.final-select').forEach(sel => {
+          sel.value = '';
+          sel.style.borderColor = '#e5e7eb';
+          sel.style.backgroundColor = '#ffffff';
+        });
+      });
+    }
+
+    if (closeFinalBtn) {
+      closeFinalBtn.addEventListener('click', () => closeOverlay(finalOverlay));
+    }
+
+    finalOverlay.addEventListener('click', (e) => {
+      if (e.target === finalOverlay) closeOverlay(finalOverlay);
+    });
+
+    if (checkFinalBtn) {
+      checkFinalBtn.addEventListener('click', () => {
+        const selects = finalOverlay.querySelectorAll('.final-select');
+        let allFilled = true;
+        let allCorrect = true;
+
+        selects.forEach(select => {
+          const value = select.value;
+          const correct = select.dataset.correct;
+          select.style.borderColor = '#e5e7eb';
+          select.style.backgroundColor = '#ffffff';
+
+          if (!value) {
+            allFilled = false;
+            allCorrect = false;
+            select.style.borderColor = '#f97316';
+            select.style.backgroundColor = '#fff7ed';
+          } else if (value !== correct) {
+            allCorrect = false;
+            select.style.borderColor = '#b91c1c';
+            select.style.backgroundColor = '#fef2f2';
+          } else {
+            select.style.borderColor = '#22c55e';
+            select.style.backgroundColor = '#ecfdf5';
+          }
+        });
+
+        if (!allFilled) {
+          finalResultEl.textContent = 'Заполни все вопросы и попробуй ещё раз.';
+          finalResultEl.className = 'quiz-result quiz-result-error';
+          return;
+        }
+
+        if (allCorrect) {
+          finalResultEl.textContent = 'Отличный результат!';
+          finalResultEl.className = 'quiz-result quiz-result-success';
+        } else {
+          finalResultEl.textContent = 'Есть неточности. Перечитай блок про презентацию и технику «Болты» и попробуй ещё раз.';
+          finalResultEl.className = 'quiz-result quiz-result-error';
+        }
+      });
+    }
+  })();
+</script>
+</body>
+</html>

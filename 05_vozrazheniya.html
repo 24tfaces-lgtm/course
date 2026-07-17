@@ -1,0 +1,1551 @@
+<!DOCTYPE html>
+
+<html lang="ru">
+<head>
+<meta charset="utf-8"/>
+<title>Урок 5. Работа с возражениями | DARALTAI</title>
+<style>
+    :root {
+      --bg: #eaf4ff;
+      --card-bg: #ffffff;
+      --accent: #2563eb;
+      --accent-soft: #fee68a;
+      --text-main: #111827;
+      --text-muted: #4b5563;
+      --radius-lg: 24px;
+      --shadow-soft: 0 18px 40px rgba(15, 23, 42, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #f6fbff 0, var(--bg) 55%, #dbeafe 100%);
+      color: var(--text-main);
+    }
+
+    .app {
+      max-width: 1160px;
+      margin: 32px auto 40px;
+      padding: 0 24px;
+    }
+
+    
+
+    
+
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 6px;
+    }
+
+    .back-link {
+      font-size: 13px;
+      text-decoration: none;
+      color: #2563eb;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(37, 99, 235, 0.06);
+    }
+
+    .back-link:hover {
+      background: rgba(37, 99, 235, 0.12);
+    }
+
+    .course-header h1 {
+      margin: 0 0 4px;
+      font-size: 30px;
+    }
+
+    .course-header p {
+      margin: 0 0 8px;
+      max-width: 820px;
+      color: var(--text-muted);
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    main {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+
+    .steps-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 4px;
+      font-size: 13px;
+    }
+
+    .step-pill {
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid #e5e7eb;
+      background: rgba(255, 255, 255, 0.9);
+      color: var(--text-muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .step-pill span {
+      font-weight: 600;
+      color: #4b5563;
+    }
+
+    .step-pill--active {
+      border-color: #2563eb;
+      background: #dbeafe;
+      color: #1d4ed8;
+    }
+
+    .step-pill--active span {
+      color: #1d4ed8;
+    }
+
+    .hero {
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-soft);
+      padding: 26px 28px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.2fr);
+      gap: 24px;
+      align-items: center;
+    }
+
+    .hero-text h2 {
+      margin: 0 0 10px;
+      font-size: 22px;
+    }
+
+    .hero-text p {
+      margin: 0 0 6px;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .hero-text ul {
+      margin: 6px 0 0 18px;
+      padding: 0;
+      font-size: 14px;
+    }
+
+    .hero-callout {
+      margin-top: 10px;
+      background: #fef3c7;
+      border-radius: 14px;
+      padding: 10px 12px;
+      font-size: 13px;
+      line-height: 1.5;
+      color: #7c2d12;
+    }
+
+    .hero-callout ul {
+      margin: 6px 0 0 18px;
+      padding: 0;
+    }
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 18px 20px 18px;
+      box-shadow: 0 14px 30px rgba(15, 23, 42, 0.08);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 16px;
+    }
+
+    .card p {
+      margin: 0 0 6px;
+    }
+
+    .card ul {
+      margin: 6px 0 0 18px;
+      padding: 0;
+    }
+
+    .stage-flow {
+      background: var(--card-bg);
+      border-radius: 22px;
+      padding: 18px 20px 20px;
+      box-shadow: var(--shadow-soft);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .stage-flow h3 {
+      margin: 0 0 6px;
+      font-size: 17px;
+    }
+
+    .stage-flow-layout {
+      margin-top: 10px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(0, 1.1fr);
+      gap: 16px;
+    }
+
+    .flow-text p {
+      margin: 0 0 6px;
+    }
+
+    .flow-graph {
+      display: grid;
+      grid-template-rows: auto auto auto;
+      justify-items: center;
+      gap: 8px;
+      font-size: 12px;
+    }
+
+    .flow-box {
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: #eef2ff;
+      border: 1px solid #c7d2fe;
+      text-align: center;
+      max-width: 260px;
+    }
+
+    .flow-row {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .flow-arrow {
+      font-size: 11px;
+      color: #6b21a8;
+    }
+
+    .accordion-card {
+      background: var(--card-bg);
+      border-radius: 22px;
+      padding: 18px 20px 16px;
+      box-shadow: var(--shadow-soft);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .accordion-card h3 {
+      margin: 0 0 6px;
+      font-size: 16px;
+    }
+
+    .accordion-card p {
+      margin: 0 0 6px;
+    }
+
+    .accordion-card ul {
+      margin-left: 18px;
+    }
+
+    .accordion {
+      margin-top: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    details {
+      border-radius: 16px;
+      border: 1px solid #e5e7eb;
+      background: #f9fafb;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    details[open] {
+      border-color: #2563eb;
+      background: #eef2ff;
+      box-shadow: 0 10px 24px rgba(37, 99, 235, 0.15);
+    }
+
+    summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    summary::-webkit-details-marker { display: none; }
+
+    .summary-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .substep-number {
+      width: 26px;
+      height: 26px;
+      border-radius: 999px;
+      background: #2563eb;
+      color: #f9fafb;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+
+    .substep-text-title {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .substep-text-tagline {
+      font-size: 12px;
+      color: #4b5563;
+    }
+
+    .summary-right {
+      font-size: 18px;
+      line-height: 1;
+      color: #9ca3af;
+      flex-shrink: 0;
+      transition: transform .15s ease, color .15s ease;
+    }
+
+    details[open] .summary-right {
+      color: #2563eb;
+      transform: rotate(90deg);
+    }
+
+    .accordion-body {
+      padding: 0 14px 12px 14px;
+      border-top: 1px solid #e5e7eb;
+      font-size: 13px;
+      line-height: 1.6;
+      background: rgba(255, 255, 255, 0.7);
+    }
+
+    .accordion-body p {
+      margin-top: 8px;
+    }
+
+    .accordion-body ul,
+    .accordion-body ol {
+      margin: 6px 0 0 18px;
+      padding: 0;
+    }
+
+    .quiz-cta {
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 16px 18px 14px;
+      box-shadow: var(--shadow-soft);
+      font-size: 14px;
+      line-height: 1.6;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .quiz-cta p {
+      margin: 0;
+      max-width: 620px;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 10px 18px;
+      border-radius: 999px;
+      border: none;
+      background: var(--accent);
+      color: #f9fafb;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 12px 24px rgba(37, 99, 235, 0.4);
+      white-space: nowrap;
+    }
+
+    .btn-primary:hover { filter: brightness(1.05); }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid #e5e7eb;
+      background: #f9fafb;
+      color: #111827;
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    .btn-secondary:hover { background: #f3f4f6; }
+
+    .quiz-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.45);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      z-index: 50;
+    }
+
+    .quiz-overlay.open { display: flex; }
+
+    .quiz-modal {
+      background: #ffffff;
+      border-radius: 24px;
+      max-width: 760px;
+      width: 100%;
+      max-height: 90vh;
+      box-shadow: 0 20px 45px rgba(15, 23, 42, 0.45);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .quiz-modal-header {
+      padding: 14px 20px 8px;
+      border-bottom: 1px solid #e5e7eb;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .quiz-modal-header h2 {
+      margin: 0;
+      font-size: 17px;
+    }
+
+    .quiz-modal-header p {
+      margin: 2px 0 0;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .quiz-modal-body {
+      padding: 12px 20px 16px;
+      overflow-y: auto;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .quiz-question-title {
+      font-weight: 600;
+      margin-bottom: 4px;
+      font-size: 14px;
+    }
+
+    .quiz-subtitle {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .quiz-row-single {
+      margin-bottom: 8px;
+      padding: 7px 9px;
+      border-radius: 10px;
+      background: #f9fafb;
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .quiz-row-single span {
+      flex: 1 1 auto;
+    }
+
+    .quiz-select {
+      width: 160px;
+      max-width: 50%;
+      padding: 6px 8px;
+      border-radius: 999px;
+      border: 1px solid #e5e7eb;
+      font-size: 13px;
+      background: #ffffff;
+      flex-shrink: 0;
+    }
+
+    .quiz-actions {
+      margin-top: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .quiz-progress {
+      font-size: 12px;
+      color: #6b7280;
+    }
+
+    .quiz-result {
+      font-size: 13px;
+    }
+
+    .quiz-result-success { color: #166534; }
+    .quiz-result-error { color: #b91c1c; }
+
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-top: 4px;
+    }
+
+    .quiz-option-btn {
+      width: 100%;
+      text-align: left;
+      padding: 7px 9px;
+      border-radius: 10px;
+      border: 1px solid #e5e7eb;
+      background: #f9fafb;
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    .quiz-option-btn:hover {
+      background: #eef2ff;
+      border-color: #c7d2fe;
+    }
+
+    .quiz-option-btn.selected {
+      border-color: #2563eb;
+      background: #e0ecff;
+    }
+
+    @media (max-width: 960px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      
+
+      .stage-flow-layout {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 720px) {
+      .course-header h1 { font-size: 24px; }
+      .hero { padding: 20px 18px; }
+      .header-top {
+        flex-direction: column-reverse;
+        align-items: flex-start;
+      }
+      .quiz-select { max-width: 100%; }
+      .quiz-row-single { flex-direction: column; align-items: flex-start; }
+    }
+  
+
+/* Layout after removal of mascot and call-recording blocks */
+.hero.hero--single,
+.two-column-card.layout--single,
+.logic-layout.layout--single,
+.goals-layout.layout--single {
+  grid-template-columns: minmax(0, 1fr);
+}
+</style>
+<link href="assets/course-shell.css" rel="stylesheet"/><script defer="True" src="assets/course-progress.js"></script></head>
+<body data-course-page="lesson" data-lesson="5">
+<div class="app">
+<div class="header-top"><a aria-label="DARALTAI — главная страница курса" class="mini-brand" href="index.html"><img alt="DARALTAI" src="assets/daraltai-logo.png"/><span>DARALTAI</span></a><a class="back-link" href="index.html">← К программе курса</a></div>
+<header class="course-header">
+<h1>Этап 5. Работа с возражениями</h1>
+<p>
+      Цель этапа – сначала определить возражение на истинность, а затем преодолеть сомнения Клиента и помочь ему принять решение здесь и сейчас.
+    </p>
+<p>
+      Возражение – это сомнение или вопрос, на который продавец должен дать спокойный и убедительный ответ. Продажа по-настоящему начинается со слов «нет».
+    </p>
+<div class="steps-nav"><a class="step-pill" data-lesson-link="1" href="01_podgotovka.html"><span>Урок 1</span> Подготовка</a><a class="step-pill" data-lesson-link="2" href="02_contact.html"><span>Урок 2</span> Контакт</a><a class="step-pill" data-lesson-link="3" href="03_potrebnosti.html"><span>Урок 3</span> Потребности</a><a class="step-pill" data-lesson-link="4" href="04_presentation.html"><span>Урок 4</span> Презентация</a><a aria-current="page" class="step-pill step-pill--active" data-lesson-link="5" href="05_vozrazheniya.html"><span>Урок 5</span> Возражения</a><a class="step-pill" data-lesson-link="6" href="06_sdelka.html"><span>Урок 6</span> Сделка</a><a class="step-pill" data-lesson-link="7" href="07_itog.html"><span>Урок 7</span> Анализ</a></div>
+</header>
+<main>
+<!-- Hero -->
+<section class="hero hero--single">
+<div class="hero-text">
+<h2>«Нет» — это не конец разговора</h2>
+<p>
+          Когда мы предлагаем Клиенту комплекс для здоровья, обследование или программу поддержки,
+          естественно услышать сомнения. Чаще всего это не «никогда», а «я пока не уверен».
+        </p>
+<p>На этом этапе мы с тобой рассмотрим:</p>
+<ul>
+<li>технику <strong>«Пионер»</strong> для отработки возражений;</li>
+<li>проверку возражения на истинность;</li>
+<li>логичный переход от возражения к завершению сделки.</li>
+</ul>
+<div class="hero-callout">
+<strong>Важно помнить:</strong>
+<ul>
+<li>рассказать про продукт для здоровья может любой; через возражения проходят только профессионалы;</li>
+<li>каждое возражение — это информация и шанс укрепить доверие;</li>
+<li>именно ты влияешь на то, сколько пользы получит Клиент и какой результат будет у твоих продаж.</li>
+</ul>
+</div>
+</div>
+</section>
+<!-- Блок: четыре примера работы с возражениями (коротко) -->
+<!-- Проверка на истинность -->
+<section class="stage-flow">
+<h3>Проверка возражения на истинность</h3>
+<div class="stage-flow-layout">
+<div class="flow-text">
+<p>
+            Прежде чем отрабатывать возражение, важно понять: оно
+            <strong>истинное или «дымовая завеса»</strong>. Иногда Клиент озвучивает
+            удобную причину (например, «подумаю»), а настоящая причина — другая.
+          </p>
+<p>Алгоритм проверки:</p>
+<ul>
+<li>внимательно выслушай возражение до конца, не перебивая;</li>
+<li>задай уточняющий вопрос: «Если бы не эта причина, вы бы воспользовались программой / комплексом?»;</li>
+<li>если Клиент говорит «да» — возражение истинное и с ним работаем;</li>
+<li>если «нет» — ищем настоящую причину: «Возможно, есть ещё что-то, что вас останавливает?».</li>
+</ul>
+<p>
+            Когда вы выходите на истинное возражение, разговор становится конкретным,
+            а тебе понятнее, какую пользу и аргументы показать.
+          </p>
+</div>
+<div class="flow-graph">
+<div class="flow-box"><strong>Выслушать возражение</strong></div>
+<div class="flow-row">
+<div class="flow-box">
+              А если бы не эта причина, вы бы воспользовались нашим решением для здоровья?
+            </div>
+</div>
+<div class="flow-row">
+<div class="flow-box">
+<strong>Истинное возражение</strong><br/>
+              (ответ «Да») → работаем по технике «Пионер»
+            </div>
+<div class="flow-arrow">или</div>
+<div class="flow-box">
+<strong>Ложное возражение</strong><br/>
+              (ответ «Нет») → «Возможно, есть другая причина?»
+            </div>
+</div>
+<div class="flow-box">
+            Общая схема работы с возражениями и переход к завершению сделки
+          </div>
+</div>
+</div>
+</section>
+<!-- Техника Пионер -->
+<section class="accordion-card">
+<h3>Техника «Пионер»</h3>
+<p>
+        Для работы с возражениями используем технику <strong>«ПИОНЕР»</strong> —
+        пошаговый алгоритм, который помогает спокойно разобрать любое возражение по поводу здоровья
+        и довести Клиента до решения.
+      </p>
+<div class="accordion">
+<details open="">
+<summary>
+<div class="summary-left">
+<div class="substep-number">П</div>
+<div>
+<div class="substep-text-title">Послушай и присоединись</div>
+<div class="substep-text-tagline">Клиент должен почувствовать, что его услышали</div>
+</div>
+</div>
+<div class="summary-right">›</div>
+</summary>
+<div class="accordion-body">
+<p>
+              Дай Клиенту возможность <strong>полностью высказать возражение</strong>,
+              не перебивая и не споря.
+            </p>
+<p>Дальше — психологическое присоединение:</p>
+<ul>
+<li>«понимаю ваше желание бережно относиться к бюджету…»;</li>
+<li>«я вас понимаю, здоровье — чувствительная тема…»;</li>
+<li>«действительно, важно всё хорошо взвесить…»;</li>
+<li>«хорошо, что вы так внимательно относитесь к лечению…»;</li>
+<li>или мягкий комплимент: «приятно общаться с человеком, который так ответственно относится к своему здоровью».</li>
+</ul>
+<p>
+              Затем используем <strong>связующую фразу</strong>:
+              «тем не менее…», «однако…», «вместе с тем…», «именно поэтому…», «и всё же…».
+            </p>
+<p>
+              После присоединения и связки можно переходить к уточняющему вопросу
+              или вторичной презентации решения для здоровья.
+            </p>
+</div>
+</details>
+<details>
+<summary>
+<div class="summary-left">
+<div class="substep-number">И</div>
+<div>
+<div class="substep-text-title">Изучи, проверь на истину</div>
+<div class="substep-text-tagline">Что Клиент имеет в виду на самом деле?</div>
+</div>
+</div>
+<div class="summary-right">›</div>
+</summary>
+<div class="accordion-body">
+<p>
+              Здесь важно понять, что скрывается за «нет»:
+              страх побочных эффектов, деньги, недоверие или просто нехватка информации.
+            </p>
+<ul>
+<li>«Скажите, это единственная причина, которая удерживает вас, или есть ещё что-то?»</li>
+<li>«А кроме стоимости / времени, есть ещё моменты, которые вас волнуют?»</li>
+<li>«Если бы не этот момент, вы бы попробовали программу?»</li>
+</ul>
+<p>
+              Если выясняется, что причин несколько — аккуратно разбираем каждую.
+            </p>
+</div>
+</details>
+<details>
+<summary>
+<div class="summary-left">
+<div class="substep-number">О</div>
+<div>
+<div class="substep-text-title">Ответь</div>
+<div class="substep-text-tagline">Вторичная презентация и конкретные аргументы</div>
+</div>
+</div>
+<div class="summary-right">›</div>
+</summary>
+<div class="accordion-body">
+<p>
+              После проверки на истинность даём <strong>вторичную презентацию</strong>:
+              используем технику «Свойство–выгода», «Болты» и приём «Встроенная рекомендация».
+            </p>
+<p>
+              Если Клиента смущает стоимость, можно разделить сумму по дням и сравнить
+              с привычными расходами: кофе, сладости, такси — и показать, что это инвестиция в здоровье.
+            </p>
+</div>
+</details>
+<details>
+<summary>
+<div class="summary-left">
+<div class="substep-number">Н</div>
+<div>
+<div class="substep-text-title">НЕ молчи</div>
+<div class="substep-text-tagline">Не зависаем после ответа</div>
+</div>
+</div>
+<div class="summary-right">›</div>
+</summary>
+<div class="accordion-body">
+<p>
+              После вторичной презентации не стоит ждать, пока Клиент сам
+              снова начнёт возражать. Твоя задача — мягко <strong>двигаться дальше</strong>:
+              задать уточняющий (аксиомный) вопрос и переходить к завершению сделки.
+            </p>
+</div>
+</details>
+<details>
+<summary>
+<div class="summary-left">
+<div class="substep-number">Р</div>
+<div>
+<div class="substep-text-title">Рули в сделку</div>
+<div class="substep-text-tagline">Помогаем Клиенту сделать шаг</div>
+</div>
+</div>
+<div class="summary-right">›</div>
+</summary>
+<div class="accordion-body">
+<p>
+              После согласия Клиента подведи его к действию:
+            </p>
+<ul>
+<li>«В таком случае оформляем программу?»</li>
+<li>«Запускаем курс поддержки здоровья с завтрашнего дня?»</li>
+<li>«Оформляем заявку и бронируем за вами текущие условия?»</li>
+</ul>
+<p>
+              Как только получено чёткое «да» — резюмируй условия и фиксируй договорённости.
+            </p>
+</div>
+</details>
+</div>
+</section>
+<!-- Тренажёр по ПИОНЕР -->
+<section class="quiz-cta">
+<p>
+        Потренируйся выстраивать части отработки возражения по технике «Пионер»
+        на примерах разговоров про здоровье.
+      </p>
+<button class="btn-primary" id="openPioneerOrderTrainer">
+        Тренажёр по технике «Пионер»
+      </button>
+</section>
+<!-- Тренажёр по ответам -->
+<section class="quiz-cta">
+<p>
+        А теперь выбери профессиональные ответы на типичные возражения Клиентов
+        о программах здоровья и профилактике.
+      </p>
+<button class="btn-primary" id="openResponseTrainer">
+        Тренажёр: ответы на возражения
+      </button>
+</section>
+<!-- Итоговый тест -->
+<section class="quiz-cta">
+<p>
+        Готов проверить себя по этапу «Работа с возражениями» целиком?
+        Пройди итоговый мини-тест.
+      </p>
+<button class="btn-primary" id="openFinalQuiz">
+        Итоговый тест по этапу
+      </button>
+</section>
+<nav aria-label="Переход между уроками" class="course-navigation"><a class="course-navigation__button course-navigation__button--prev" href="04_presentation.html">← Урок 4: Презентация</a><div class="course-navigation__status">Урок 5 из 7</div><a class="course-navigation__button course-navigation__button--next" href="06_sdelka.html">Урок 6: Сделка →</a></nav><footer class="course-page-footer">Обучающий курс DARALTAI · Телефонные продажи</footer></main>
+</div>
+<!-- Модалка: тренажёр ПИОНЕР -->
+<div class="quiz-overlay" id="pioneerOrderOverlay">
+<div class="quiz-modal">
+<div class="quiz-modal-header">
+<div>
+<h2>Тренажёр по технике «Пионер»</h2>
+<p>Для каждой ситуации расставь части отработки возражения в правильном порядке.</p>
+</div>
+<button class="btn-secondary" id="closePioneerOrderOverlay">Закрыть</button>
+</div>
+<div class="quiz-modal-body">
+<div class="quiz-progress" id="pioneerOrderProgress"></div>
+<div id="pioneerQuestionContainer"></div>
+<div class="quiz-actions">
+<div class="quiz-result" id="pioneerOrderResult"></div>
+<button class="btn-primary" id="pioneerNextBtn">
+          Проверить и далее
+        </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Модалка: тренажёр по ответам -->
+<div class="quiz-overlay" id="responseOverlay">
+<div class="quiz-modal">
+<div class="quiz-modal-header">
+<div>
+<h2>Тренажёр: ответы на возражения</h2>
+<p>Выбери лучший ответ, который помогает Клиенту позаботиться о здоровье без давления.</p>
+</div>
+<button class="btn-secondary" id="closeResponseOverlay">Закрыть</button>
+</div>
+<div class="quiz-modal-body">
+<div class="quiz-progress" id="responseProgress"></div>
+<div id="responseQuestionContainer"></div>
+<div class="quiz-actions">
+<div class="quiz-result" id="responseResult"></div>
+<button class="btn-primary" id="responseNextBtn">
+          Ответить
+        </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Модалка: итоговый тест -->
+<div class="quiz-overlay" id="finalOverlay">
+<div class="quiz-modal">
+<div class="quiz-modal-header">
+<div>
+<h2>Итоговый тест по этапу</h2>
+<p>Проверь, как ты понимаешь работу с возражениями в целом.</p>
+</div>
+<button class="btn-secondary" id="closeFinalOverlay">Закрыть</button>
+</div>
+<div class="quiz-modal-body">
+<div class="quiz-progress" id="finalProgress"></div>
+<div id="finalQuestionContainer"></div>
+<div class="quiz-actions">
+<div class="quiz-result" id="finalResult"></div>
+<button class="btn-primary" id="finalNextBtn">
+          Ответить
+        </button>
+</div>
+</div>
+</div>
+</div>
+<script>
+  (function() {
+    function closeOverlay(overlay) {
+      overlay.classList.remove('open');
+    }
+
+    function shuffle(arr) {
+      return arr
+        .map(value => ({ value, sort: Math.random() }))
+        .sort((a, b) => a.sort - b.sort)
+        .map(({ value }) => value);
+    }
+
+    /* ====== ТРЕНАЖЁР 1: ПИОНЕР (5 примеров) ====== */
+    const pioneerQuestions = [
+      {
+        title: 'Сценарий 1',
+        intro: 'Клиент: «Мне важно здоровье, но и лишние траты я не люблю». Расставь части отработки в нужном порядке.',
+        lines: [
+          {
+            id: '1.1',
+            text: '«Понимаю, сейчас многие внимательно относятся к расходам на здоровье»',
+            correct: '1'
+          },
+          {
+            id: '1.3',
+            text: '«Вместе с тем…»',
+            correct: '2'
+          },
+          {
+            id: '1.4',
+            text: '«Именно поэтому мы предлагаем комплекс, который закрывает сразу несколько задач и в итоге помогает экономить на лечении»',
+            correct: '3'
+          },
+          {
+            id: '1.2',
+            text: '«Согласитесь, дешевле поддерживать здоровье, чем потом тратить на лечение, верно?»',
+            correct: '4'
+          }
+        ]
+      },
+      {
+        title: 'Сценарий 2',
+        intro: 'Клиент: «У меня нет времени на все эти программы здоровья».',
+        lines: [
+          {
+            id: '2.1',
+            text: '«Понимаю, в современном ритме сложно выделить время даже на себя»',
+            correct: '1'
+          },
+          {
+            id: '2.2',
+            text: '«Однако…»',
+            correct: '2'
+          },
+          {
+            id: '2.4',
+            text: '«Чем меньше времени, тем важнее, чтобы программа была короткой и максимально эффективной»',
+            correct: '3'
+          },
+          {
+            id: '2.3',
+            text: '«Согласитесь, уделить себе 10–15 минут в день проще, чем потом тратить месяцы на восстановление, верно?»',
+            correct: '4'
+          }
+        ]
+      },
+      {
+        title: 'Сценарий 3',
+        intro: 'Клиент: «Мне нужно всё обдумать, прежде чем что-то менять в вопросах здоровья».',
+        lines: [
+          {
+            id: '3.4',
+            text: '«Понимаю ваше желание всё хорошо обдумать»',
+            correct: '1'
+          },
+          {
+            id: '3.1',
+            text: '«Тем не менее…»',
+            correct: '2'
+          },
+          {
+            id: '3.2',
+            text: '«Намного проще принять решение, когда вы видите план программы и результаты обследований перед глазами»',
+            correct: '3'
+          },
+          {
+            id: '3.3',
+            text: '«Согласитесь, легче решиться, когда всё наглядно и понятно, верно?»',
+            correct: '4'
+          }
+        ]
+      },
+      {
+        title: 'Сценарий 4',
+        intro: 'Клиент: «Мне страшно, вдруг у средств будут побочные эффекты».',
+        lines: [
+          {
+            id: '4.1',
+            text: '«Понимаю, многие осторожно относятся к любым изменениям и боятся побочных эффектов»',
+            correct: '1'
+          },
+          {
+            id: '4.2',
+            text: '«И в то же время…»',
+            correct: '2'
+          },
+          {
+            id: '4.3',
+            text: '«Мы подбираем программы с учётом противопоказаний и наблюдения врача, чтобы сделать подход максимально безопасным»',
+            correct: '3'
+          },
+          {
+            id: '4.4',
+            text: '«Согласитесь, лучше двигаться к здоровью под контролем специалистов, чем оставлять всё как есть, верно?»',
+            correct: '4'
+          }
+        ]
+      },
+      {
+        title: 'Сценарий 5',
+        intro: 'Клиент: «Мне кажется, уже поздно что-то менять, возраст не тот».',
+        lines: [
+          {
+            id: '5.1',
+            text: '«Понимаю ваши чувства, возраст действительно заставляет внимательнее относиться к изменениям»',
+            correct: '1'
+          },
+          {
+            id: '5.2',
+            text: '«Тем не менее…»',
+            correct: '2'
+          },
+          {
+            id: '5.3',
+            text: '«Правильная поддержка здоровья в любом возрасте помогает сохранить активность дольше и чувствовать себя увереннее»',
+            correct: '3'
+          },
+          {
+            id: '5.4',
+            text: '«Согласитесь, лучше сделать шаг сейчас, чем ждать, пока самочувствие заметно ухудшится, верно?»',
+            correct: '4'
+          }
+        ]
+      }
+    ];
+
+    const pioneerOverlay = document.getElementById('pioneerOrderOverlay');
+    const openPioneerBtn = document.getElementById('openPioneerOrderTrainer');
+    const closePioneerBtn = document.getElementById('closePioneerOrderOverlay');
+    const pioneerContainer = document.getElementById('pioneerQuestionContainer');
+    const pioneerResultEl = document.getElementById('pioneerOrderResult');
+    const pioneerProgressEl = document.getElementById('pioneerOrderProgress');
+    const pioneerNextBtn = document.getElementById('pioneerNextBtn');
+
+    let pioneerIndex = 0;
+    let pioneerCorrect = 0;
+
+    function renderPioneerQuestion() {
+      const q = pioneerQuestions[pioneerIndex];
+      pioneerProgressEl.textContent = `Вопрос ${pioneerIndex + 1} из ${pioneerQuestions.length}`;
+      pioneerResultEl.textContent = '';
+      pioneerNextBtn.textContent = pioneerIndex === pioneerQuestions.length - 1
+        ? 'Проверить и завершить'
+        : 'Проверить и далее';
+
+      const shuffledLines = shuffle(q.lines);
+
+      let html = `
+        <div class="quiz-question-title">${q.title}</div>
+        <div class="quiz-subtitle">${q.intro}</div>
+      `;
+
+      shuffledLines.forEach((line) => {
+        html += `
+          <div class="quiz-row-single">
+            <span>${line.id} ${line.text}</span>
+            <select class="quiz-select pioneer-select" data-id="${line.id}" data-correct="${line.correct}">
+              <option value="">Позиция (1–4)</option>
+              <option value="1">1 — присоединение</option>
+              <option value="2">2 — связка</option>
+              <option value="3">3 — аргумент</option>
+              <option value="4">4 — аксиомный вопрос</option>
+            </select>
+          </div>
+        `;
+      });
+
+      pioneerContainer.innerHTML = html;
+    }
+
+    if (openPioneerBtn) {
+      openPioneerBtn.addEventListener('click', () => {
+        pioneerIndex = 0;
+        pioneerCorrect = 0;
+        pioneerOverlay.classList.add('open');
+        pioneerNextBtn.disabled = false;
+        renderPioneerQuestion();
+      });
+    }
+
+    if (closePioneerBtn) {
+      closePioneerBtn.addEventListener('click', () => closeOverlay(pioneerOverlay));
+    }
+
+    pioneerOverlay.addEventListener('click', (e) => {
+      if (e.target === pioneerOverlay) closeOverlay(pioneerOverlay);
+    });
+
+    if (pioneerNextBtn) {
+      pioneerNextBtn.addEventListener('click', () => {
+        const selects = pioneerContainer.querySelectorAll('.pioneer-select');
+        let allFilled = true;
+        let allCorrectHere = true;
+
+        selects.forEach(sel => {
+          sel.style.borderColor = '#e5e7eb';
+          sel.style.backgroundColor = '#ffffff';
+
+          if (!sel.value) {
+            allFilled = false;
+            allCorrectHere = false;
+            sel.style.borderColor = '#f97316';
+            sel.style.backgroundColor = '#fff7ed';
+          } else if (sel.value !== sel.dataset.correct) {
+            allCorrectHere = false;
+            sel.style.borderColor = '#b91c1c';
+            sel.style.backgroundColor = '#fef2f2';
+          } else {
+            sel.style.borderColor = '#22c55e';
+            sel.style.backgroundColor = '#ecfdf5';
+          }
+        });
+
+        if (!allFilled) {
+          pioneerResultEl.textContent = 'Сначала выбери позицию для каждой фразы.';
+          pioneerResultEl.className = 'quiz-result quiz-result-error';
+          return;
+        }
+
+        if (!allCorrectHere) {
+          pioneerResultEl.textContent = 'Есть ошибки. Вспомни: 1 — присоединение, 2 — связка, 3 — аргумент, 4 — аксиомный вопрос.';
+          pioneerResultEl.className = 'quiz-result quiz-result-error';
+          return;
+        }
+
+        pioneerCorrect++;
+        if (pioneerIndex < pioneerQuestions.length - 1) {
+          pioneerResultEl.textContent = 'Отлично! Переходим к следующей ситуации.';
+          pioneerResultEl.className = 'quiz-result quiz-result-success';
+          pioneerIndex++;
+          setTimeout(renderPioneerQuestion, 800);
+        } else {
+          pioneerResultEl.textContent =
+            `Супер! Ты правильно выстроил структуру во всех ситуациях (${pioneerCorrect}/${pioneerQuestions.length}).`;
+          pioneerResultEl.className = 'quiz-result quiz-result-success';
+          pioneerNextBtn.disabled = true;
+        }
+      });
+    }
+
+    /* ====== ТРЕНАЖЁР 2: ВЫБОР ОТВЕТА (5 примеров) ====== */
+
+    const responseQuestions = [
+      {
+        text: 'Клиент: «Не буду сейчас оформлять программу здоровья, мне нужно подумать».',
+        options: [
+          {
+            id: 'a1',
+            text: '«Хорошо, что вы так ответственно подходите к вопросам здоровья, и всё же именно сейчас я могу ответить на ваши вопросы и помочь с выбором. Иван Иванович, о чём вы хотели подумать?»',
+            correct: true
+          },
+          {
+            id: 'a2',
+            text: '«Очень рад, что вы любите долго принимать решения, но тут всё очень просто, у меня даже бабушки всё понимают сразу, давайте оформим?»',
+            correct: false
+          },
+          {
+            id: 'a3',
+            text: '«Ну, смотрите, постараюсь ещё раз всё объяснить. Программа недорогая, давайте просто попробуем, а дальше разберёмся?»',
+            correct: false
+          }
+        ]
+      },
+      {
+        text: 'Клиент: «Слишком дорого, я видел похожие витамины дешевле».',
+        options: [
+          {
+            id: 'b1',
+            text: '«Действительно, стоимость — важный момент, однако кроме цены важно учитывать состав, качество сырья и поддержку врача…»',
+            correct: true
+          },
+          {
+            id: 'b2',
+            text: '«Я понимаю ваши соображения по поводу экономии, но деньги не так важны по сравнению с тем, сколько радости приносит хорошее самочувствие.»',
+            correct: false
+          },
+          {
+            id: 'b3',
+            text: '«Согласитесь, здоровье бесценно, 3000 рублей в наше время — не деньги, оформляем?»',
+            correct: false
+          }
+        ]
+      },
+      {
+        text: 'Клиент: «Меня и так всё устраивает, анализы более-менее в норме».',
+        options: [
+          {
+            id: 'c1',
+            text: '«Здорово, что сейчас вы чувствуете себя хорошо, именно поэтому мы и предлагаем профилактическую программу, чтобы сохранить это состояние. Давайте подберём формат, который будет вам удобен?»',
+            correct: true
+          },
+          {
+            id: 'c2',
+            text: '«А что вас устраивает? Я же ещё не успел рассказать, что у вас может ухудшиться здоровье.»',
+            correct: false
+          },
+          {
+            id: 'c3',
+            text: '«Абсолютно все так говорят, а потом жалеют, что не прошли обследование, не повторяйте их ошибок!»',
+            correct: false
+          }
+        ]
+      },
+      {
+        text: 'Клиент: «Мне страшно, вдруг обследование покажет что-то серьёзное».',
+        options: [
+          {
+            id: 'd1',
+            text: '«Понимаю ваши переживания, именно поэтому лучше вовремя увидеть возможные риски и спокойно с ними работать, чем жить в неизвестности. Давайте посмотрим, с какого базового обследования можно начать мягко?»',
+            correct: true
+          },
+          {
+            id: 'd2',
+            text: '«Не переживайте, у вас точно всё хорошо, давайте просто запишу вас на полное обследование?»',
+            correct: false
+          },
+          {
+            id: 'd3',
+            text: '«Если боитесь серьёзных результатов, можно вообще не проверяться, так многие делают.»',
+            correct: false
+          }
+        ]
+      },
+      {
+        text: 'Клиент: «Я сначала посоветуюсь с знакомым врачом и почитаю отзывы в интернете».',
+        options: [
+          {
+            id: 'e1',
+            text: '«Отлично, что вы советуетесь со специалистами. Давайте я сейчас кратко покажу структуру программы и результаты, которые она даёт, чтобы вам было проще обсуждать её с врачом. После этого сориентируемся, как удобнее двигаться дальше?»',
+            correct: true
+          },
+          {
+            id: 'e2',
+            text: '«Если вы будете ждать советов, можно упустить время, лучше сразу оформить, а потом уже разберётесь.»',
+            correct: false
+          },
+          {
+            id: 'e3',
+            text: '«В интернете сплошная реклама, доверять можно только нам, давайте без лишних консультаций сразу подключим.»',
+            correct: false
+          }
+        ]
+      }
+    ];
+
+    const responseOverlay = document.getElementById('responseOverlay');
+    const openResponseBtn = document.getElementById('openResponseTrainer');
+    const closeResponseBtn = document.getElementById('closeResponseOverlay');
+    const responseContainer = document.getElementById('responseQuestionContainer');
+    const responseResultEl = document.getElementById('responseResult');
+    const responseProgressEl = document.getElementById('responseProgress');
+    const responseNextBtn = document.getElementById('responseNextBtn');
+
+    let responseIndex = 0;
+    let responseCorrect = 0;
+    let selectedOptionId = null;
+
+    function renderResponseQuestion() {
+      const q = responseQuestions[responseIndex];
+      responseProgressEl.textContent = `Вопрос ${responseIndex + 1} из ${responseQuestions.length}`;
+      responseResultEl.textContent = '';
+      responseNextBtn.textContent = responseIndex === responseQuestions.length - 1 ? 'Ответить и завершить' : 'Ответить';
+      selectedOptionId = null;
+
+      const shuffledOptions = shuffle(q.options);
+
+      let html = `<div class="quiz-question-title">${q.text}</div>`;
+      html += `<div class="quiz-subtitle">Выбери ответ, который соответствует технике «Пионер»: присоединение → уточнение → аргумент → мягкое подведение к решению.</div>`;
+      html += '<div class="quiz-options">';
+
+      shuffledOptions.forEach(opt => {
+        html += `
+          <button type="button" class="quiz-option-btn" data-id="${opt.id}" data-correct="${opt.correct}">
+            ${opt.text}
+          </button>
+        `;
+      });
+
+      html += '</div>';
+      responseContainer.innerHTML = html;
+
+      const btns = responseContainer.querySelectorAll('.quiz-option-btn');
+      btns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          btns.forEach(b => b.classList.remove('selected'));
+          btn.classList.add('selected');
+          selectedOptionId = btn.dataset.id;
+        });
+      });
+    }
+
+    if (openResponseBtn) {
+      openResponseBtn.addEventListener('click', () => {
+        responseIndex = 0;
+        responseCorrect = 0;
+        responseOverlay.classList.add('open');
+        responseNextBtn.disabled = false;
+        renderResponseQuestion();
+      });
+    }
+
+    if (closeResponseBtn) {
+      closeResponseBtn.addEventListener('click', () => closeOverlay(responseOverlay));
+    }
+
+    responseOverlay.addEventListener('click', (e) => {
+      if (e.target === responseOverlay) closeOverlay(responseOverlay);
+    });
+
+    if (responseNextBtn) {
+      responseNextBtn.addEventListener('click', () => {
+        if (!selectedOptionId) {
+          responseResultEl.textContent = 'Сначала выбери вариант ответа.';
+          responseResultEl.className = 'quiz-result quiz-result-error';
+          return;
+        }
+
+        const q = responseQuestions[responseIndex];
+        const chosen = q.options.find(o => o.id === selectedOptionId);
+
+        if (!chosen.correct) {
+          responseResultEl.textContent = 'Не самый удачный вариант. Нам важно и поддержать Клиента, и аккуратно помочь принять решение.';
+          responseResultEl.className = 'quiz-result quiz-result-error';
+          return;
+        }
+
+        responseCorrect++;
+
+        if (responseIndex < responseQuestions.length - 1) {
+          responseResultEl.textContent = 'Отлично! Переходим к следующему возражению.';
+          responseResultEl.className = 'quiz-result quiz-result-success';
+          responseIndex++;
+          setTimeout(renderResponseQuestion, 800);
+        } else {
+          responseResultEl.textContent =
+            `Супер! Ты подобрал сильные ответы на все возражения (${responseCorrect}/${responseQuestions.length}).`;
+          responseResultEl.className = 'quiz-result quiz-result-success';
+          responseNextBtn.disabled = true;
+        }
+      });
+    }
+
+    /* ====== ИТОГОВЫЙ ТЕСТ (10 вопросов) ====== */
+
+    const finalQuestions = [
+      {
+        text: 'Что такое возражение на этапе продаж решений для здоровья?',
+        options: [
+          { text: 'Любое замечание Клиента, которое нужно игнорировать, чтобы не затягивать разговор.', correct: false },
+          { text: 'Сомнение или вопрос Клиента, на который продавец должен дать спокойный и убедительный ответ.', correct: true },
+          { text: 'Признак того, что Клиент точно ничего не купит.', correct: false }
+        ]
+      },
+      {
+        text: 'Зачем мы проверяем возражение на истинность?',
+        options: [
+          { text: 'Чтобы понять, настоящая ли это причина отказа и с чем именно работать.', correct: true },
+          { text: 'Чтобы показать Клиенту, что мы знаем много умных вопросов.', correct: false },
+          { text: 'Чтобы быстрее перейти к следующему Клиенту.', correct: false }
+        ]
+      },
+      {
+        text: 'Какой первый шаг техники «ПИОНЕР»?',
+        options: [
+          { text: 'Сразу сделать скидку на программу здоровья.', correct: false },
+          { text: 'Внимательно выслушать Клиента и присоединиться к его позиции.', correct: true },
+          { text: 'Начать спорить с Клиентом и доказывать свою правоту.', correct: false }
+        ]
+      },
+      {
+        text: 'Что относится к присоединению к возражению?',
+        options: [
+          { text: '«Понимаю ваше желание всё хорошо взвесить…»', correct: true },
+          { text: '«Вы не правы, вы просто не понимаете выгоды программы…»', correct: false },
+          { text: '«Если не хотите — как хотите, давайте к следующему вопросу…»', correct: false }
+        ]
+      },
+      {
+        text: 'Какой вопрос помогает проверить истинность возражения?',
+        options: [
+          { text: '«Если бы не эта причина, вы бы воспользовались программой?»', correct: true },
+          { text: '«Вы вообще когда-нибудь что-то покупаете?»', correct: false },
+          { text: '«Могу ли я вас перевести на другого специалиста?»', correct: false }
+        ]
+      },
+      {
+        text: 'Что делает аксиомный вопрос («Согласитесь…», «Верно?») после ответа на возражение?',
+        options: [
+          { text: 'Повышает вероятность положительного ответа и закрепляет согласие Клиента.', correct: true },
+          { text: 'Нужен только для того, чтобы разговор звучал официальнее.', correct: false },
+          { text: 'Используется, чтобы резко завершить диалог.', correct: false }
+        ]
+      },
+      {
+        text: 'Почему важно не «молчать» после вторичной презентации (шаг «Н»)?',
+        options: [
+          { text: 'Чтобы Клиент не повис в неопределённости и мы мягко подвели его к следующему шагу.', correct: true },
+          { text: 'Чтобы дать Клиенту время придумать ещё возражения.', correct: false },
+          { text: 'Чтобы сменить тему и поговорить о погоде.', correct: false }
+        ]
+      },
+      {
+        text: 'Какое завершение соответствует шагу «Рули в сделку»?',
+        options: [
+          { text: '«Ну, думайте, если что — сами нам перезвоните»', correct: false },
+          { text: '«В таком случае оформляем программу поддержки здоровья?»', correct: true },
+          { text: '«Я всё рассказал, дальше это не моя зона ответственности»', correct: false }
+        ]
+      },
+      {
+        text: 'Какой из вариантов лучше отражает профессиональное отношение к возражениям?',
+        options: [
+          { text: 'Возражения — это помехи, которых нужно избегать.', correct: false },
+          { text: 'Возражения — естественная защитная реакция, с которой мы работаем уважительно и по шагам.', correct: true },
+          { text: 'Возражения — повод закончить разговор как можно быстрее.', correct: false }
+        ]
+      },
+      {
+        text: 'Какое высказывание соответствует логике этапа «Работа с возражениями»?',
+        options: [
+          { text: '«Продажа начинается со слов “нет”, важно спокойно разобрать сомнения Клиента»', correct: true },
+          { text: '«Главное — рассказать о продукте, а возражения игнорировать»', correct: false },
+          { text: '«Если Клиент возражает, значит мы всё сделали неправильно и стоит извиниться и уйти»', correct: false }
+        ]
+      }
+    ];
+
+    const finalOverlay = document.getElementById('finalOverlay');
+    const openFinalBtn = document.getElementById('openFinalQuiz');
+    const closeFinalBtn = document.getElementById('closeFinalOverlay');
+    const finalContainer = document.getElementById('finalQuestionContainer');
+    const finalProgressEl = document.getElementById('finalProgress');
+    const finalResultEl = document.getElementById('finalResult');
+    const finalNextBtn = document.getElementById('finalNextBtn');
+
+    let finalIndex = 0;
+    let finalCorrect = 0;
+    let finalSelectedCorrect = null;
+
+    function renderFinalQuestion() {
+      const q = finalQuestions[finalIndex];
+      finalProgressEl.textContent = `Вопрос ${finalIndex + 1} из ${finalQuestions.length}`;
+      finalResultEl.textContent = '';
+      finalNextBtn.textContent = finalIndex === finalQuestions.length - 1 ? 'Ответить и завершить' : 'Ответить';
+      finalSelectedCorrect = null;
+
+      const opts = shuffle(q.options);
+
+      let html = `<div class="quiz-question-title">${q.text}</div>`;
+      html += '<div class="quiz-options">';
+
+      opts.forEach((opt) => {
+        html += `
+          <button type="button" class="quiz-option-btn" data-correct="${opt.correct}">
+            ${opt.text}
+          </button>
+        `;
+      });
+
+      html += '</div>';
+      finalContainer.innerHTML = html;
+
+      const btns = finalContainer.querySelectorAll('.quiz-option-btn');
+      btns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          btns.forEach(b => b.classList.remove('selected'));
+          btn.classList.add('selected');
+          finalSelectedCorrect = btn.dataset.correct === 'true';
+        });
+      });
+    }
+
+    if (openFinalBtn) {
+      openFinalBtn.addEventListener('click', () => {
+        finalIndex = 0;
+        finalCorrect = 0;
+        finalOverlay.classList.add('open');
+        finalNextBtn.disabled = false;
+        renderFinalQuestion();
+      });
+    }
+
+    if (closeFinalBtn) {
+      closeFinalBtn.addEventListener('click', () => closeOverlay(finalOverlay));
+    }
+
+    finalOverlay.addEventListener('click', (e) => {
+      if (e.target === finalOverlay) closeOverlay(finalOverlay);
+    });
+
+    if (finalNextBtn) {
+      finalNextBtn.addEventListener('click', () => {
+        if (finalSelectedCorrect === null) {
+          finalResultEl.textContent = 'Сначала выбери вариант ответа.';
+          finalResultEl.className = 'quiz-result quiz-result-error';
+          return;
+        }
+
+        if (!finalSelectedCorrect) {
+          finalResultEl.textContent = 'Не совсем так. Вспомни логику этапа: выслушать, уточнить, ответить и мягко вести к решению.';
+          finalResultEl.className = 'quiz-result quiz-result-error';
+          return;
+        }
+
+        finalCorrect++;
+
+        if (finalIndex < finalQuestions.length - 1) {
+          finalResultEl.textContent = 'Верно! Двигаемся дальше.';
+          finalResultEl.className = 'quiz-result quiz-result-success';
+          finalIndex++;
+          setTimeout(renderFinalQuestion, 800);
+        } else {
+          finalResultEl.textContent =
+            `Отличный результат! Ты уверенно работаешь с возражениями (${finalCorrect}/${finalQuestions.length}).`;
+          finalResultEl.className = 'quiz-result quiz-result-success';
+          finalNextBtn.disabled = true;
+        }
+      });
+    }
+  })();
+</script>
+</body>
+</html>

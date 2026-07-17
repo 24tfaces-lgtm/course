@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+
+<html lang="ru">
+<head>
+<meta charset="utf-8"/>
+<title>Урок 1. Подготовка к продажам | DARALTAI</title>
+<style>
+    :root {
+      --bg: #eaf4ff;
+      --card-bg: #ffffff;
+      --accent: #2563eb;
+      --accent-soft: #fee68a;
+      --text-main: #111827;
+      --text-muted: #4b5563;
+      --radius-lg: 24px;
+      --shadow-soft: 0 18px 40px rgba(15, 23, 42, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #f6fbff 0, var(--bg) 55%, #dbeafe 100%);
+      color: var(--text-main);
+    }
+
+    .app {
+      max-width: 1160px;
+      margin: 32px auto 40px;
+      padding: 0 24px;
+    }
+
+    
+    
+    
+
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 6px;
+    }
+
+    .back-link {
+      font-size: 13px;
+      text-decoration: none;
+      color: #2563eb;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(37, 99, 235, 0.06);
+    }
+
+    .back-link:hover {
+      background: rgba(37, 99, 235, 0.12);
+    }
+
+    .course-header h1 {
+      margin: 0 0 4px;
+      font-size: 30px;
+    }
+    .course-header p {
+      margin: 0 0 8px;
+      max-width: 780px;
+      color: var(--text-muted);
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    main {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+
+    /* Навигация по этапам */
+    .steps-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 4px;
+      font-size: 13px;
+    }
+
+    .step-pill {
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid #e5e7eb;
+      background: rgba(255,255,255,0.9);
+      color: var(--text-muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .step-pill span {
+      font-weight: 600;
+      color: #4b5563;
+    }
+
+    .step-pill--active {
+      border-color: #2563eb;
+      background: #dbeafe;
+      color: #1d4ed8;
+    }
+
+    .step-pill--active span {
+      color: #1d4ed8;
+    }
+
+    
+    .hero {
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-soft);
+      padding: 26px 28px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(0, 1.3fr);
+      gap: 24px;
+      align-items: center;
+    }
+
+    .hero-text h2 {
+      margin: 0 0 10px;
+      font-size: 22px;
+    }
+    .hero-text p {
+      margin: 0 0 6px;
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text-main);
+    }
+
+    .hero-callout {
+      margin-top: 10px;
+      background: #fef3c7;
+      border-radius: 14px;
+      padding: 10px 12px;
+      font-size: 13px;
+      line-height: 1.5;
+      color: #7c2d12;
+    }
+
+    
+
+    
+
+    
+    
+    
+
+    /* Общие карточки */
+    .cards-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 20px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 18px 20px 18px;
+      box-shadow: 0 14px 30px rgba(15, 23, 42, 0.08);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 16px;
+    }
+
+    .card p {
+      margin: 0 0 6px;
+    }
+
+    .card ul,
+    .card ol {
+      margin: 6px 0 0 18px;
+      padding: 0;
+    }
+
+    .card li { margin-bottom: 3px; }
+
+    .full-width {
+      grid-column: 1 / -1;
+    }
+
+    .card-label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .tagline {
+      margin-top: 6px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .pill-list {
+      margin-top: 8px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-size: 12px;
+    }
+
+    .pill {
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: #eef2ff;
+      color: #1d4ed8;
+      border: 1px solid #c7d2fe;
+      font-weight: 500;
+    }
+
+    
+    .logic-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+      gap: 18px;
+      align-items: center;
+    }
+
+    .logic-text h3 {
+      margin-top: 0;
+    }
+
+    
+
+    
+
+    
+
+    
+
+    /* Дизайн описания этапа и подэтапов */
+    .stage-flow {
+      background: var(--card-bg);
+      border-radius: 22px;
+      padding: 18px 20px 20px;
+      box-shadow: var(--shadow-soft);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .stage-flow-header {
+      margin-bottom: 10px;
+    }
+
+    .stage-flow-header h3 {
+      margin: 0 0 6px;
+      font-size: 17px;
+    }
+
+    .stage-flow-header p {
+      margin: 0;
+    }
+
+    .stage-flow-steps {
+      margin-top: 14px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .stage-step {
+      position: relative;
+      padding: 12px 12px 12px 14px;
+      border-radius: 16px;
+      background: #eff6ff;
+      border: 1px solid #dbeafe;
+    }
+
+    .stage-step::before {
+      content: "";
+      position: absolute;
+      left: 10px;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      border-radius: 999px;
+      background: linear-gradient(to bottom, #2563eb, #4f46e5);
+      opacity: 0.6;
+    }
+
+    .stage-step-inner {
+      margin-left: 14px;
+    }
+
+    .stage-step-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      background: #2563eb;
+      color: #f9fafb;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .stage-step-title {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .stage-step-tagline {
+      font-size: 12px;
+      color: #4b5563;
+      margin-bottom: 4px;
+    }
+
+    .stage-step ul {
+      margin: 6px 0 0 16px;
+      font-size: 12px;
+    }
+
+    /* Аккордеон по подэтапам */
+    .accordion-card {
+      background: var(--card-bg);
+      border-radius: 22px;
+      padding: 18px 20px 16px;
+      box-shadow: var(--shadow-soft);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .accordion-card h3 {
+      margin: 0 0 6px;
+      font-size: 16px;
+    }
+
+    .accordion-card p {
+      margin: 0 0 6px;
+    }
+
+    .accordion {
+      margin-top: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    details {
+      border-radius: 16px;
+      border: 1px solid #e5e7eb;
+      background: #f9fafb;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    details[open] {
+      border-color: #2563eb;
+      background: #eef2ff;
+      box-shadow: 0 10px 24px rgba(37, 99, 235, 0.15);
+    }
+
+    summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .summary-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .substep-number {
+      width: 26px;
+      height: 26px;
+      border-radius: 999px;
+      background: #2563eb;
+      color: #f9fafb;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+
+    .substep-text-title {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .substep-text-tagline {
+      font-size: 12px;
+      color: #4b5563;
+    }
+
+    .summary-right {
+      font-size: 18px;
+      line-height: 1;
+      color: #9ca3af;
+      flex-shrink: 0;
+      transition: transform 0.15s ease, color 0.15s ease;
+    }
+
+    details[open] .summary-right {
+      color: #2563eb;
+      transform: rotate(90deg);
+    }
+
+    .accordion-body {
+      padding: 0 14px 12px 14px;
+      border-top: 1px solid #e5e7eb;
+      font-size: 13px;
+      line-height: 1.6;
+      background: rgba(255,255,255,0.7);
+    }
+
+    .accordion-body p {
+      margin-top: 8px;
+    }
+
+    .accordion-body ul,
+    .accordion-body ol {
+      margin: 6px 0 0 18px;
+      padding: 0;
+    }
+
+    /* Постановка целей */
+    .goals-card h3 {
+      margin-bottom: 8px;
+    }
+
+    .goals-card strong {
+      font-weight: 600;
+    }
+
+    .goals-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.8fr);
+      gap: 18px;
+      align-items: center;
+    }
+
+    
+
+    
+
+    
+
+    
+
+    .goals-text h3 {
+      margin-top: 0;
+    }
+
+    .goals-example {
+      margin-top: 8px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      background: #eff6ff;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .goals-example p {
+      margin: 0 0 4px;
+    }
+
+    /* Кнопки и тест */
+    .quiz-cta {
+      text-align: center;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 10px 18px;
+      border-radius: 999px;
+      border: none;
+      background: var(--accent);
+      color: #f9fafb;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 12px 24px rgba(37, 99, 235, 0.4);
+    }
+
+    .btn-primary:hover {
+      filter: brightness(1.05);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid #e5e7eb;
+      background: #f9fafb;
+      color: #111827;
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    .btn-secondary:hover {
+      background: #f3f4f6;
+    }
+
+    /* Модалка теста */
+    .quiz-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.45);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      z-index: 50;
+    }
+
+    .quiz-overlay.open {
+      display: flex;
+    }
+
+    .quiz-modal {
+      background: #ffffff;
+      border-radius: 24px;
+      max-width: 780px;
+      width: 100%;
+      max-height: 90vh;
+      box-shadow: 0 20px 45px rgba(15,23,42,0.45);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .quiz-modal-header {
+      padding: 16px 20px 8px;
+      border-bottom: 1px solid #e5e7eb;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .quiz-modal-header h2 {
+      margin: 0;
+      font-size: 17px;
+    }
+
+    .quiz-modal-header p {
+      margin: 2px 0 0;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .quiz-modal-body {
+      padding: 12px 20px 16px;
+      overflow-y: auto;
+    }
+
+    .quiz-grid {
+      margin-top: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .quiz-row {
+      display: grid;
+      grid-template-columns: minmax(0, 2.2fr) minmax(0, 1.1fr);
+      gap: 8px;
+      align-items: center;
+      padding: 6px 8px;
+      border-radius: 12px;
+      background: #f9fafb;
+    }
+
+    .quiz-row-label {
+      font-size: 13px;
+    }
+
+    .quiz-select {
+      width: 100%;
+      padding: 6px 8px;
+      border-radius: 999px;
+      border: 1px solid #e5e7eb;
+      font-size: 13px;
+      background: #ffffff;
+    }
+
+    .quiz-actions {
+      margin-top: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .quiz-result {
+      font-size: 13px;
+    }
+
+    .quiz-result-success {
+      color: #166534;
+    }
+
+    .quiz-result-error {
+      color: #b91c1c;
+    }
+
+    @media (max-width: 960px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .cards-row {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      
+      .stage-flow-steps {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .quiz-row {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .logic-layout {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .goals-layout {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 720px) {
+      .course-header h1 {
+        font-size: 24px;
+      }
+      .hero {
+        padding: 20px 18px;
+      }
+      .header-top {
+        flex-direction: column-reverse;
+        align-items: flex-start;
+      }
+    }
+  
+
+/* Layout after removal of mascot and call-recording blocks */
+.hero.hero--single,
+.two-column-card.layout--single,
+.logic-layout.layout--single,
+.goals-layout.layout--single {
+  grid-template-columns: minmax(0, 1fr);
+}
+</style>
+<link href="assets/course-shell.css" rel="stylesheet"/><script defer="True" src="assets/course-progress.js"></script></head>
+<body data-course-page="lesson" data-lesson="1">
+<div class="app">
+<div class="header-top"><a aria-label="DARALTAI — главная страница курса" class="mini-brand" href="index.html"><img alt="DARALTAI" src="assets/daraltai-logo.png"/><span>DARALTAI</span></a><a class="back-link" href="index.html">← К программе курса</a></div>
+<header class="course-header">
+<h1>Подготовительный этап — «Будь готов»</h1>
+<p>Ты сейчас на подготовительном этапе. Здесь мы готовим рабочее место, информацию и собственный настрой перед звонком.</p>
+<div class="steps-nav"><a aria-current="page" class="step-pill step-pill--active" data-lesson-link="1" href="01_podgotovka.html"><span>Урок 1</span> Подготовка</a><a class="step-pill" data-lesson-link="2" href="02_contact.html"><span>Урок 2</span> Контакт</a><a class="step-pill" data-lesson-link="3" href="03_potrebnosti.html"><span>Урок 3</span> Потребности</a><a class="step-pill" data-lesson-link="4" href="04_presentation.html"><span>Урок 4</span> Презентация</a><a class="step-pill" data-lesson-link="5" href="05_vozrazheniya.html"><span>Урок 5</span> Возражения</a><a class="step-pill" data-lesson-link="6" href="06_sdelka.html"><span>Урок 6</span> Сделка</a><a class="step-pill" data-lesson-link="7" href="07_itog.html"><span>Урок 7</span> Анализ</a></div>
+</header>
+<main>
+<section class="hero hero--single">
+<div class="hero-text">
+<h2>О чём этот этап</h2>
+<p>
+            Задача подготовительного этапа – максимально подготовить ресурсы.
+            Подготовка к звонку – это основа успеха.
+          </p>
+<p>
+            Для того, что бы быть успешным менеджером по продажам, нужно не только изучать
+            и тренировать навыки техники продаж, но и развивать в себе необходимые качества.
+            Ведь не зря говорят, что человек «растет» лишь тогда, когда развивается всесторонне.
+          </p>
+<div class="hero-callout">
+<strong>Будь готов!</strong><br/>
+            Перед каждым звонком необходима подготовка:
+            <strong>Организационная</strong>, <strong>Информационная</strong>, <strong>Психологическая</strong>.
+          </div>
+</div>
+</section>
+<!-- Красивая "дорожка" трёх подэтапов -->
+<section class="stage-flow">
+<div class="stage-flow-header">
+<h3>Структура подготовительного этапа</h3>
+<p>
+            Задача подготовительного этапа – максимально подготовить ресурсы.
+            Подготовка к звонку – это основа успеха. На практике это три подэтапа:
+            подготовка рабочего места, информационная подготовка и психологическая подготовка.
+          </p>
+</div>
+<div class="stage-flow-steps">
+<!-- 1 -->
+<div class="stage-step">
+<div class="stage-step-inner">
+<div class="stage-step-number">1</div>
+<div class="stage-step-title">Организационная подготовка</div>
+<div class="stage-step-tagline">Рабочее место и техника</div>
+<ul>
+<li>Подготовь ручку/карандаш, бумагу.</li>
+<li>Убери лишние предметы, мешающие работе (например, сумка на столе).</li>
+<li>Проверь работу оборудования и программ.</li>
+</ul>
+</div>
+</div>
+<!-- 2 -->
+<div class="stage-step">
+<div class="stage-step-inner">
+<div class="stage-step-number">2</div>
+<div class="stage-step-title">Информационная подготовка</div>
+<div class="stage-step-tagline">Знания о Клиенте и продукте</div>
+<ul>
+<li>
+                  Перед звонком посмотри всю информацию о Клиенте
+                  и проиграй в голове примерный сценарий диалога.
+                </li>
+<li>Узнай текущие изменения в базе знаний.</li>
+<li>По возможности ознакомься с карточкой Клиента.</li>
+</ul>
+</div>
+</div>
+<!-- 3 -->
+<div class="stage-step">
+<div class="stage-step-inner">
+<div class="stage-step-number">3</div>
+<div class="stage-step-title">Психологическая подготовка</div>
+<div class="stage-step-tagline">Собственный настрой на Клиента</div>
+<ul>
+<li>
+                  Используй аффирмации: «Я всё смогу!», «У меня всё получится!»,
+                  «Я – мастер продаж!».
+                </li>
+<li>Посмотри мотивирующие картинки, фотографии, сувениры.</li>
+<li>Соверши свои ежедневные ритуалы (кофе, зарядка, музыка и т.д.).</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section class="cards-row">
+<article class="card">
+<div class="card-label">Общая логика подготовительного этапа</div>
+<div class="logic-layout layout--single">
+<!-- Текст слева -->
+<div class="logic-text">
+<h3>Три направления подготовки к звонку</h3>
+<p>
+                Задача подготовительного этапа – максимально подготовить ресурсы.
+                Подготовка к звонку – это основа успеха.
+              </p>
+<p>Выделяют три ключевых направления:</p>
+<ol>
+<li>
+<strong>Во-первых, подготовка своего рабочего места.</strong><br/>
+                  Рабочее место должно быть максимально удобным и оборудованным всем необходимым:
+                  ручка, карандаш, бумага. Правильно организованное рабочее место позволяет полностью
+                  сконцентрироваться на Клиенте и не отвлекаться при разговоре на любые мелочи.
+                </li>
+<li>
+<strong>Во-вторых, информационная подготовка.</strong><br/>
+                  Она включает в себя: подготовку информации о Клиенте
+                  и примерный сценарий разговора.
+                </li>
+<li>
+<strong>В-третьих, психологическая подготовка.</strong><br/>
+                  Это собственный настрой на работу с Клиентом.
+                </li>
+</ol>
+<p class="tagline">
+                Для того, что бы быть успешным менеджером по продажам, нужно не только изучать и тренировать
+                навыки техники продаж, но и развивать в себе необходимые качества.
+                Ведь не зря говорят, что человек «растет» лишь тогда, когда развивается всесторонне.
+              </p>
+</div>
+</div>
+</article>
+</section>
+<section class="card full-width goals-card">
+<div class="card-label">Постановка целей</div>
+<div class="goals-layout layout--single">
+<div class="goals-text">
+<h3>Зачем ставить цели перед звонком</h3>
+<p>
+              Очень большое значение в телефонных продажах имеет постановка целей.
+              Тебе необходимо ставить цель на каждый звонок и идти к ней, постоянно совершенствуя свои профессиональные навыки.
+            </p>
+<p>
+<strong>Цель – это достижение желаемого результата.</strong><br/>
+              Цель должна быть: ясной, конкретной, измеримой, достижимой, определена во времени.
+            </p>
+<p>
+              Также для более успешной работы и самомотивации имеет смысл поставить себе сверхцель.
+              <br/>
+<strong>Сверхцель – это цель более высокого порядка, к которой вы стремитесь.</strong>
+</p>
+<div class="goals-example">
+<p><strong>Пример:</strong></p>
+<p>Цель – продать до конца рабочего дня 15 средств.</p>
+<p>Сверхцель – купить автомобиль KIA ceed за 2млн. рублей до 1 сентября следующего года.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Подробные спойлеры по подэтапам -->
+<section class="accordion-card full-width">
+<h3>Разверни подробности по каждому подэтапу</h3>
+<p>
+          Ниже — все детали по организационной, информационной и психологической подготовке.
+          Ты можешь раскрывать только тот подэтап, который изучаешь сейчас.
+        </p>
+<div class="accordion">
+<!-- Организационная -->
+<details>
+<summary>
+<div class="summary-left">
+<div class="substep-number">1</div>
+<div>
+<div class="substep-text-title">Организационная подготовка</div>
+<div class="substep-text-tagline">Как должно выглядеть твоё рабочее место</div>
+</div>
+</div>
+<div class="summary-right">›</div>
+</summary>
+<div class="accordion-body">
+<p>
+<strong>Что это значит:</strong><br/>
+                Рабочее место должно быть максимально удобным и оборудованным всем необходимым:
+                ручка, карандаш, бумага. Правильно организованное рабочее место позволяет полностью
+                сконцентрироваться на Клиенте и не отвлекаться при разговоре на любые мелочи.
+              </p>
+<p>
+<strong>Что нужно сделать перед началом работы:</strong>
+</p>
+<ul>
+<li>Подготовь ручку/карандаш, бумагу;</li>
+<li>Убери лишние предметы, которые будут мешать работе (сумка на столе);</li>
+<li>Проверь работу оборудования, программ.</li>
+</ul>
+<p>
+<strong>Зачем это нужно:</strong><br/>
+                Рабочее место должно быть максимально удобным и комфортным, для этого:
+                всё лишнее убирается, а всё нужное — под рукой.
+              </p>
+<p>
+                Правильно организованное рабочее место позволяет полностью сконцентрироваться
+                на Клиенте и не отвлекаться при разговоре.
+              </p>
+</div>
+</details>
+<!-- Информационная -->
+<details>
+<summary>
+<div class="summary-left">
+<div class="substep-number">2</div>
+<div>
+<div class="substep-text-title">Информационная подготовка</div>
+<div class="substep-text-tagline">Что нужно узнать до звонка</div>
+</div>
+</div>
+<div class="summary-right">›</div>
+</summary>
+<div class="accordion-body">
+<p>
+<strong>Суть подэтапа:</strong><br/>
+                Во-вторых, информационная подготовка. Она включает в себя:
+                подготовку информации о Клиенте и примерный сценарий разговора.
+              </p>
+<p>
+<strong>Почему это важно:</strong><br/>
+                При совершении звонков важно владеть актуальной информацией о продуктах и услугах.
+                Необходимо перед звонком посмотреть всю информацию о Клиенте
+                и проиграть в голове примерный сценарий диалога.
+              </p>
+<p><strong>Что сделать перед звонком:</strong></p>
+<ul>
+<li>Узнай текущие изменения в базе знаний;</li>
+<li>По возможности ознакомься с карточкой Клиента;</li>
+<li>Продумай и проиграй в голове примерный сценарий диалога.</li>
+</ul>
+</div>
+</details>
+<!-- Психологическая -->
+<details>
+<summary>
+<div class="summary-left">
+<div class="substep-number">3</div>
+<div>
+<div class="substep-text-title">Психологическая подготовка</div>
+<div class="substep-text-tagline">Как настроить себя на успешный звонок</div>
+</div>
+</div>
+<div class="summary-right">›</div>
+</summary>
+<div class="accordion-body">
+<p>
+<strong>Что это такое:</strong><br/>
+                В-третьих, психологическая подготовка. Это собственный настрой на работу с Клиентом.
+              </p>
+<p>
+<strong>К инструментам психологической подготовки можно отнести:</strong>
+</p>
+<ol>
+<li>
+                  Аффирмация — это выражения, слова, которые помогают настроиться на успех.
+                  (например: «я всё смогу!», «у меня все получится!»)
+                </li>
+<li>Картинки, фотографии.</li>
+<li>Сувениры, статуэтки, безделушки.</li>
+<li>Музыка.</li>
+<li>
+                  Ежедневные ритуалы (попить кофе, съесть шоколадку, сделать зарядку и т.д).
+                </li>
+</ol>
+<p>
+<strong>Инструменты психологической подготовки:</strong>
+</p>
+<ul>
+<li>Поставь цель (сколько нужно продать).</li>
+<li>
+                  Используй аффирмацию. Например: «Я всё смогу!», «У меня все получится!»,
+                  «Я – мастер продаж!».
+                </li>
+<li>Посмотри мотивирующие картинки, фотографии.</li>
+<li>Послушай музыку для рабочего настроения.</li>
+<li>
+                  Соверши ежедневные ритуалы (попей кофе, поговори с коллегой перед началом работы,
+                  съешь шоколадку, сделай зарядку и т.д.).
+                </li>
+</ul>
+<p>
+<strong>Почему это важно:</strong><br/>
+                Собственный настрой на работу с Клиентом – это основа успеха в продажах.
+              </p>
+<p>
+                Для того, что бы быть успешным менеджером по продажам, нужно не только изучать
+                и тренировать навыки техники продаж, но и развивать в себе необходимые качества.
+                Ведь не зря говорят, что человек «растет» лишь тогда, когда развивается всесторонне.
+              </p>
+</div>
+</details>
+</div>
+</section>
+<!-- Кнопка "Проверить знания" -->
+<section class="quiz-cta full-width">
+<button class="btn-primary" id="openQuiz">
+          Проверить знания
+        </button>
+</section>
+<nav aria-label="Переход между уроками" class="course-navigation"><a class="course-navigation__button course-navigation__button--prev" href="index.html">← Программа курса</a><div class="course-navigation__status">Урок 1 из 7</div><a class="course-navigation__button course-navigation__button--next" href="02_contact.html">Урок 2: Контакт →</a></nav><footer class="course-page-footer">Обучающий курс DARALTAI · Телефонные продажи</footer></main>
+</div>
+<!-- Модальное окно с тестом -->
+<div class="quiz-overlay" id="quizOverlay">
+<div class="quiz-modal">
+<div class="quiz-modal-header">
+<div>
+<h2>Тест: виды подготовки и постановка целей</h2>
+<p>Распредели, к какому виду подготовки относится действие, и проверь, как ты понял блок про цели.</p>
+</div>
+<button class="btn-secondary" id="closeQuiz">Закрыть</button>
+</div>
+<div class="quiz-modal-body">
+<div class="quiz-grid">
+<!-- существующие вопросы по видам подготовки -->
+<div class="quiz-row">
+<div class="quiz-row-label">Подготовка речевых модулей</div>
+<select class="quiz-select" data-correct="info">
+<option value="">Выбери вид подготовки</option>
+<option value="org">Организационная</option>
+<option value="info">Информационная</option>
+<option value="psych">Психологическая</option>
+</select>
+</div>
+<div class="quiz-row">
+<div class="quiz-row-label">Открытие базы знаний</div>
+<select class="quiz-select" data-correct="org">
+<option value="">Выбери вид подготовки</option>
+<option value="org">Организационная</option>
+<option value="info">Информационная</option>
+<option value="psych">Психологическая</option>
+</select>
+</div>
+<div class="quiz-row">
+<div class="quiz-row-label">Самонастрой на успех</div>
+<select class="quiz-select" data-correct="psych">
+<option value="">Выбери вид подготовки</option>
+<option value="org">Организационная</option>
+<option value="info">Информационная</option>
+<option value="psych">Психологическая</option>
+</select>
+</div>
+<div class="quiz-row">
+<div class="quiz-row-label">Просмотр данных о ранее подключенных Клиентом пакетов</div>
+<select class="quiz-select" data-correct="info">
+<option value="">Выбери вид подготовки</option>
+<option value="org">Организационная</option>
+<option value="info">Информационная</option>
+<option value="psych">Психологическая</option>
+</select>
+</div>
+<div class="quiz-row">
+<div class="quiz-row-label">Просмотр мотивирующих картинок</div>
+<select class="quiz-select" data-correct="psych">
+<option value="">Выбери вид подготовки</option>
+<option value="org">Организационная</option>
+<option value="info">Информационная</option>
+<option value="psych">Психологическая</option>
+</select>
+</div>
+<div class="quiz-row">
+<div class="quiz-row-label">Разговор с коллегой</div>
+<select class="quiz-select" data-correct="psych">
+<option value="">Выбери вид подготовки</option>
+<option value="org">Организационная</option>
+<option value="info">Информационная</option>
+<option value="psych">Психологическая</option>
+</select>
+</div>
+<div class="quiz-row">
+<div class="quiz-row-label">Изучение карточки Клиента (ФИО, адрес и т.д.)</div>
+<select class="quiz-select" data-correct="info">
+<option value="">Выбери вид подготовки</option>
+<option value="org">Организационная</option>
+<option value="info">Информационная</option>
+<option value="psych">Психологическая</option>
+</select>
+</div>
+<div class="quiz-row">
+<div class="quiz-row-label">Получение актуальной информации от супервайзера об изменениях в продукте</div>
+<select class="quiz-select" data-correct="info">
+<option value="">Выбери вид подготовки</option>
+<option value="org">Организационная</option>
+<option value="info">Информационная</option>
+<option value="psych">Психологическая</option>
+</select>
+</div>
+<div class="quiz-row">
+<div class="quiz-row-label">Подготовка дополнительной информации (таблица по созданию обращений)</div>
+<select class="quiz-select" data-correct="org">
+<option value="">Выбери вид подготовки</option>
+<option value="org">Организационная</option>
+<option value="info">Информационная</option>
+<option value="psych">Психологическая</option>
+</select>
+</div>
+<!-- новые вопросы по целям -->
+<div class="quiz-row">
+<div class="quiz-row-label">Цель в продажах — это…</div>
+<select class="quiz-select" data-correct="res">
+<option value="">Выбери вариант</option>
+<option value="res">Достижение желаемого результата</option>
+<option value="act">Любое действие продавца</option>
+<option value="mood">Настроение продавца перед сменой</option>
+</select>
+</div>
+<div class="quiz-row">
+<div class="quiz-row-label">Какой пример относится к сверхцели?</div>
+<select class="quiz-select" data-correct="kia">
+<option value="">Выбери вариант</option>
+<option value="15">Продать до конца дня 15 средств</option>
+<option value="one">Позвонить одному Клиенту</option>
+<option value="kia">BMW за 2 млн до 1 сентября следующего года</option>
+</select>
+</div>
+<div class="quiz-row">
+<div class="quiz-row-label">Какой набор свойств правильно описывает цель?</div>
+<select class="quiz-select" data-correct="smart">
+<option value="">Выбери вариант</option>
+<option value="smart">Ясная, конкретная, измеримая, достижимая, определена во времени</option>
+<option value="any">Любая, главное просто её записать</option>
+<option value="boss">Та, которую придумал руководитель</option>
+</select>
+</div>
+</div>
+<div class="quiz-actions">
+<button class="btn-primary" id="checkQuiz">Проверить ответы</button>
+<div class="quiz-result" id="quizResult"></div>
+</div>
+</div>
+</div>
+</div>
+<script>
+    (function() {
+      const overlay = document.getElementById('quizOverlay');
+      const openBtn = document.getElementById('openQuiz');
+      const closeBtn = document.getElementById('closeQuiz');
+      const checkBtn = document.getElementById('checkQuiz');
+      const resultEl = document.getElementById('quizResult');
+
+      if (openBtn) {
+        openBtn.addEventListener('click', () => {
+          overlay.classList.add('open');
+          resultEl.textContent = '';
+        });
+      }
+
+      function closeOverlay() {
+        overlay.classList.remove('open');
+      }
+
+      if (closeBtn) {
+        closeBtn.addEventListener('click', closeOverlay);
+      }
+
+      overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) {
+          closeOverlay();
+        }
+      });
+
+      if (checkBtn) {
+        checkBtn.addEventListener('click', () => {
+          const selects = overlay.querySelectorAll('.quiz-select');
+          let allFilled = true;
+          let allCorrect = true;
+
+          selects.forEach(select => {
+            const value = select.value;
+            const correct = select.dataset.correct;
+            // сбрасываем стили
+            select.style.borderColor = '#e5e7eb';
+            select.style.backgroundColor = '#ffffff';
+
+            if (!value) {
+              allFilled = false;
+              allCorrect = false;
+              select.style.borderColor = '#f97316';
+              select.style.backgroundColor = '#fff7ed';
+            } else if (value !== correct) {
+              allCorrect = false;
+              select.style.borderColor = '#b91c1c';
+              select.style.backgroundColor = '#fef2f2';
+            } else {
+              // правильный ответ — мягкое подсвечивание
+              select.style.borderColor = '#22c55e';
+              select.style.backgroundColor = '#ecfdf5';
+            }
+          });
+
+          if (!allFilled) {
+            resultEl.textContent = 'Заполни все поля и попробуй ещё раз.';
+            resultEl.className = 'quiz-result quiz-result-error';
+            return;
+          }
+
+          if (allCorrect) {
+            resultEl.textContent = 'Отлично! Все ответы верны.';
+            resultEl.className = 'quiz-result quiz-result-success';
+          } else {
+            resultEl.textContent = 'Есть неточности. Подсказка: вернись к теории и проверь виды подготовки и блок про цели.';
+            resultEl.className = 'quiz-result quiz-result-error';
+          }
+        });
+      }
+    })();
+  </script>
+</body>
+</html>

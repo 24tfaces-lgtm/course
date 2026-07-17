@@ -1,0 +1,1395 @@
+<!DOCTYPE html>
+
+<html lang="ru">
+<head>
+<meta charset="utf-8"/>
+<title>Урок 2. Установление контакта | DARALTAI</title>
+<style>
+    :root {
+      --bg: #eaf4ff;
+      --card-bg: #ffffff;
+      --accent: #2563eb;
+      --accent-soft: #fee68a;
+      --text-main: #111827;
+      --text-muted: #4b5563;
+      --radius-lg: 24px;
+      --shadow-soft: 0 18px 40px rgba(15, 23, 42, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #f6fbff 0, var(--bg) 55%, #dbeafe 100%);
+      color: var(--text-main);
+    }
+
+    .app {
+      max-width: 1160px;
+      margin: 32px auto 40px;
+      padding: 0 24px;
+    }
+
+    
+    
+    
+
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 6px;
+    }
+
+    .back-link {
+      font-size: 13px;
+      text-decoration: none;
+      color: #2563eb;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(37, 99, 235, 0.06);
+    }
+
+    .back-link:hover {
+      background: rgba(37, 99, 235, 0.12);
+    }
+
+    .course-header h1 {
+      margin: 0 0 4px;
+      font-size: 30px;
+    }
+    .course-header p {
+      margin: 0 0 8px;
+      max-width: 780px;
+      color: var(--text-muted);
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    main {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+
+    /* Навигация по этапам */
+    .steps-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 4px;
+      font-size: 13px;
+    }
+
+    .step-pill {
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid #e5e7eb;
+      background: rgba(255,255,255,0.9);
+      color: var(--text-muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .step-pill span {
+      font-weight: 600;
+      color: #4b5563;
+    }
+
+    .step-pill--active {
+      border-color: #2563eb;
+      background: #dbeafe;
+      color: #1d4ed8;
+    }
+
+    .step-pill--active span {
+      color: #1d4ed8;
+    }
+
+    /* Верхний блок */
+    .hero {
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-soft);
+      padding: 26px 28px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.2fr);
+      gap: 24px;
+      align-items: center;
+    }
+
+    .hero-text h2 {
+      margin: 0 0 10px;
+      font-size: 22px;
+    }
+    .hero-text p {
+      margin: 0 0 6px;
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text-main);
+    }
+
+    .hero-callout {
+      margin-top: 10px;
+      background: #fef3c7;
+      border-radius: 14px;
+      padding: 10px 12px;
+      font-size: 13px;
+      line-height: 1.5;
+      color: #7c2d12;
+    }
+
+    .hero-callout ul {
+      margin: 6px 0 0 18px;
+      padding: 0;
+    }
+
+    
+
+    
+
+    
+    
+    
+
+    /* Общие карточки */
+    .card {
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 18px 20px 18px;
+      box-shadow: 0 14px 30px rgba(15, 23, 42, 0.08);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 16px;
+    }
+
+    .card p {
+      margin: 0 0 6px;
+    }
+
+    .card ul,
+    .card ol {
+      margin: 6px 0 0 18px;
+      padding: 0;
+    }
+
+    .full-width {
+      grid-column: 1 / -1;
+    }
+
+    .card-label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .tagline {
+      margin-top: 6px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    /* Двухколоночные карточки с картинкой */
+    .two-column-card {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(0, 1.8fr);
+      gap: 18px;
+      align-items: center;
+    }
+
+    .two-column-card--reverse {
+      grid-template-columns: minmax(0, 1.8fr) minmax(0, 1.25fr);
+    }
+
+    .two-column-card img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      filter: drop-shadow(0 14px 28px rgba(15,23,42,0.18));
+      border-radius: 18px;
+    }
+
+    /* Структура этапа */
+    .stage-flow {
+      background: var(--card-bg);
+      border-radius: 22px;
+      padding: 18px 20px 20px;
+      box-shadow: var(--shadow-soft);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .stage-flow-header {
+      margin-bottom: 10px;
+    }
+
+    .stage-flow-header h3 {
+      margin: 0 0 6px;
+      font-size: 17px;
+    }
+
+    .stage-flow-header p {
+      margin: 0;
+    }
+
+    .stage-flow-steps {
+      margin-top: 14px;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .stage-step {
+      position: relative;
+      padding: 12px 12px 12px 14px;
+      border-radius: 16px;
+      background: #eff6ff;
+      border: 1px solid #dbeafe;
+    }
+
+    .stage-step::before {
+      content: "";
+      position: absolute;
+      left: 10px;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      border-radius: 999px;
+      background: linear-gradient(to bottom, #2563eb, #4f46e5);
+      opacity: 0.6;
+    }
+
+    .stage-step-inner {
+      margin-left: 14px;
+    }
+
+    .stage-step-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      background: #2563eb;
+      color: #f9fafb;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .stage-step-title {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .stage-step-tagline {
+      font-size: 12px;
+      color: #4b5563;
+      margin-bottom: 4px;
+    }
+
+    .stage-step ul {
+      margin: 6px 0 0 16px;
+      font-size: 12px;
+    }
+
+    /* Аккордеон */
+    .accordion-card {
+      background: var(--card-bg);
+      border-radius: 22px;
+      padding: 18px 20px 16px;
+      box-shadow: var(--shadow-soft);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .accordion-card h3 {
+      margin: 0 0 6px;
+      font-size: 16px;
+    }
+
+    .accordion-card p {
+      margin: 0 0 6px;
+    }
+
+    .accordion {
+      margin-top: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    details {
+      border-radius: 16px;
+      border: 1px solid #e5e7eb;
+      background: #f9fafb;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    details[open] {
+      border-color: #2563eb;
+      background: #eef2ff;
+      box-shadow: 0 10px 24px rgba(37, 99, 235, 0.15);
+    }
+
+    summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .summary-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .substep-number {
+      width: 26px;
+      height: 26px;
+      border-radius: 999px;
+      background: #2563eb;
+      color: #f9fafb;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+
+    .substep-text-title {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .substep-text-tagline {
+      font-size: 12px;
+      color: #4b5563;
+    }
+
+    .summary-right {
+      font-size: 18px;
+      line-height: 1;
+      color: #9ca3af;
+      flex-shrink: 0;
+      transition: transform 0.15s ease, color 0.15s ease;
+    }
+
+    details[open] .summary-right {
+      color: #2563eb;
+      transform: rotate(90deg);
+    }
+
+    .accordion-body {
+      padding: 0 14px 12px 14px;
+      border-top: 1px solid #e5e7eb;
+      font-size: 13px;
+      line-height: 1.6;
+      background: rgba(255,255,255,0.7);
+    }
+
+    .accordion-body p {
+      margin-top: 8px;
+    }
+
+    .accordion-body ul,
+    .accordion-body ol {
+      margin: 6px 0 0 18px;
+      padding: 0;
+    }
+
+    /* Кнопки и тест */
+    .quiz-cta {
+      text-align: center;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 10px 18px;
+      border-radius: 999px;
+      border: none;
+      background: var(--accent);
+      color: #f9fafb;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 12px 24px rgba(37, 99, 235, 0.4);
+    }
+
+    .btn-primary:hover {
+      filter: brightness(1.05);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid #e5e7eb;
+      background: #f9fafb;
+      color: #111827;
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    .btn-secondary:hover {
+      background: #f3f4f6;
+    }
+
+    /* Модальные окна */
+    .quiz-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.45);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      z-index: 50;
+    }
+
+    .quiz-overlay.open {
+      display: flex;
+    }
+
+    .quiz-modal {
+      background: #ffffff;
+      border-radius: 24px;
+      max-width: 780px;
+      width: 100%;
+      max-height: 90vh;
+      box-shadow: 0 20px 45px rgba(15,23,42,0.45);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .quiz-modal-header {
+      padding: 16px 20px 8px;
+      border-bottom: 1px solid #e5e7eb;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .quiz-modal-header h2 {
+      margin: 0;
+      font-size: 17px;
+    }
+
+    .quiz-modal-header p {
+      margin: 2px 0 0;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .quiz-modal-body {
+      padding: 12px 20px 16px;
+      overflow-y: auto;
+    }
+
+    .quiz-grid {
+      margin-top: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .quiz-row {
+      display: grid;
+      grid-template-columns: minmax(0, 2.2fr) minmax(0, 1.1fr);
+      gap: 8px;
+      align-items: center;
+      padding: 6px 8px;
+      border-radius: 12px;
+      background: #f9fafb;
+    }
+
+    .quiz-row-label {
+      font-size: 13px;
+    }
+
+    .quiz-select {
+      width: 100%;
+      padding: 6px 8px;
+      border-radius: 999px;
+      border: 1px solid #e5e7eb;
+      font-size: 13px;
+      background: #ffffff;
+    }
+
+    .quiz-actions {
+      margin-top: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .quiz-result {
+      font-size: 13px;
+    }
+
+    .quiz-result-success {
+      color: #166534;
+    }
+
+    .quiz-result-error {
+      color: #b91c1c;
+    }
+
+    .trainer-title {
+      margin-top: 10px;
+      font-weight: 600;
+      font-size: 13px;
+    }
+
+    .trainer-question {
+      margin-top: 10px;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .trainer-progress {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    @media (max-width: 1024px) {
+      .stage-flow-steps {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 960px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      
+      .stage-flow-steps {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .quiz-row {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .two-column-card,
+      .two-column-card--reverse {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 720px) {
+      .course-header h1 {
+        font-size: 24px;
+      }
+      .hero {
+        padding: 20px 18px;
+      }
+      .header-top {
+        flex-direction: column-reverse;
+        align-items: flex-start;
+      }
+    }
+  
+
+/* Layout after removal of mascot and call-recording blocks */
+.hero.hero--single,
+.two-column-card.layout--single,
+.logic-layout.layout--single,
+.goals-layout.layout--single {
+  grid-template-columns: minmax(0, 1fr);
+}
+</style>
+<link href="assets/course-shell.css" rel="stylesheet"/><script defer="True" src="assets/course-progress.js"></script></head>
+<body data-course-page="lesson" data-lesson="2">
+<div class="app">
+<div class="header-top"><a aria-label="DARALTAI — главная страница курса" class="mini-brand" href="index.html"><img alt="DARALTAI" src="assets/daraltai-logo.png"/><span>DARALTAI</span></a><a class="back-link" href="index.html">← К программе курса</a></div>
+<header class="course-header">
+<h1>Этап 2. Установление контакта</h1>
+<p>
+        Цель этапа – вовлечь Клиента в диалог, расположить его к себе, вызвать доверие,
+        чтобы в дальнейшем продолжить с ним общение.
+      </p>
+<div class="steps-nav"><a class="step-pill" data-lesson-link="1" href="01_podgotovka.html"><span>Урок 1</span> Подготовка</a><a aria-current="page" class="step-pill step-pill--active" data-lesson-link="2" href="02_contact.html"><span>Урок 2</span> Контакт</a><a class="step-pill" data-lesson-link="3" href="03_potrebnosti.html"><span>Урок 3</span> Потребности</a><a class="step-pill" data-lesson-link="4" href="04_presentation.html"><span>Урок 4</span> Презентация</a><a class="step-pill" data-lesson-link="5" href="05_vozrazheniya.html"><span>Урок 5</span> Возражения</a><a class="step-pill" data-lesson-link="6" href="06_sdelka.html"><span>Урок 6</span> Сделка</a><a class="step-pill" data-lesson-link="7" href="07_itog.html"><span>Урок 7</span> Анализ</a></div>
+</header>
+<main>
+<!-- Верхний блок -->
+<section class="hero hero--single">
+<div class="hero-text">
+<h2>Достигни контакта</h2>
+<p>
+            В продажах есть принцип: <strong>«все любят покупать, но никто не любит, когда им продают».</strong>
+            Первые 7–10 секунд разговора решают, будет ли Клиент тебя слушать или оборвёт звонок.
+          </p>
+<p>
+            Самое большое значение при общении по телефону имеют особенности голоса:
+            <strong>тембр, темп речи, интонации</strong>. Важно использовать «улыбающийся голос»,
+            даже если Клиент сейчас не в лучшем настроении.
+          </p>
+<p>
+            Ещё один приём — <strong>«подстройка»</strong>: мы подстраиваемся под темп и громкость речи Клиента
+            (кроме случаев открытого негатива), чтобы ему было комфортно разговаривать.
+          </p>
+<div class="hero-callout">
+<strong>Цель этапа:</strong>
+<ul>
+<li>вовлечь Клиента в диалог;</li>
+<li>расположить его к себе через имя, голос и уважительное обращение;</li>
+<li>создать доверие, чтобы спокойно перейти к следующим шагам продажи.</li>
+</ul>
+</div>
+</div>
+</section>
+<!-- Структура этапа -->
+<section class="stage-flow">
+<div class="stage-flow-header">
+<h3>Из чего состоит установление контакта</h3>
+<p>
+            Установление контакта — это сочетание того, <strong>как мы звучим</strong>,
+            <strong>как обращаемся к Клиенту</strong> и <strong>о чём говорим в первые секунды</strong>.
+          </p>
+</div>
+<div class="stage-flow-steps">
+<!-- 1 -->
+<div class="stage-step">
+<div class="stage-step-inner">
+<div class="stage-step-number">1</div>
+<div class="stage-step-title">Голос и первые секунды</div>
+<div class="stage-step-tagline">Тембр, темп речи, интонации</div>
+<ul>
+<li>«Улыбающийся» голос, уверенное приветствие.</li>
+<li>Темп речи под Клиента, без суеты и «э-э-э».</li>
+<li>Первые 7–10 секунд — решающие.</li>
+</ul>
+</div>
+</div>
+<!-- 2 -->
+<div class="stage-step">
+<div class="stage-step-inner">
+<div class="stage-step-number">2</div>
+<div class="stage-step-title">Имя и компания</div>
+<div class="stage-step-tagline">Личность вместо «номер телефона»</div>
+<ul>
+<li>Представься и проговори название Компании.</li>
+<li>Узнай имя Клиента и используй его в диалоге.</li>
+<li>Имя помогает вернуть внимание, если Клиент отвлёкся.</li>
+</ul>
+</div>
+</div>
+<!-- 3 -->
+<div class="stage-step">
+<div class="stage-step-inner">
+<div class="stage-step-number">3</div>
+<div class="stage-step-title">Комплимент</div>
+<div class="stage-step-tagline">Констатация приятного факта</div>
+<ul>
+<li>Кратко, по делу, без лести.</li>
+<li>Небольшое преувеличение достоинства Клиента.</li>
+<li>Только позитивные качества и внимание к деталям.</li>
+</ul>
+</div>
+</div>
+<!-- 4 -->
+<div class="stage-step">
+<div class="stage-step-inner">
+<div class="stage-step-number">4</div>
+<div class="stage-step-title">Информационный повод</div>
+<div class="stage-step-tagline">Причина, почему звоним именно сейчас</div>
+<ul>
+<li>Событие, которое может заинтересовать Клиента.</li>
+<li>Не продаёт само по себе, но создаёт интерес.</li>
+<li>Помогает придать разговору позитивный эмоциональный фон.</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section class="content-card">
+<!-- Основные правила установления контакта -->
+<section class="card full-width">
+<div class="card-label">Основные правила установления контакта</div>
+<div class="two-column-card layout--single">
+<div>
+<h3>Имя, улыбка и живой интерес</h3>
+<p>
+              Первые 7–10 секунд для успеха разговора являются самыми важными – этого времени достаточно,
+              чтобы собеседник решил, продолжать или прервать общение.
+            </p>
+<p>
+              Поэтому нам необходимо всегда в разговоре с Клиентом <strong>улыбаться и обращаться по имени</strong>.
+              Мы не знаем заранее, в каком состоянии находится человек в момент звонка, но «улыбающийся голос»
+              сглаживает углы даже в сложных ситуациях.
+            </p>
+<p>
+              Даже если у тебя есть только номер телефона — познакомься с собеседником:
+              представься сам, узнай имя Клиента и далее обращайся к нему по имени.
+              Это также помогает вернуть Клиента в диалог, если он отвлёкся на дела, работу или детей.
+            </p>
+<p class="tagline">
+              Приветствие — основа отношений Клиент–продавец. 80% продавцов проваливают продажу именно на этапе
+              установления контакта. Не допускай этого: анализируй каждый свой звонок.
+            </p>
+</div>
+</div>
+</section>
+<!-- Имя как инструмент -->
+<section class="card full-width">
+<div class="card-label">Имя как инструмент установления контакта</div>
+<div class="two-column-card two-column-card--reverse layout--single">
+<div>
+<h3>Почему имя так важно</h3>
+<p>
+              Людям приятно слышать своё имя. Это делает общение личным и убирает ощущение «безличного звонка».
+            </p>
+<p>
+<strong>Пример 1. Банки Coca-Cola с именами.</strong><br/>
+              На чемпионате мира по футболу компания выпустила жестяные банки с именами.
+              На стадионе стояли два холодильника — с обычными и именными банками.
+              Наиболее популярным был холодильник с именами: людям важно видеть именно себя.
+            </p>
+<p>
+<strong>Пример 2. Starbucks и имена на стаканчиках.</strong><br/>
+              Starbucks объясняет это так: «Всё вокруг стало безличным: никнеймы, логины, номера.
+              Мы не будем обращаться к вам как «латте» или «мокко», мы будем обращаться к вам по имени».
+            </p>
+<p class="tagline">
+              Обращение по имени в звонке делает общение более тёплым и запоминающимся — используй это на каждом контакте.
+            </p>
+</div>
+</div>
+</section>
+<!-- Комплимент и информационный повод -->
+<section class="accordion-card full-width">
+<h3>Комплимент и информационный повод</h3>
+<p>
+          Сейчас разберёмся, чем комплимент отличается от лести и похвалы,
+          и как использовать информационный повод для лёгкого начала разговора.
+        </p>
+<div class="accordion">
+<!-- Комплимент -->
+<details>
+<summary>
+<div class="summary-left">
+<div class="substep-number">1</div>
+<div>
+<div class="substep-text-title">Эффективный комплимент</div>
+<div class="substep-text-tagline">Не лесть и не похвала сверху</div>
+</div>
+</div>
+<div class="summary-right">›</div>
+</summary>
+<div class="accordion-body">
+<p>
+<strong>Комплимент</strong> — это небольшое преувеличение достоинства,
+                которое собеседник хочет видеть в себе.
+              </p>
+<p>
+<strong>Лесть</strong> — лицемерное, неискреннее восхваление с целью добиться расположения.
+              </p>
+<p>
+<strong>Похвала</strong> — искреннее одобрение, но с «подстройкой сверху»:
+                ты как бы оцениваешь действия Клиента.
+              </p>
+<p>
+                При комплименте ты немного возвышаешь собеседника над собой — «подстройка снизу».
+              </p>
+<p><strong>Правила убедительного комплимента:</strong></p>
+<ul>
+<li>краткий — одна–две мысли, не больше;</li>
+<li>конкретный — понятно, за что ты хвалишь;</li>
+<li>недвусмысленный — только позитивные качества собеседника;</li>
+<li>заметно твоё внимание к деталям;</li>
+<li>фактически — это констатация приятного факта.</li>
+</ul>
+<p><strong>Пример хорошего комплимента:</strong><br/>
+                «Приятно общаться с человеком, который так детально подходит к выбору средств для здоровья».
+              </p>
+<p class="trainer-title">
+                Хочешь потренироваться? Запусти тренажёр и отметь, где настоящий комплимент.
+              </p>
+<button class="btn-primary" id="openComplimentTrainer">
+                Тренажёр по комплиментам
+              </button>
+</div>
+</details>
+<!-- Информационный повод -->
+<details>
+<summary>
+<div class="summary-left">
+<div class="substep-number">2</div>
+<div>
+<div class="substep-text-title">Информационный повод</div>
+<div class="substep-text-tagline">Причина, почему звоним именно сегодня</div>
+</div>
+</div>
+<div class="summary-right">›</div>
+</summary>
+<div class="accordion-body">
+<p>
+<strong>Информационный повод</strong> — событие, которое может заинтересовать Клиента
+                и привлечь его внимание к тебе или продукту.
+              </p>
+<p>
+                Сам по себе информационный повод <strong>не продаёт</strong> средство для здоровья,
+                но помогает установить контакт, вызвать интерес и создать позитивный эмоциональный фон.
+              </p>
+<p><strong>Примеры информационных поводов в нашей работе со средствами для здоровья:</strong></p>
+<ul>
+<li>день рождения Клиента;</li>
+<li>значимое спортивное или оздоровительное событие;</li>
+<li>государственные и неофициальные праздники, связанные с заботой о себе;</li>
+<li>сезон простуд или других актуальных проблем здоровья.</li>
+</ul>
+<p class="trainer-title">
+                Запусти тренажёр и выбери, какие примеры подходят на роль информационного повода.
+              </p>
+<button class="btn-primary" id="openInfopovodTrainer">
+                Тренажёр по информационным поводам
+              </button>
+</div>
+</details>
+</div>
+</section>
+<!-- Кнопка "Проверить знания" -->
+<section class="quiz-cta full-width">
+<button class="btn-primary" id="openQuiz">
+          Итоговый тест по установлению контакта
+        </button>
+</section>
+</section><nav aria-label="Переход между уроками" class="course-navigation"><a class="course-navigation__button course-navigation__button--prev" href="01_podgotovka.html">← Урок 1: Подготовка</a><div class="course-navigation__status">Урок 2 из 7</div><a class="course-navigation__button course-navigation__button--next" href="03_potrebnosti.html">Урок 3: Потребности →</a></nav><footer class="course-page-footer">Обучающий курс DARALTAI · Телефонные продажи</footer></main>
+</div>
+<!-- Модалка тренажёра по комплиментам -->
+<div class="quiz-overlay" id="complimentTrainerOverlay">
+<div class="quiz-modal">
+<div class="quiz-modal-header">
+<div>
+<h2>Тренажёр: комплименты</h2>
+<p>Отметь, где настоящий комплимент, а где неудачная фраза.</p>
+</div>
+<button class="btn-secondary" id="closeComplimentTrainer">Закрыть</button>
+</div>
+<div class="quiz-modal-body">
+<div class="trainer-progress" id="complimentProgress"></div>
+<div class="trainer-question" id="complimentQuestion"></div>
+<div class="quiz-actions">
+<div>
+<button class="btn-primary trainer-option" data-trainer="compliment" data-value="good">
+              Комплимент
+            </button>
+<button class="btn-secondary trainer-option" data-trainer="compliment" data-value="bad">
+              Неудачное высказывание
+            </button>
+</div>
+<button class="btn-secondary" disabled="" id="complimentNext">Далее</button>
+</div>
+<div class="quiz-result" id="complimentTrainerResult"></div>
+</div>
+</div>
+</div>
+<!-- Модалка тренажёра по информационным поводам -->
+<div class="quiz-overlay" id="infopovodTrainerOverlay">
+<div class="quiz-modal">
+<div class="quiz-modal-header">
+<div>
+<h2>Тренажёр: информационные поводы</h2>
+<p>Выбери, какие примеры подходят как информационный повод в продажах средств для здоровья.</p>
+</div>
+<button class="btn-secondary" id="closeInfopovodTrainer">Закрыть</button>
+</div>
+<div class="quiz-modal-body">
+<div class="trainer-progress" id="infopovodProgress"></div>
+<div class="trainer-question" id="infopovodQuestion"></div>
+<div class="quiz-actions">
+<div>
+<button class="btn-primary trainer-option" data-trainer="info" data-value="ok">
+              Корректный информационный повод
+            </button>
+<button class="btn-secondary trainer-option" data-trainer="info" data-value="bad">
+              Некорректный пример
+            </button>
+</div>
+<button class="btn-secondary" disabled="" id="infopovodNext">Далее</button>
+</div>
+<div class="quiz-result" id="infopovodTrainerResult"></div>
+</div>
+</div>
+</div>
+<!-- Модалка итогового теста -->
+<div class="quiz-overlay" id="quizOverlay">
+<div class="quiz-modal">
+<div class="quiz-modal-header">
+<div>
+<h2>Тест: установление контакта</h2>
+<p>Ответь на вопросы по этапу, выбери правильные варианты из списка.</p>
+</div>
+<button class="btn-secondary" id="closeQuiz">Закрыть</button>
+</div>
+<div class="quiz-modal-body">
+<div class="quiz-grid">
+<div class="quiz-row">
+<div class="quiz-row-label">Главная цель этапа установления контакта:</div>
+<select class="quiz-select" data-correct="goal">
+<option value="">Выбери вариант</option>
+<option value="script">Быстро отработать скрипт и перейти к презентации</option>
+<option value="goal">Вовлечь Клиента в диалог, расположить и вызвать доверие</option>
+<option value="sell">Сразу закрыть продажу в первые 10 секунд</option>
+</select>
+</div>
+<div class="quiz-row">
+<div class="quiz-row-label">Почему первые 7–10 секунд разговора так важны?</div>
+<select class="quiz-select" data-correct="710">
+<option value="">Выбери вариант</option>
+<option value="710">За это время Клиент решает, продолжать или прервать общение</option>
+<option value="breathe">Это время нужно продавцу, чтобы сделать вдох</option>
+<option value="no">Значения не имеют, важен только конец звонка</option>
+</select>
+</div>
+<div class="quiz-row">
+<div class="quiz-row-label">Какие особенности голоса особенно важны на этом этапе?</div>
+<select class="quiz-select" data-correct="voice">
+<option value="">Выбери вариант</option>
+<option value="voice">Тембр, темп речи и интонации</option>
+<option value="words">Только слова, голос роли не играет</option>
+<option value="volume">Только громкость голоса</option>
+</select>
+</div>
+<div class="quiz-row">
+<div class="quiz-row-label">Что значит «улыбающийся голос»?</div>
+<select class="quiz-select" data-correct="smile">
+<option value="">Выбери вариант</option>
+<option value="smile">Когда улыбка реально слышна по тембру и интонации</option>
+<option value="joke">Когда мы обязательно шутим с Клиентом в начале</option>
+<option value="volume">Когда говорим громко и быстро</option>
+</select>
+</div>
+<div class="quiz-row">
+<div class="quiz-row-label">Что такое «подстройка» в разговоре?</div>
+<select class="quiz-select" data-correct="match">
+<option value="">Выбери вариант</option>
+<option value="match">Подстраиваться под темп и громкость Клиента (кроме негативных ситуаций)</option>
+<option value="repeat">Дословно повторять все слова Клиента</option>
+<option value="agree">Соглашаться со всем, что говорит Клиент</option>
+</select>
+</div>
+<div class="quiz-row">
+<div class="quiz-row-label">Зачем в начале звонка проговаривать название Компании?</div>
+<select class="quiz-select" data-correct="company">
+<option value="">Выбери вариант</option>
+<option value="company">Чтобы Клиент понимал, кто ему звонит и откуда информация</option>
+<option value="formal">Чтобы звучать строго и официально</option>
+<option value="noNeed">Это не обязательно, можно не называть Компанию</option>
+</select>
+</div>
+<div class="quiz-row">
+<div class="quiz-row-label">Зачем обращаться к Клиенту по имени?</div>
+<select class="quiz-select" data-correct="name">
+<option value="">Выбери вариант</option>
+<option value="formal">Чтобы звучать более официально</option>
+<option value="name">Чтобы сделать общение личным и возвращать внимание Клиента</option>
+<option value="noMatter">Это не обязательно, можно не использовать имя</option>
+</select>
+</div>
+<div class="quiz-row">
+<div class="quiz-row-label">Что такое комплимент в продажах?</div>
+<select class="quiz-select" data-correct="compl">
+<option value="">Выбери вариант</option>
+<option value="compl">Небольшое преувеличение достоинства Клиента, которое он хочет видеть в себе</option>
+<option value="praise">Оценка действий Клиента «сверху»</option>
+<option value="flattery">Любая приятная фраза, даже если она неискренняя</option>
+</select>
+</div>
+<div class="quiz-row">
+<div class="quiz-row-label">Какое правило НЕ относится к хорошему комплименту?</div>
+<select class="quiz-select" data-correct="wrongCompl">
+<option value="">Выбери вариант</option>
+<option value="short">Краткий, одна–две мысли</option>
+<option value="concrete">Конкретный и недвусмысленный</option>
+<option value="wrongCompl">Максимально длинный, с большим количеством деталей</option>
+</select>
+</div>
+<div class="quiz-row">
+<div class="quiz-row-label">Информационный повод — это…</div>
+<select class="quiz-select" data-correct="info">
+<option value="">Выбери вариант</option>
+<option value="discount">Любая скидка или акция</option>
+<option value="info">Событие, которое может заинтересовать Клиента и привлечь его внимание к звонку</option>
+<option value="script2">Часть скрипта, которую нужно дословно прочитать</option>
+</select>
+</div>
+<div class="quiz-row">
+<div class="quiz-row-label">Что из перечисленного может быть информационным поводом при продаже средств для здоровья?</div>
+<select class="quiz-select" data-correct="birthday">
+<option value="">Выбери вариант</option>
+<option value="birthday">День рождения Клиента</option>
+<option value="mood">Настроение продавца</option>
+<option value="coffee">То, что ты выпил кофе перед звонком</option>
+</select>
+</div>
+</div>
+<div class="quiz-actions">
+<button class="btn-primary" id="checkQuiz">Проверить ответы</button>
+<div class="quiz-result" id="quizResult"></div>
+</div>
+</div>
+</div>
+</div>
+<script>
+    (function() {
+      /* ===== Итоговый тест (модалка) ===== */
+      const quizOverlay = document.getElementById('quizOverlay');
+      const openQuizBtn = document.getElementById('openQuiz');
+      const closeQuizBtn = document.getElementById('closeQuiz');
+      const checkQuizBtn = document.getElementById('checkQuiz');
+      const quizResultEl = document.getElementById('quizResult');
+
+      if (openQuizBtn) {
+        openQuizBtn.addEventListener('click', () => {
+          quizOverlay.classList.add('open');
+          quizResultEl.textContent = '';
+        });
+      }
+
+      function closeOverlay(overlay) {
+        overlay.classList.remove('open');
+      }
+
+      if (closeQuizBtn) {
+        closeQuizBtn.addEventListener('click', () => closeOverlay(quizOverlay));
+      }
+
+      quizOverlay.addEventListener('click', (e) => {
+        if (e.target === quizOverlay) closeOverlay(quizOverlay);
+      });
+
+      if (checkQuizBtn) {
+        checkQuizBtn.addEventListener('click', () => {
+          const selects = quizOverlay.querySelectorAll('.quiz-select');
+          let allFilled = true;
+          let allCorrect = true;
+
+          selects.forEach(select => {
+            const value = select.value;
+            const correct = select.dataset.correct;
+
+            select.style.borderColor = '#e5e7eb';
+            select.style.backgroundColor = '#ffffff';
+
+            if (!value) {
+              allFilled = false;
+              allCorrect = false;
+              select.style.borderColor = '#f97316';
+              select.style.backgroundColor = '#fff7ed';
+            } else if (value !== correct) {
+              allCorrect = false;
+              select.style.borderColor = '#b91c1c';
+              select.style.backgroundColor = '#fef2f2';
+            } else {
+              select.style.borderColor = '#22c55e';
+              select.style.backgroundColor = '#ecfdf5';
+            }
+          });
+
+          if (!allFilled) {
+            quizResultEl.textContent = 'Заполни все поля и попробуй ещё раз.';
+            quizResultEl.className = 'quiz-result quiz-result-error';
+            return;
+          }
+
+          if (allCorrect) {
+            quizResultEl.textContent = 'Отлично! Все ответы верны.';
+            quizResultEl.className = 'quiz-result quiz-result-success';
+          } else {
+            quizResultEl.textContent = 'Есть неточности. Вернись к теории по установлению контакта и попробуй ещё раз.';
+            quizResultEl.className = 'quiz-result quiz-result-error';
+          }
+        });
+      }
+
+      /* ===== Тренажёр по комплиментам ===== */
+      const complimentQuestions = [
+        { text: 'Очень приятно общаться с деловым человеком.', correct: 'good' },
+        { text: 'У Вас очень специфичное имя!', correct: 'bad' },
+        { text: 'Здорово, что вы обдуманно относитесь к планированию бюджета.', correct: 'good' },
+        { text: 'Вы такой же занятой, как и умный!', correct: 'bad' },
+        { text: 'У вас очень красивое и редкое имя.', correct: 'good' },
+        { text: 'Здорово, что Вы идёте в ногу со временем.', correct: 'good' },
+        { text: 'Приятно общаться с Вами, как с человеком ушедшего поколения.', correct: 'bad' },
+        { text: 'Приятно общаться с человеком, который ценит мнение близких.', correct: 'good' },
+        { text: 'Всегда приятно общаться с человеком, обдуманно подходящим к выбору средств для здоровья.', correct: 'good' },
+        { text: 'Меня восхищает Ваше рассудительное отношение к принятию решений о здоровье.', correct: 'good' }
+      ];
+
+      const complimentOverlay = document.getElementById('complimentTrainerOverlay');
+      const openComplimentBtn = document.getElementById('openComplimentTrainer');
+      const closeComplimentBtn = document.getElementById('closeComplimentTrainer');
+      const complimentProgress = document.getElementById('complimentProgress');
+      const complimentQuestion = document.getElementById('complimentQuestion');
+      const complimentResult = document.getElementById('complimentTrainerResult');
+      const complimentNext = document.getElementById('complimentNext');
+      const complimentOptions = document.querySelectorAll('.trainer-option[data-trainer="compliment"]');
+
+      let complimentIndex = 0;
+      let complimentCorrectCount = 0;
+      let complimentAnswered = false;
+
+      function renderComplimentQuestion() {
+        const q = complimentQuestions[complimentIndex];
+        complimentProgress.textContent = `Вопрос ${complimentIndex + 1} из ${complimentQuestions.length}`;
+        complimentQuestion.textContent = q.text;
+        complimentResult.textContent = '';
+        complimentResult.className = 'quiz-result';
+        complimentNext.disabled = true;
+        complimentAnswered = false;
+
+        complimentOptions.forEach(btn => {
+          btn.disabled = false;
+        });
+      }
+
+      if (openComplimentBtn) {
+        openComplimentBtn.addEventListener('click', () => {
+          complimentIndex = 0;
+          complimentCorrectCount = 0;
+          complimentOverlay.classList.add('open');
+          renderComplimentQuestion();
+        });
+      }
+
+      if (closeComplimentBtn) {
+        closeComplimentBtn.addEventListener('click', () => closeOverlay(complimentOverlay));
+      }
+
+      complimentOverlay.addEventListener('click', (e) => {
+        if (e.target === complimentOverlay) closeOverlay(complimentOverlay);
+      });
+
+      complimentOptions.forEach(btn => {
+        btn.addEventListener('click', () => {
+          if (complimentAnswered) return;
+          const value = btn.dataset.value;
+          const correct = complimentQuestions[complimentIndex].correct;
+
+          complimentOptions.forEach(b => b.disabled = true);
+          complimentAnswered = true;
+          complimentNext.disabled = false;
+
+          if (value === correct) {
+            complimentCorrectCount++;
+            complimentResult.textContent = 'Верно! Это хороший пример.';
+            complimentResult.className = 'quiz-result quiz-result-success';
+          } else {
+            complimentResult.textContent = 'Не совсем. Попробуй подумать, как бы ты воспринял(а) такие слова.';
+            complimentResult.className = 'quiz-result quiz-result-error';
+          }
+        });
+      });
+
+      if (complimentNext) {
+        complimentNext.addEventListener('click', () => {
+          if (!complimentAnswered) return;
+
+          if (complimentIndex < complimentQuestions.length - 1) {
+            complimentIndex++;
+            renderComplimentQuestion();
+          } else {
+            complimentProgress.textContent = 'Результат тренажёра';
+            complimentQuestion.textContent =
+              complimentCorrectCount === complimentQuestions.length
+                ? 'Отлично! Ты уверенно отличаешь комплименты от неудачных фраз.'
+                : `Ты ответил(а) верно на ${complimentCorrectCount} из ${complimentQuestions.length} вопросов. Посмотри ещё раз правила комплимента и попробуй снова.`;
+            complimentResult.textContent = '';
+            complimentNext.textContent = 'Начать заново';
+            complimentNext.disabled = false;
+            complimentAnswered = true;
+
+            complimentOptions.forEach(b => {
+              b.disabled = true;
+            });
+
+            complimentNext.onclick = () => {
+              complimentNext.textContent = 'Далее';
+              complimentIndex = 0;
+              complimentCorrectCount = 0;
+              renderComplimentQuestion();
+
+              complimentNext.onclick = null;
+              complimentNext.addEventListener('click', () => {});
+            };
+          }
+        });
+      }
+
+      /* ===== Тренажёр по информационным поводам ===== */
+      const infoQuestions = [
+        {
+          text: 'Так как у Вас сегодня день рождения, наша компания в знак благодарности дарит дополнительную скидку на комплекс средств для здоровья…',
+          correct: 'ok'
+        },
+        {
+          text: 'Общая ситуация на рынке вызвала массовое повышение цен, а наша компания просто улучшает качество витаминных комплексов…',
+          correct: 'bad'
+        },
+        {
+          text: 'Перед наступающими новогодними праздниками мы, как вашему постоянному Клиенту, предлагаем укрепить иммунитет новым комплексом средств для здоровья…',
+          correct: 'ok'
+        },
+        {
+          text: 'В преддверии 8 Марта мы звоним вам, как нашему премиум-клиенту (звоним мужчине)…',
+          correct: 'bad'
+        },
+        {
+          text: 'Перед началом городского марафона «Город бежит» наша компания предлагает протестировать линейку спортивного питания и витаминов для выносливости…',
+          correct: 'ok'
+        },
+        {
+          text: 'В связи с банкротством наших конкурентов мы предлагаем вам перейти на наши средства для здоровья…',
+          correct: 'bad'
+        },
+        {
+          text: 'Так как сегодня вся страна отмечает День здоровья, наша компания предлагает вам попробовать программу детокса «Скорость света»…',
+          correct: 'ok'
+        },
+        {
+          text: 'В связи с участившимися простудными заболеваниями мы предлагаем вам попробовать нашу новую линию средств для поддержки иммунитета…',
+          correct: 'ok'
+        },
+        {
+          text: 'По данным нашего опроса люди стали меньше покупать витамины, и мы предлагаем вам наш новый комплекс…',
+          correct: 'bad'
+        },
+        {
+          text: 'В преддверии 23 Февраля предлагаем мужчинам попробовать курс для поддержания энергии и выносливости…',
+          correct: 'ok'
+        }
+      ];
+
+      const infOverlay = document.getElementById('infopovodTrainerOverlay');
+      const openInfBtn = document.getElementById('openInfopovodTrainer');
+      const closeInfBtn = document.getElementById('closeInfopovodTrainer');
+      const infProgress = document.getElementById('infopovodProgress');
+      const infQuestion = document.getElementById('infopovodQuestion');
+      const infResult = document.getElementById('infopovodTrainerResult');
+      const infNext = document.getElementById('infopovodNext');
+      const infOptions = document.querySelectorAll('.trainer-option[data-trainer="info"]');
+
+      let infIndex = 0;
+      let infCorrectCount = 0;
+      let infAnswered = false;
+
+      function renderInfQuestion() {
+        const q = infoQuestions[infIndex];
+        infProgress.textContent = `Вопрос ${infIndex + 1} из ${infoQuestions.length}`;
+        infQuestion.textContent = q.text;
+        infResult.textContent = '';
+        infResult.className = 'quiz-result';
+        infNext.disabled = true;
+        infAnswered = false;
+
+        infOptions.forEach(btn => { btn.disabled = false; });
+      }
+
+      if (openInfBtn) {
+        openInfBtn.addEventListener('click', () => {
+          infIndex = 0;
+          infCorrectCount = 0;
+          infOverlay.classList.add('open');
+          renderInfQuestion();
+        });
+      }
+
+      if (closeInfBtn) {
+        closeInfBtn.addEventListener('click', () => closeOverlay(infOverlay));
+      }
+
+      infOverlay.addEventListener('click', (e) => {
+        if (e.target === infOverlay) closeOverlay(infOverlay);
+      });
+
+      infOptions.forEach(btn => {
+        btn.addEventListener('click', () => {
+          if (infAnswered) return;
+          const value = btn.dataset.value;
+          const correct = infoQuestions[infIndex].correct;
+
+          infOptions.forEach(b => b.disabled = true);
+          infAnswered = true;
+          infNext.disabled = false;
+
+          if (value === correct) {
+            infCorrectCount++;
+            infResult.textContent = 'Верно! Это хороший информационный повод.';
+            infResult.className = 'quiz-result quiz-result-success';
+          } else {
+            infResult.textContent = 'Не совсем. Информационный повод должен звучать позитивно и быть полезен Клиенту.';
+            infResult.className = 'quiz-result quiz-result-error';
+          }
+        });
+      });
+
+      if (infNext) {
+        infNext.addEventListener('click', () => {
+          if (!infAnswered) return;
+
+          if (infIndex < infoQuestions.length - 1) {
+            infIndex++;
+            renderInfQuestion();
+          } else {
+            infProgress.textContent = 'Результат тренажёра';
+            infQuestion.textContent =
+              infCorrectCount === infoQuestions.length
+                ? 'Отлично! Ты уверенно определяешь корректные информационные поводы.'
+                : `Ты ответил(а) верно на ${infCorrectCount} из ${infoQuestions.length} вопросов. Перечитай раздел про информационный повод и попробуй ещё раз.`;
+            infResult.textContent = '';
+            infNext.textContent = 'Начать заново';
+            infNext.disabled = false;
+            infAnswered = true;
+
+            infOptions.forEach(b => { b.disabled = true; });
+
+            infNext.onclick = () => {
+              infNext.textContent = 'Далее';
+              infIndex = 0;
+              infCorrectCount = 0;
+              renderInfQuestion();
+
+              infNext.onclick = null;
+              infNext.addEventListener('click', () => {});
+            };
+          }
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
